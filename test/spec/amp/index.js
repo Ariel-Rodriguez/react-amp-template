@@ -3,6 +3,7 @@ import { expect } from 'chai';
 import sinon from 'sinon';
 import AppStatic from '../../mocks/appStatic';
 import path from 'path';
+const debug = require('debug')('test');
 
 const sx = sinon.sandbox.create();
 let validator;
@@ -30,6 +31,7 @@ describe('AMP Validation', sinon.test(() => {
   });
 
   it('Sample App should PASS', () => {
-    expect(validator.validateMarkup(AppHTML).status).to.equal('PASS');
+    const validation = validator.validateMarkup(AppHTML);
+    expect(validation.status).to.equal('PASS');
   })
 }));

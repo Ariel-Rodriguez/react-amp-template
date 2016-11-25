@@ -15,6 +15,11 @@ export const MOCK_DATA = {
   },
 };
 
+MOCK_DATA.template.head.ampScripts = [
+  () => (<script async custom-element="amp-jwplayer" src="https://cdn.ampproject.org/v0/amp-jwplayer-0.1.js"></script>),
+  () => (<script async custom-element="amp-youtube" src="https://cdn.ampproject.org/v0/amp-youtube-0.1.js"></script>),
+];
+
 const styles = StyleSheet.create({
   red: {
     backgroundColor: 'red',
@@ -23,7 +28,16 @@ const styles = StyleSheet.create({
 
 const App = ({ message }) => (
   <div className={css(styles.red)}>
-    {message}
+    <div>
+      {message}
+    </div>
+    <amp-jwplayer
+      data-playlist-id="482jsTAr"
+      data-player-id="uoIbMPm3"
+      layout="responsive"
+      width="16"
+      height="9"
+    ></amp-jwplayer>
   </div>
 );
 

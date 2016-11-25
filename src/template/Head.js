@@ -16,13 +16,14 @@ const Head = ({ ampScripts, customStyles, canonical, title }) => (
       {// eslint-disable-next-line jsx-quotes
       }<style amp-boilerplate=''>{boilerplateStylesNoScript}</style>
     </noscript>
-    {customStyles && <style amp-custom=''>{customStyles}</style>}
-    {ampScripts}
+    {// eslint-disable-next-line jsx-quotes
+    customStyles && <style amp-custom=''>{customStyles}</style>}
+    {ampScripts && ampScripts.map((script) => script())}
   </head>
 );
 
 Head.propTypes = {
-  ampScripts: PropTypes.array,
+  ampScripts: PropTypes.Array,
   customStyles: PropTypes.string,
   canonical: PropTypes.string.isRequired,
   title: PropTypes.string,

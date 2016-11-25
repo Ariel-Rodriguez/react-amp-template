@@ -13,6 +13,7 @@ const DEFAULTS = {
       amp: DOMProperty.MUST_USE_PROPERTY,
       'amp-boilerplate': DOMProperty.MUST_USE_PROPERTY,
       'amp-custom': DOMProperty.MUST_USE_PROPERTY,
+      'custom-element': DOMProperty.MUST_USE_PROPERTY,
     },
     isCustomAttribute: (attributeName) => attributeName.startsWith('amp'),
   },

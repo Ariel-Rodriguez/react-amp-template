@@ -1,0 +1,1 @@
+{"version":3,"sources":["../src/cli.js"],"names":["exports","run","server","start"],"mappings":";;AAAA;;;;AACA;;;;;;AAEAA,QAAQC,GAAR,GAAc,YAAM;AAClB,uBAAW,oBAAUC,MAArB,EAA6BC,KAA7B;AACD,CAFD","file":"cli.js","sourcesContent":["import Server from './server';\nimport constants from './constants';\n\nexports.run = () => {\n  new Server(constants.server).start();\n};\n"]}

@@ -7,7 +7,7 @@
     "react-amp-template": "./bin/react-amp-template"
   },
   "scripts": {
-    "example": "npm run dist && DEBUG=*,-babel node ./node_modules/.bin/babel-node ./examples/staticMarkup.js",
+    "example": "npm run dist && DEBUG=*,-babel node ./node_modules/.bin/babel-node ./dist/examples/staticMarkup.js",
     "clean": "rimraf lib dist",
     "build": "babel src -d lib -s",
     "copy-dist": "find bin coverage examples lib LICENSE.MD package.json README.md | cpio -p -dumv ./dist",
@@ -30,7 +30,6 @@
     "plugins": [
       "transform-react-remove-prop-types",
       "transform-react-constant-elements",
-      "transform-react-inline-elements",
       "transform-imports"
     ],
     "env": {

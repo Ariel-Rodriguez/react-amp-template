@@ -1,3 +1,4 @@
+import fs from 'fs';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { DOMProperty } from 'react-dom/lib/ReactInjection';
@@ -19,9 +20,14 @@ const DEFAULTS = {
 
 class Core {
   constructor(options) {
-    this.settings = Object.assign({}, options, DEFAULTS);
+    this.settings = {
+      ...DEFAULTS,
+      options,
+    };
     debug('Injecting AMP DOMProperties.');
     DOMProperty.injectDOMPropertyConfig(this.settings.DOMPropertyConfig);
+    this.render = ::this.render;
+    this.renderToFile = ::this.renderToFile;
   }
 
   render(component, props) {
@@ -42,6 +48,18 @@ class Core {
         return reject(error);
       } finally {
         debug('render finish.');
+      }
+    });
+  }
+
+  renderToFile(file, ...toRender) {
+    this.render(toRender)
+    .then((staticMarkup) => {
+      try {
+        fs.syncWrite(file, staticMarkup);
+        return staticMarkup;
+      } catch (err) {
+        throw new Error(err);
       }
     });
   }

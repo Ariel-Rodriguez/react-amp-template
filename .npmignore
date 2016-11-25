@@ -1,7 +1,0 @@
-src
-.editorconfig
-yarn-error.log
-tmp
-*.swp
-*.swo
-.DS_Store

@@ -1,1 +1,0 @@
-{"version":3,"sources":["../../src/utils/innerHTML.js"],"names":["html","dangerouslySetInnerHTML","__html"],"mappings":";;;;;;kBAAe,UAACA,IAAD;AAAA,SAAW;AACxBC,6BAAyB,EAAEC,QAAQF,IAAV;AADD,GAAX;AAAA,C","file":"innerHTML.js","sourcesContent":["export default (html) => ({\n  dangerouslySetInnerHTML: { __html: html },\n});\n\n"]}

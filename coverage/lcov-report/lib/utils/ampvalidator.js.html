@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for spec/lib/server.js</title>
+    <title>Code coverage report for lib/utils/ampvalidator.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -16,28 +16,28 @@
 <div class='wrapper'>
   <div class='pad1'>
     <h1>
-      <a href="../../index.html">all files</a> / <a href="index.html">spec/lib/</a> server.js
+      <a href="../../index.html">all files</a> / <a href="index.html">lib/utils/</a> ampvalidator.js
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>24/24</span>
+        <span class='fraction'>17/17</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">66.67% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>4/4</span>
+        <span class='fraction'>4/6</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>7/7</span>
+        <span class='fraction'>4/4</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>19/19</span>
+        <span class='fraction'>16/16</span>
       </div>
     </div>
   </div>
@@ -70,67 +70,97 @@
 25
 26
 27
-28</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { expect } from 'chai';
-import sinon from 'sinon';
-import Server from '../../lib/server';
-import http from 'http';
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
 &nbsp;
-const sx = sinon.sandbox.create();
-let server;
-let listen;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 &nbsp;
-describe('Server', sinon.test(() =&gt; {
-  before('setup', () =&gt; {
-    listen = sx.spy();
-    sx.stub(http, 'createServer', () =&gt; ({ listen }));
-    server = new Server({ port: 9999 });
-  });
+var _amphtmlValidator = require('amphtml-validator');
 &nbsp;
-  after(() =&gt; {
-    sx.restore();
-  });
+var _amphtmlValidator2 = _interopRequireDefault(_amphtmlValidator);
 &nbsp;
-  it('server instance of ../lib/Server', () =&gt; {
-    expect(server).to.be.an.instanceof(Server);
-  });
-  it('server has method start.', () =&gt; {
-    expect(server).respondTo('start');
-  });
-}));
-&nbsp;</pre></td></tr>
+var _path = require('path');
+&nbsp;
+var _path2 = _interopRequireDefault(_path);
+&nbsp;
+function _interopRequireDefault(obj) { return o</span>bj &amp;&amp; obj.__esModule ? <span class="branch-0 cbranch-no" title="branch not covered" >obj : { default: obj }; }
+&nbsp;
+var enhanceValidator = function enhanceValidator(script) {
+  var validateString = script.sandbox.amp.validator.validateString;
+&nbsp;
+  return {
+    validateMarkup: function validateMarkup(markup) {
+      return validateString(markup, 'AMP');
+    }
+  };
+};
+&nbsp;
+var instance = void 0;
+var getInstance = function getInstance() {
+  <span class="missing-if-branch" title="else path not taken" >E</span>if (!instance) {
+    instance = _amphtmlValidator2.default.getInstance(_path2.default.resolve(__dirname, '../../vendors/validator.js')).then(enhanceValidator);
+  }
+  return instance;
+};
+&nbsp;
+exports.default = {
+  getInstance: getInstance
+};
+//# sourceMappingURL=ampvalidator.js.map</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Nov 25 2016 13:20:46 GMT-0300 (ART)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Nov 25 2016 16:40:36 GMT-0300 (ART)
 </div>
 </div>
 <script src="../../prettify.js"></script>

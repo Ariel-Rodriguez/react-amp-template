@@ -4,7 +4,6 @@ import { StyleSheetServer } from 'aphrodite/no-important';
 import ReactDOMServer from 'react-dom/server';
 import { DOMProperty } from 'react-dom/lib/ReactInjection';
 import Template from '../template';
-import innerHTML from '../utils/innerHTML';
 const debug = require('debug')('core');
 
 const DEFAULTS = {

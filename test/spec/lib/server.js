@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import sinon from 'sinon';
-import Server from '../../lib/server';
+import Server from '../../../lib/server';
 import http from 'http';
 
 const sx = sinon.sandbox.create();

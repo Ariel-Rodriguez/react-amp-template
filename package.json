@@ -13,7 +13,7 @@
     "copy-dist": "find bin coverage examples lib LICENSE.MD package.json README.md | cpio -p -dumv ./dist",
     "deploy": "npm run dist && git-directory-deploy --directory dist --branch release --verbose",
     "dist": "npm run clean && npm run build && npm run test && npm run copy-dist",
-    "test": "babel-node ./node_modules/.bin/isparta cover _mocha -- --compilers js:babel-core/register --require source-map-support/register ./spec --recursive",
+    "test": "babel-node ./node_modules/.bin/isparta cover _mocha -- --compilers js:babel-core/register --require source-map-support/register ./test/spec --recursive",
     "test-watch": "npm run test -- --watch"
   },
   "author": "Ariel Fernando Rodriguez",
@@ -121,7 +121,7 @@
     "zombie": "^5.0.5"
   },
   "devDependencies": {
-    "amp-validator": "^0.1.5",
+    "amphtml-validator": "^1.0.15",
     "babel-cli": "6.18.0",
     "babel-core": "6.18.0",
     "babel-eslint": "7.1.0",

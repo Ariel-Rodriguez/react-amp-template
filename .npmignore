@@ -1,10 +1,4 @@
 src
-node_modules
 .editorconfig
 yarn-error.log
-node_modules
-npm-debug.log
 tmp
-*.swp
-*.swo
-.DS_Store

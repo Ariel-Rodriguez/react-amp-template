@@ -31,7 +31,7 @@ class Core {
         try {
           staticMarkup += ReactDOMServer.renderToStaticMarkup(
             <Template {...props}>
-            {component}
+              {component}
             </Template>
           );
           return fulfill(staticMarkup);

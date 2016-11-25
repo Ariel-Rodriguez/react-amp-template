@@ -1,9 +1,10 @@
 import fs from 'fs';
 import React from 'react';
+import { StyleSheetServer } from 'aphrodite/no-important';
 import ReactDOMServer from 'react-dom/server';
 import { DOMProperty } from 'react-dom/lib/ReactInjection';
 import Template from '../template';
-
+import innerHTML from '../utils/innerHTML';
 const debug = require('debug')('core');
 
 const DEFAULTS = {
@@ -30,17 +31,27 @@ class Core {
     this.renderToFile = ::this.renderToFile;
   }
 
-  render(component, props) {
+  aphrodite(component) {
+    return StyleSheetServer.renderStatic(() =>
+      ReactDOMServer.renderToStaticMarkup(component)
+    );
+  }
+
+  render(component, { head, html }) {
     return new Promise((fulfill, reject) => {
       try {
-        let staticMarkup = this.settings.doctype;
         try {
-          staticMarkup += ReactDOMServer.renderToStaticMarkup(
-            <Template {...props}>
+          const { css } = this.aphrodite(component);
+          const document = ReactDOMServer.renderToStaticMarkup(
+            <Template
+              head={{ ...head, customStyles: css.content }}
+              html={html}
+            >
               {component}
             </Template>
           );
-          return fulfill(staticMarkup);
+          debug('CSSS!!', css.content);
+          return fulfill(this.settings.doctype + document);
         } catch (error) {
           return reject(error);
         }
@@ -53,10 +64,10 @@ class Core {
   }
 
   renderToFile(file, ...toRender) {
-    this.render(toRender)
+    return this.render(...toRender)
     .then((staticMarkup) => {
       try {
-        fs.syncWrite(file, staticMarkup);
+        fs.writeFileSync(file, staticMarkup);
         return staticMarkup;
       } catch (err) {
         throw new Error(err);

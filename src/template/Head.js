@@ -16,7 +16,7 @@ const Head = ({ ampScripts, customStyles, canonical, title }) => (
       {// eslint-disable-next-line jsx-quotes
       }<style amp-boilerplate=''>{boilerplateStylesNoScript}</style>
     </noscript>
-    {customStyles && <style amp-custom>{customStyles}</style>}
+    {customStyles && <style amp-custom=''>{customStyles}</style>}
     {ampScripts}
   </head>
 );

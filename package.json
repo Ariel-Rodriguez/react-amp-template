@@ -1,0 +1,160 @@
+{
+  "name": "react-amp-template",
+  "version": "1.0.0-alpha",
+  "description": "AMP template generator.",
+  "main": "lib/index.js",
+  "bin": {
+    "react-amp-template": "./bin/react-amp-template"
+  },
+  "scripts": {
+    "example": "npm run dist && DEBUG=*,-babel node ./node_modules/.bin/babel-node ./dist/examples/simple.js",
+    "clean": "rimraf lib dist",
+    "build": "babel src -d lib -s",
+    "copy-dist": "find ./examples ./bin ./lib ./coverage package.json README.md | cpio -p -dumv ./dist",
+    "deploy": "npm run dist && git-directory-deploy --directory dist/ --branch release --verbose",
+    "dist": "npm run clean && npm run build && npm run test && npm run copy-dist",
+    "test": "babel-node ./node_modules/.bin/isparta cover _mocha -- --compilers js:babel-core/register --require source-map-support/register ./spec --recursive",
+    "test-watch": "npm run test -- --watch"
+  },
+  "author": "Ariel Fernando Rodriguez",
+  "license": "MIT",
+  "babel": {
+    "presets": [
+      [
+        "latest",
+        "es2015"
+      ],
+      "react",
+      "stage-0"
+    ],
+    "plugins": [
+      "transform-react-remove-prop-types",
+      "transform-react-constant-elements",
+      "transform-react-inline-elements",
+      "transform-imports"
+    ],
+    "env": {
+      "test": {
+        "plugins": [
+          "istanbul"
+        ]
+      }
+    }
+  },
+  "eslintConfig": {
+    "parser": "babel-eslint",
+    "extends": "airbnb",
+    "env": {
+      "browser": false,
+      "node": true,
+      "mocha": true,
+      "es6": true
+    },
+    "plugins": [
+      "react",
+      "jsx-a11y"
+    ],
+    "parserOptions": {
+      "ecmaVersion": 6,
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "jsx": true
+      }
+    },
+    "rules": {
+      "arrow-parens": [
+        "error",
+        "always"
+      ],
+      "arrow-body-style": [
+        2,
+        "as-needed"
+      ],
+      "comma-dangle": [
+        2,
+        "always-multiline"
+      ],
+      "import/imports-first": 0,
+      "import/newline-after-import": 0,
+      "import/no-dynamic-require": 0,
+      "import/no-extraneous-dependencies": 0,
+      "import/no-named-as-default": 0,
+      "import/no-unresolved": 2,
+      "import/prefer-default-export": 0,
+      "indent": [
+        2,
+        2,
+        {
+          "SwitchCase": 1
+        }
+      ],
+      "jsx-a11y/aria-props": 2,
+      "jsx-a11y/heading-has-content": 0,
+      "jsx-a11y/href-no-hash": 2,
+      "jsx-a11y/label-has-for": 2,
+      "jsx-a11y/mouse-events-have-key-events": 2,
+      "jsx-a11y/role-has-required-aria-props": 2,
+      "jsx-a11y/role-supports-aria-props": 2,
+      "max-len": 0,
+      "newline-per-chained-call": 0,
+      "no-console": 1,
+      "no-use-before-define": 0,
+      "prefer-template": 2,
+      "class-methods-use-this": 0,
+      "react/forbid-prop-types": 0,
+      "react/jsx-first-prop-new-line": [
+        2,
+        "multiline"
+      ],
+      "react/jsx-filename-extension": 0,
+      "react/jsx-no-target-blank": 0,
+      "react/require-extension": 0,
+      "react/self-closing-comp": 0,
+      "require-yield": 0
+    },
+    "settings": {}
+  },
+  "dependencies": {
+    "amphtml-validator": "^1.0.15",
+    "aphrodite": "^1.1.0",
+    "react": "15.4.1",
+    "react-dom": "15.4.1"
+  },
+  "devDependencies": {
+    "amp-validator": "^0.1.5",
+    "babel-cli": "6.18.0",
+    "babel-core": "6.18.0",
+    "babel-eslint": "7.1.0",
+    "babel-loader": "6.2.7",
+    "babel-plugin-istanbul": "2.0.3",
+    "babel-plugin-react-intl": "2.2.0",
+    "babel-plugin-react-transform": "2.0.2",
+    "babel-plugin-transform-imports": "^1.1.0",
+    "babel-plugin-transform-react-constant-elements": "6.9.1",
+    "babel-plugin-transform-react-inline-elements": "6.8.0",
+    "babel-plugin-transform-react-remove-prop-types": "0.2.10",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-latest": "6.16.0",
+    "babel-preset-react": "6.16.0",
+    "babel-preset-react-hmre": "1.1.1",
+    "babel-preset-stage-0": "6.16.0",
+    "chai": "^3.5.0",
+    "copy": "^0.3.0",
+    "cross-env": "^3.1.3",
+    "debug": "^2.3.3",
+    "eslint": "3.9.0",
+    "eslint-config-airbnb": "12.0.0",
+    "eslint-config-airbnb-base": "9.0.0",
+    "eslint-plugin-import": "2.0.1",
+    "eslint-plugin-jsx-a11y": "2.2.3",
+    "eslint-plugin-react": "6.4.1",
+    "git-directory-deploy": "^1.5.1",
+    "isparta": "^4.0.0",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.1.2",
+    "pre-commit": "^1.1.3",
+    "rimraf": "^2.5.4",
+    "sinon": "^1.17.6",
+    "source-map-support": "^0.4.6"
+  }
+}

@@ -1,4 +1,4 @@
-export const templateProps = {
+export default {
   head: {
     title: 'Hello World React-AMP-Template.',
     canonical: 'http://example.com/amp/hello-world.html',

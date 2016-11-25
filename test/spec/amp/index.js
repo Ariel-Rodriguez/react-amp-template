@@ -2,8 +2,6 @@ import Validator from '../../../lib/utils/ampvalidator';
 import { expect } from 'chai';
 import sinon from 'sinon';
 import AppStatic from '../../mocks/appStatic';
-import path from 'path';
-const debug = require('debug')('test');
 
 const sx = sinon.sandbox.create();
 let validator;
@@ -15,10 +13,11 @@ describe('AMP Validation', sinon.test(() => {
     Validator.getInstance().then((instance) => {
       validator = instance;
       validator.validateMarkup('');
-      done();
-    });
-    AppStatic.render().then((html) => {
+    })
+    .then(AppStatic.render)
+    .then((html) => {
       AppHTML = html;
+      done();
     });
   });
 

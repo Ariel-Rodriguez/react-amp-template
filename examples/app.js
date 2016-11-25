@@ -1,6 +1,12 @@
 import React, { PropTypes } from 'react';
+import defaults from './config';
 import { css } from 'aphrodite/no-important';
 import styles from './styles';
+
+const customScripts = [
+  (id) => (<script key={id} async custom-element="amp-jwplayer" src="https://cdn.ampproject.org/v0/amp-jwplayer-0.1.js"></script>),
+  (id) => (<script key={id} async custom-element="amp-youtube" src="https://cdn.ampproject.org/v0/amp-youtube-0.1.js"></script>),
+];
 
 const App = ({ message }) => (
   <div className={css(styles.red, styles.hover)}>
@@ -20,5 +26,14 @@ const App = ({ message }) => (
 App.propTypes = {
   message: PropTypes.string.isRequired,
 };
+
+App.config = {
+  ...defaults,
+  head: {
+    ...defaults.head,
+    customScripts,
+  },
+};
+
 
 export default App;

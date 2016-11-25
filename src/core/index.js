@@ -50,7 +50,6 @@ class Core {
               {component}
             </Template>
           );
-          debug('CSSS!!', css.content);
           return fulfill(this.settings.doctype + document);
         } catch (error) {
           return reject(error);

@@ -1,12 +1,21 @@
 import amphtmlValidator from 'amphtml-validator';
 import path from 'path';
+const debug = require('debug')('rampt:validator');
 
 const enhanceValidator = (script) => {
   const validateString = script.sandbox.amp.validator.validateString;
 
   return {
-    validateMarkup: (markup) => {
-      return validateString(markup, 'AMP');
+    validateMarkup: (markup, ignoreErrors) => {
+      const validationResult = validateString(markup, 'AMP');
+      if (!ignoreErrors && validationResult.errors) {
+        validationResult.errors.forEach((error) => {
+          debug(`${error.severity} ${error.params}
+            line:${error.code} col:${error.col} ${error.specUrl}`);
+        });
+        debug(markup);
+      }
+      return validationResult;
     },
   };
 };

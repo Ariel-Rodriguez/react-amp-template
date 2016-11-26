@@ -3,9 +3,7 @@ import React from 'react';
 import App from './app';
 import { renderToFile } from '../lib';
 const debug = require('debug')('example');
+const output = path.resolve(__dirname, './example.html');
 
-renderToFile(
-  path.resolve(__dirname, './example.html'),
-  <App message="Hello World" />,
-  App.config
-).catch(debug);
+renderToFile(output, <App message="Hello World" />, App.config)
+.catch(debug);

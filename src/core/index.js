@@ -1,23 +1,13 @@
 import fs from 'fs';
 import React from 'react';
-import { StyleSheetServer } from 'aphrodite/no-important';
 import ReactDOMServer from 'react-dom/server';
 import { DOMProperty } from 'react-dom/lib/ReactInjection';
+import { StyleSheetServer } from 'aphrodite/no-important';
+import customScripts from './customScripts';
 import Template from '../template';
-const debug = require('debug')('core');
+import DEFAULTS from './defaults';
+const debug = require('debug')('rampt:core');
 
-const DEFAULTS = {
-  doctype: '<!DOCTYPE html>',
-  DOMPropertyConfig: {
-    Properties: {
-      amp: DOMProperty.MUST_USE_PROPERTY,
-      'amp-boilerplate': DOMProperty.MUST_USE_PROPERTY,
-      'amp-custom': DOMProperty.MUST_USE_PROPERTY,
-      'custom-element': DOMProperty.MUST_USE_PROPERTY,
-    },
-    isCustomAttribute: (attributeName) => attributeName.startsWith('amp'),
-  },
-};
 
 class Core {
   constructor(options) {
@@ -32,32 +22,31 @@ class Core {
   }
 
   aphrodite(component) {
+    debug('Running aphrodite.');
     return StyleSheetServer.renderStatic(() =>
       ReactDOMServer.renderToStaticMarkup(component)
     );
   }
 
-  render(component, { head, html }) {
+  render(component, config) {
     return new Promise((fulfill, reject) => {
       try {
-        try {
-          const { css } = this.aphrodite(component);
-          const document = ReactDOMServer.renderToStaticMarkup(
-            <Template
-              head={{ ...head, customStyles: css.content }}
-              html={html}
-            >
-              {component}
-            </Template>
-          );
-          return fulfill(this.settings.doctype + document);
-        } catch (error) {
-          return reject(error);
-        }
+        const aphrodite = this.aphrodite(component);
+        debug('Executing reactDOMServer.');
+        const document = ReactDOMServer.renderToStaticMarkup(
+          <Template
+            html={config.html}
+            head={{
+              ...config.head,
+              customStyles: aphrodite.css.content,
+              customScripts: customScripts.getElements(),
+            }}
+            body={aphrodite.html}
+          />
+        );
+        return fulfill(this.settings.doctype + document);
       } catch (error) {
         return reject(error);
-      } finally {
-        debug('render finish.');
       }
     });
   }
@@ -65,6 +54,7 @@ class Core {
   renderToFile(file, ...toRender) {
     return this.render(...toRender)
     .then((staticMarkup) => {
+      debug('Rendering to file --> ', file);
       try {
         fs.writeFileSync(file, staticMarkup);
         return staticMarkup;

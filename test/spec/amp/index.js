@@ -9,10 +9,10 @@ let AppHTML;
 
 describe('AMP Validation', sinon.test(() => {
   before('setup', (done) => {
-    // warm up validator
     Validator.getInstance().then((instance) => {
       validator = instance;
-      validator.validateMarkup('');
+      // warm up validator
+      validator.validateMarkup('', true);
     })
     .then(AppStatic.render)
     .then((html) => {
@@ -26,7 +26,8 @@ describe('AMP Validation', sinon.test(() => {
   });
 
   it('Simple html should FAIL', () => {
-    expect(validator.validateMarkup('<html amp></html>').status).to.equal('FAIL');
+    // validateMarkup with true to skip console errors
+    expect(validator.validateMarkup('<html amp></html>', true).status).to.equal('FAIL');
   });
 
   it('Sample App should PASS', () => {

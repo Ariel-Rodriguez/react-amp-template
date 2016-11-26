@@ -18,7 +18,7 @@ const Head = ({ customScripts, customStyles, canonical, title }) => (
     </noscript>
     {// eslint-disable-next-line jsx-quotes
     customStyles && <style amp-custom=''>{customStyles}</style>}
-    {customScripts && customScripts.map((script, key) => script(key))}
+    {customScripts}
   </head>
 );
 

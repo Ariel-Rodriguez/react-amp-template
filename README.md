@@ -4,6 +4,15 @@
   <sub>Another fun library to generate AMP documents.</sub>
 </div>
 
+<br />
+
+<div align="center">
+  <!-- Build Status -->
+  <a href="https://travis-ci.org/Ariel-Rodriguez/react-amp-template">
+    <img src="https://travis-ci.org/Ariel-Rodriguez/react-amp-template.svg?branch=master" alt="Build Status" />
+  </a>
+</div>
+
 
 ## Install
 

@@ -1,5 +1,10 @@
 import { StyleSheet } from 'aphrodite';
 
+export const form = StyleSheet.create({
+  form: {
+  },
+});
+
 export default StyleSheet.create({
   red: {
     backgroundColor: 'red',

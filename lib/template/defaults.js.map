@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../src/template/defaults.js"],"names":["ampValidationEnabled","customScriptVersion","html","lang"],"mappings":";;;;;kBAAe;AACbA,wBAAsB,IADT;AAEbC,uBAAqB,KAFR;AAGbC,QAAM;AACJC,UAAM;AADF;AAHO,C","file":"defaults.js","sourcesContent":["export default {\n  ampValidationEnabled: true,\n  customScriptVersion: '0.1',\n  html: {\n    lang: 'en',\n  },\n};\n"]}

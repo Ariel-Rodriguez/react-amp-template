@@ -17,7 +17,7 @@
 ## Install
 
 react-amp-template is distributed via npm:
-- `(https://yarnpkg.com/en/docs/install)[yarn] add or npm install --save react-amp-template`
+- [yarn](https://yarnpkg.com/en/docs/install) add react-amp-template or `$npm install --save react-amp-template`
 
 ## Server Side Rendering
 
@@ -51,12 +51,18 @@ const startServer = (html) => {
 * with a string that holds the whole HTML document ready to serve.
 * The promise will reject for any internal error.
 */
-renderToStaticMarkup(
-  <App bannerText="React-AMP-Template" />, App.config
-).catch(error).then(startServer);
+renderToStaticMarkup(<App bannerText="React-AMP-Template" />, App.config)
+  .catch(error)
+  .then(startServer);
 ```
+<br />
+<div align="left">
+<strong>PREVIEW:</strong>
+</div>
+<img src="https://raw.githubusercontent.com/Ariel-Rodriguez/react-amp-template/master/docs/images/demo-output.png" alt="react-amp-template demo output" align="center" />
+<br />
 
-#### (See more examples)[https://github.com/Ariel-Rodriguez/react-amp-template/tree/master/examples]
+#### [See more examples](https://github.com/Ariel-Rodriguez/react-amp-template/tree/master/examples)
 
 ## Features
 <dl>

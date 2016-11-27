@@ -15,7 +15,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _noImportant = require('aphrodite/no-important');
 
-var _lib = require('../lib');
+var _lib = require('../../lib');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 

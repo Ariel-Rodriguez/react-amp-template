@@ -91,7 +91,8 @@ renderToStaticMarkup(<App bannerText="React-AMP-Template" />, App.config)
 - add descriptive commit & push
 
 #### run examples
-- `npm run examples` `npm run demo`
+- Build examples and github demo `npm run dist`
+- `npm run demo` or `npm run examples`
 
 
 ## License

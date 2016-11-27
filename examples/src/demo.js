@@ -7,7 +7,7 @@ import {
 import {
   renderToStaticMarkup,
   scripts, // Fancy way to append amp-scripts into document's head
-} from '../lib'; // react-amp-template
+} from '../../lib'; // react-amp-template
 
 // --- MODULAR-CSS ---
 const style = StyleSheet.create({

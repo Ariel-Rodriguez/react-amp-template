@@ -1,11 +1,11 @@
 import { css } from 'aphrodite/no-important';
 import React, { PropTypes } from 'react';
 import config from './config';
-import { scripts } from '../../lib';
+import { scripts } from '../../../lib';
 import styles from './styles';
-import Form from './form';
+import Heading from './components/Heading';
 
-// Flexibility for adding custom-scripts
+// Flexibility to add custom-scripts
 scripts([
   'amp-jwplayer',
   ['amp-youtube', '0.1'],
@@ -13,24 +13,17 @@ scripts([
 // don't worries, only the most recent version will be preserved.
 scripts('amp-jwplayer');
 
-const App = ({ message }) => (
+const App = ({ bannerText }) => (
   <div className={css(styles.blue, styles.hover)}>
-    <div>
-      {message}
+    <div className="logo">
+      <a href="https://github.com/Ariel-Rodriguez/react-amp-template">{bannerText}</a>
     </div>
-    <amp-jwplayer
-      data-playlist-id="482jsTAr"
-      data-player-id="uoIbMPm3"
-      layout="responsive"
-      width="16"
-      height="9"
-    ></amp-jwplayer>
-    <Form />
+    <Heading />
   </div>
 );
 
 App.propTypes = {
-  message: PropTypes.string.isRequired,
+  bannerText: PropTypes.string.isRequired,
 };
 
 App.config = config;

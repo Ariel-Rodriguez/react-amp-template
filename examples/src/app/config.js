@@ -4,6 +4,6 @@ export default {
     canonical: 'http://example.com/amp/hello-world.html',
   },
   html: {
-    lang: 'es',
+    lang: 'en',
   },
 };

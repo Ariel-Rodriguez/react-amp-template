@@ -1,23 +1,28 @@
 {
   "name": "react-amp-template",
   "version": "1.0.0-alpha",
-  "description": "AMP template generator.",
+  "description": "AMP react server rendering.",
+  "keywords": ["react", "amp", "server-rendering", "react-amp", "amp-react"],
   "main": "lib/index.js",
   "bin": {
     "react-amp-template": "./bin/react-amp-template"
   },
   "scripts": {
-    "example": "npm run dist && DEBUG=*,-babel node ./node_modules/.bin/babel-node ./dist/examples/renderToFile.js",
+    "build": "npm run build-lib",
+    "build-examples": "DEBUG=*,-babel babel examples/src -d examples/build -s",
+    "build-lib": "DEBUG=*,-babel babel src -d lib -s",
     "clean": "rimraf lib dist",
-    "build": "DEBUG=*,-babel babel src -d lib -s",
-    "copy-dist": "find bin coverage examples lib LICENSE.MD package.json README.md | cpio -p -dumv ./dist",
+    "copy-dist": "find bin coverage examples lib vendors LICENSE.MD package.json README.md | cpio -p -dumv ./dist",
     "deploy": "npm run dist && git-directory-deploy --directory dist --branch release --verbose",
-    "dist": "npm run clean && npm run build && npm run test && npm run copy-dist",
-    "test": "DEBUG=*,-babel babel-node ./node_modules/.bin/isparta cover _mocha -- --compilers js:babel-core/register --require source-map-support/register ./test/spec --recursive",
+    "demo": "DEBUG=*,-babel node ./dist/examples/build/demo.js",
+    "dist": "npm run clean && npm run build && npm run build-examples && npm run test && npm run copy-dist",
+    "examples": "DEBUG=*,-babel node ./dist/examples/build/index.js",
+    "test": "DEBUG=rampt* babel-node ./node_modules/.bin/isparta cover _mocha -- --compilers js:babel-core/register --require source-map-support/register ./test/spec --recursive",
+    "test-dev": "npm run build && npm run test-watch",
     "test-watch": "npm run test -- --watch"
   },
   "author": "Ariel Fernando Rodriguez",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "babel": {
     "presets": [
       [

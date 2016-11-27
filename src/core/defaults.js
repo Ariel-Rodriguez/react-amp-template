@@ -1,8 +1,9 @@
 import { DOMProperty } from 'react-dom/lib/ReactInjection';
+import TEMPLATE_DEFAULTS from '../template/defaults';
 
 export default {
   doctype: '<!DOCTYPE html>',
-  customScriptVersion: '0.1',
+  template: TEMPLATE_DEFAULTS,
   DOMPropertyConfig: {
     Properties: {
       amp: DOMProperty.MUST_USE_PROPERTY,

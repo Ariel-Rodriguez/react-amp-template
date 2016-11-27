@@ -8,13 +8,15 @@ const enhanceValidator = (script) => {
   return {
     validateMarkup: (markup, ignoreErrors) => {
       const validationResult = validateString(markup, 'AMP');
-      if (!ignoreErrors && validationResult.errors) {
+      if (!ignoreErrors && validationResult.status !== 'PASS') {
         validationResult.errors.forEach((error) => {
           debug(`${error.severity} ${error.params}
             line:${error.code} col:${error.col} ${error.specUrl}`);
         });
         debug(markup);
+        throw new Error('AMP validation has failed.');
       }
+      debug('AMP validation status %s', validationResult.status);
       return validationResult;
     },
   };

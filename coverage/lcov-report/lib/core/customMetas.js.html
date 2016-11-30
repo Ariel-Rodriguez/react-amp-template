@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for lib/core/defaults.js</title>
+    <title>Code coverage report for lib/core/customMetas.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -16,28 +16,28 @@
 <div class='wrapper'>
   <div class='pad1'>
     <h1>
-      <a href="../../index.html">all files</a> / <a href="index.html">lib/core/</a> defaults.js
+      <a href="../../index.html">all files</a> / <a href="index.html">lib/core/</a> customMetas.js
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">85.71% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>8/8</span>
+        <span class='fraction'>18/21</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">75% </span>
+        <span class="strong">66.67% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>3/4</span>
+        <span class='fraction'>4/6</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">83.33% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>2/2</span>
+        <span class='fraction'>5/6</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">85% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>7/7</span>
+        <span class='fraction'>17/20</span>
       </div>
     </div>
   </div>
@@ -72,7 +72,25 @@
 27
 28
 29
-30</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -86,8 +104,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">2×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -95,42 +116,75 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">2×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
 &nbsp;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 &nbsp;
-var _ReactInjection = require('react-dom/lib/ReactInjection');
+var _react = require('react');
 &nbsp;
-var _defaults = require('../template/defaults');
+var _react2 = _interopRequireDefault(_react);
 &nbsp;
-var _defaults2 = _interopRequireDefault(_defaults);
+function _interopRequireDefault(obj) { return o</span>bj &amp;&amp; obj.__esModule ? <span class="branch-0 cbranch-no" title="branch not covered" >obj : { default: obj }; }
 &nbsp;
-function _interopRequireDefault(obj) { r</span>eturn obj &amp;&amp; obj.__esModule ? obj : <span class="branch-1 cbranch-no" title="branch not covered" >{ default: obj }; }
+var debug = require('debug')('rampt:custommeta');
 &nbsp;
-exports.default = {
-  doctype: '&lt;!DOCTYPE html&gt;',
-  template: _defaults2.default,
-  DOMPropertyConfig: {
-    Properties: {
-      amp: _ReactInjection.DOMProperty.MUST_USE_PROPERTY,
-      'amp-boilerplate': _ReactInjection.DOMProperty.MUST_USE_PROPERTY,
-      'amp-custom': _ReactInjection.DOMProperty.MUST_USE_PROPERTY,
-      'custom-element': _ReactInjection.DOMProperty.MUST_USE_PROPERTY
-    },
-    isCustomAttribute: function isCustomAttribute(attributeName) {
-      return attributeName.startsWith('amp');
-    }
+// registeredScripts is a small store that holds ReactElements
+var registeredMetas = [];
+&nbsp;
+var createMeta = function createMeta(meta) {
+  registeredMetas.push(_react2.default.createElement(meta, { key: registeredMetas.length }));
+};
+&nbsp;
+/**
+* Handy interface react components into head.
+* @param {String|Array(String|[Array])} - Pass a React Component, or an array
+* of React Components.
+*/
+var CustomMeta = function CustomMeta(component) {
+  <span class="missing-if-branch" title="else path not taken" >E</span>if (component instanceof Array) {
+    debug('Registering bunch of metas.');
+    component.forEach(function (el) {
+      createMeta(el);
+    });
+  } else {
+<span class="cstat-no" title="statement not covered" >    d</span>ebug('Registering meta');
+<span class="cstat-no" title="statement not covered" >    c</span>reateMeta(component);
   }
 };
-//# sourceMappingURL=defaults.js.map</pre></td></tr>
+&nbsp;
+CustomMeta.getElements = function () {
+  return registeredMetas;
+};
+&nbsp;
+CustomMeta.clear = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >  r</span>eturn registeredMetas.splice(registeredMetas.length);
+};
+&nbsp;
+exports.default = CustomMeta;
+//# sourceMappingURL=customMetas.js.map</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->

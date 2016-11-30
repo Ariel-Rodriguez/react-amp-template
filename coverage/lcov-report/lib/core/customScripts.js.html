@@ -20,28 +20,28 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">57.14% </span>
+        <span class="strong">97.14% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>20/35</span>
+        <span class='fraction'>34/35</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">28.57% </span>
+        <span class="strong">64.29% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>4/14</span>
+        <span class='fraction'>9/14</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">28.57% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>2/7</span>
+        <span class='fraction'>7/7</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">55.88% </span>
+        <span class="strong">97.06% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>19/34</span>
+        <span class='fraction'>33/34</span>
       </div>
     </div>
   </div>
-  <div class='status-line medium'></div>
+  <div class='status-line high'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -157,9 +157,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -179,9 +179,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -198,13 +198,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -212,14 +212,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
@@ -247,10 +247,10 @@ var debug = require('debug')('rampt:customscript');
  * Convenience function to render amp scripts into the head of the template.
  * @returns {ReactElement}
  */
-var Script = <span class="fstat-no" title="function not covered" >function Script(_ref) {</span>
-<span class="cstat-no" title="statement not covered" >  v</span>ar name = _ref.name,
+var Script = function Script(_ref) {
+  var name = _ref.name,
       version = _ref.version;
-<span class="cstat-no" title="statement not covered" >  r</span>eturn _react2.default.createElement('script', {
+  return _react2.default.createElement('script', {
     async: true,
     'custom-element': name,
     src: 'https://cdn.ampproject.org/v0/' + name + '-' + version + '.js'
@@ -269,10 +269,10 @@ var registeredScripts = new Map();
 * @param {string} name
 * @param {string} version
 */
-var addScript = <span class="fstat-no" title="function not covered" >function addScript(name, version) {</span>
-<span class="cstat-no" title="statement not covered" >  if (!registeredScripts.has(name) || registeredScripts.get(name).version &lt; version) {</span>
-<span class="cstat-no" title="statement not covered" >    d</span>ebug('Registering script ', name);
-<span class="cstat-no" title="statement not covered" >    r</span>egisteredScripts.set(name, { version: version });
+var addScript = function addScript(name, version) {
+  <span class="missing-if-branch" title="else path not taken" >E</span>i</span>f (!registeredScripts.has(name) || <span class="branch-1 cbranch-no" title="branch not covered" >registeredScripts.get(name).version &lt; version) {
+    debug('Registering script ', name);
+    registeredScripts.set(name, { version: version });
   } else {
 <span class="cstat-no" title="statement not covered" >    d</span>ebug('custom-sript [%s] exists already, and it is not newer.', name, version);
   }
@@ -288,14 +288,14 @@ var addScript = <span class="fstat-no" title="function not covered" >function ad
 * [ 'amp-script-x', ['amp-script-y','0.1'], 'amp-script-z', ... ]
 * If the script exists already, only the newer will precede.
 */
-var CustomScripts = <span class="fstat-no" title="function not covered" >function CustomScripts(scripts) {</span>
-<span class="cstat-no" title="statement not covered" >  v</span>ar arrScripts = scripts instanceof Array ? scripts : [scripts];
-<span class="cstat-no" title="statement not covered" >  a</span>rrScripts.forEach(<span class="fstat-no" title="function not covered" >function (script) {</span>
-<span class="cstat-no" title="statement not covered" >    d</span>ebug('Parse new script ', script);
-<span class="cstat-no" title="statement not covered" >    v</span>ar scriptWithOptions = script instanceof Array;
-<span class="cstat-no" title="statement not covered" >    v</span>ar name = scriptWithOptions ? script[0] : script;
-<span class="cstat-no" title="statement not covered" >    v</span>ar version = scriptWithOptions ? script[1] : _defaults2.default.template.customScriptVersion;
-<span class="cstat-no" title="statement not covered" >    a</span>ddScript(name, version);
+var CustomScripts = function CustomScripts(scripts) {
+  var arrScripts = s</span>cripts instanceof Array ? <span class="branch-0 cbranch-no" title="branch not covered" >scripts : [scripts];
+  arrScripts.forEach(function (script) {
+    debug('Parse new script ', script);
+    var scriptWithOptions = script instanceof Array;
+    var name = s</span>criptWithOptions ? <span class="branch-0 cbranch-no" title="branch not covered" >script[0] : script;
+    var version = s</span>criptWithOptions ? <span class="branch-0 cbranch-no" title="branch not covered" >script[1] : _defaults2.default.template.customScriptVersion;
+    addScript(name, version);
   });
 };
 &nbsp;
@@ -305,9 +305,9 @@ var CustomScripts = <span class="fstat-no" title="function not covered" >functio
 CustomScripts.getElements = function () {
   var elements = [];
   var id = 0;
-  registeredScripts.forEach(<span class="fstat-no" title="function not covered" >function (value, name) {</span>
-<span class="cstat-no" title="statement not covered" >    e</span>lements.push(_react2.default.createElement(Script, { name: name, version: value.version, key: id }));
-<span class="cstat-no" title="statement not covered" >    i</span>d += 1;
+  registeredScripts.forEach(function (value, name) {
+    elements.push(_react2.default.createElement(Script, { name: name, version: value.version, key: id }));
+    id += 1;
   });
   debug('Retrieveing customScripts. total:', elements.length);
   return elements;
@@ -322,7 +322,7 @@ exports.default = CustomScripts;
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Nov 27 2016 06:52:37 GMT-0300 (ART)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Nov 30 2016 15:09:32 GMT-0300 (ART)
 </div>
 </div>
 <script src="../../prettify.js"></script>

@@ -1,5 +1,6 @@
 import Core from './core';
 import customScripts from './core/customScripts';
+import customMetas from './core/customMetas';
 
 // CJS singleton instance.
 // TODO: find an elegant way pattern for it.
@@ -37,3 +38,4 @@ export const renderToFile = core.renderToFile;
 * If the script exists already, only the newer will precede.
 */
 export const scripts = customScripts;
+export const metas = customMetas;

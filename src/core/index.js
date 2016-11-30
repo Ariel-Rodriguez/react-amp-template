@@ -4,6 +4,7 @@ import ReactDOMServer from 'react-dom/server';
 import { DOMProperty } from 'react-dom/lib/ReactInjection';
 import { StyleSheetServer } from 'aphrodite/no-important';
 import customScripts from './customScripts';
+import customMetas from './customMetas';
 import ampValidator from '../utils/ampvalidator';
 import Template from '../template';
 import DEFAULTS from './defaults';
@@ -56,6 +57,9 @@ class Core {
       try {
         const { html, css } = this.aphrodite(component);
         debug('Executing reactDOMServer.');
+        debug('Metas:', customMetas.getElements());
+        debug('Scripts:', customScripts.getElements());
+
         const document = this.settings.doctype +
           ReactDOMServer.renderToStaticMarkup(
             <Template
@@ -64,6 +68,7 @@ class Core {
                 ...template.head,
                 customStyles: css.content,
                 customScripts: customScripts.getElements(),
+                customMetas: customMetas.getElements(),
               }}
               body={html}
             />

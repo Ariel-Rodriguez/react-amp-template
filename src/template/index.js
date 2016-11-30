@@ -6,6 +6,7 @@ const debug = require('debug')('rampt:template');
 
 const Template = ({ html, head, body }) => {
   debug({
+    customMetasCount: head.customMetas.length,
     customScriptsCount: head.customScripts.length,
     hasCustomStyles: (head.customStyles.length) ? 'Yes' : 'No',
   });

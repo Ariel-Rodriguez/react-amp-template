@@ -1,5 +1,6 @@
 import React from 'react';
 import { expect } from 'chai';
+import fs from 'fs';
 import sinon from 'sinon';
 import { core, renderToStaticMarkup } from '../../../lib';
 import { App, MOCK_DATA } from '../../mocks/core';
@@ -16,6 +17,7 @@ describe('Core', sinon.test(() => {
       sinon.spy(core, 'validateMarkup');
       renderToStaticMarkup(<App />, MOCK_DATA.config).then((html) => {
         setupResults.html = html;
+        fs.writeFileSync('./test-debug.html', html);
         done();
       }).catch((err) => {
         setupResults.errors = err;
@@ -40,6 +42,14 @@ describe('Core', sinon.test(() => {
     });
     it('HTML rendered should contain lang="en" string.', () => {
       expect(setupResults.html).to.contain(MOCK_DATA.content.data);
+    });
+  });
+  describe('Render Static Markup - Custom meta tags', () => {
+    it('Should add meta twitter.', () => {
+      expect(setupResults.html).to.contain(MOCK_DATA.expect.metaTwitter);
+    });
+    it('Should add meta ld/json.', () => {
+      expect(setupResults.html).to.contain(MOCK_DATA.expect.metaJSON);
     });
   });
 }));

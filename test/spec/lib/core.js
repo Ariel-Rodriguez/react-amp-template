@@ -2,54 +2,52 @@ import React from 'react';
 import { expect } from 'chai';
 import fs from 'fs';
 import sinon from 'sinon';
-import { core, renderToStaticMarkup } from '../../../lib';
+import RAMPT from '../../../lib';
 import { App, MOCK_DATA } from '../../mocks/core';
 
-const setupResults = {
-  AppHTML: '',
-  errors: 'none',
-};
+let errors = 'none';
+let renderOutput;
+let rampt;
 
 describe('Core', sinon.test(() => {
   describe('Render Static Markup - defaults', () => {
     before('setup', (done) => {
-      sinon.spy(core, 'getValidator');
-      sinon.spy(core, 'validateMarkup');
-      renderToStaticMarkup(<App />, MOCK_DATA.config).then((html) => {
-        setupResults.html = html;
+      console.log(RAMPT);
+      rampt = new RAMPT(MOCK_DATA.config);
+      sinon.spy(rampt, 'getValidator');
+      sinon.spy(rampt, 'validateMarkup');
+      rampt.renderStatic(<App />).then((html) => {
+        renderOutput = html;
         fs.writeFileSync('./test-debug.html', html);
-        done();
-      }).catch((err) => {
-        setupResults.errors = err;
         done();
       });
     });
     after(() => {
-      core.getValidator.restore();
-      core.validateMarkup.restore();
+      rampt.getValidator.restore();
+      rampt.validateMarkup.restore();
     });
     it('Should call getValidator once.', () => {
-      expect(core.getValidator.calledOnce).to.equal(true);
+      expect(rampt.getValidator.calledOnce).to.equal(true);
     });
     it('Should call validateMarkup once.', () => {
-      expect(core.getValidator.calledOnce).to.equal(true);
+      expect(rampt.getValidator.calledOnce).to.equal(true);
     });
     it('Should not throw errors.', () => {
-      expect(setupResults.errors).to.equal('none');
+      expect(errors).to.equal('none');
     });
     it(`HTML rendered should contain '${MOCK_DATA.content.data}' string.`, () => {
-      expect(setupResults.html).to.contain(MOCK_DATA.content.data);
+      expect(renderOutput).to.contain(MOCK_DATA.content.data);
     });
     it('HTML rendered should contain lang="en" string.', () => {
-      expect(setupResults.html).to.contain(MOCK_DATA.content.data);
+      expect(renderOutput).to.contain(MOCK_DATA.content.data);
     });
   });
-  describe('Render Static Markup - Custom meta tags', () => {
+  describe('Render Static Markup', () => {
     it('Should add meta twitter.', () => {
-      expect(setupResults.html).to.contain(MOCK_DATA.expect.metaTwitter);
+      expect(renderOutput).to.contain(MOCK_DATA.expect.metaTwitter);
     });
-    it('Should add meta ld/json.', () => {
-      expect(setupResults.html).to.contain(MOCK_DATA.expect.metaJSON);
+    it('Should add meta ldJSON.', () => {
+      expect(renderOutput).to.contain(MOCK_DATA.expect.metaJSON);
     });
   });
 }));

@@ -1,9 +1,16 @@
 import { DOMProperty } from 'react-dom/lib/ReactInjection';
-import TEMPLATE_DEFAULTS from '../template/defaults';
 
 export default {
-  doctype: '<!DOCTYPE html>',
-  template: TEMPLATE_DEFAULTS,
+  ampValidations: true,
+  template: {
+    doctype: '<!DOCTYPE html>',
+    tags: {
+      'amp-script-version': '0.1',
+    },
+    html: {
+      lang: 'en',
+    },
+  },
   DOMPropertyConfig: {
     Properties: {
       amp: DOMProperty.MUST_USE_PROPERTY,

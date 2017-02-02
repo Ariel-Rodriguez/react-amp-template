@@ -6,9 +6,9 @@ const debug = require('debug')('rampt:template');
 
 const Template = ({ html, head, body }) => {
   debug({
-    customMetasCount: head.customMetas.length,
-    customScriptsCount: head.customScripts.length,
-    hasCustomStyles: (head.customStyles.length) ? 'Yes' : 'No',
+    'script tags': head.scripts.length,
+    'meta tags': head.metas.length,
+    hasCustomStyles: (head.styles.length) ? 'Yes' : 'No',
   });
   return (
     // eslint-disable-next-line jsx-a11y/html-has-lang
@@ -21,7 +21,10 @@ const Template = ({ html, head, body }) => {
 
 Template.propTypes = {
   html: PropTypes.object,
-  head: PropTypes.object.isRequired,
+  head: PropTypes.shape({
+    scripts: PropTypes.array.isRequired,
+    metas: PropTypes.array.isRequired,
+  }).isRequired,
   body: PropTypes.string,
 };
 

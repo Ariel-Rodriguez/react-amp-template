@@ -6,4 +6,5 @@ yarn-error.log
 lib/**
 dist
 examples/build
+examples/simple/node_modules
 test-debug.html

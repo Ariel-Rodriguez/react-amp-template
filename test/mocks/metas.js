@@ -31,11 +31,15 @@ const ldJSONContent = `{
   }
 }`;
 
-export const ldJson = () => (
-  <script type="application/ld+json" {...innerHTML(ldJSONContent)}>
-  </script>
-);
+export const ldJSON = {
+  type: 'application/ld+json',
+  content: ldJSONContent,
+};
 
-export const twitter = () => (
-  <meta name="twitter:creator" content="@react-amp-template"></meta>
-);
+export const twitter = {
+  type: 'meta',
+  content: {
+    name: 'twitter:creator',
+    content: '@react-amp-template',
+  },
+};

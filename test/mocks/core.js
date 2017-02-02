@@ -1,16 +1,18 @@
 import React from 'react';
-import { metas, scripts } from '../../lib';
-import { ldJson, twitter } from './metas';
+import { addMeta, addScript } from '../../lib';
+import { ldJSON, twitter } from './metas';
 
 export const MOCK_DATA = {
   content: {
     data: 'mock',
   },
   config: {
-    head: {
-      title: 'mock',
-      canonical: 'mock',
-    },
+    template: {
+      head: {
+        title: 'mock',
+        canonical: 'mock',
+      },
+    }
   },
   expect: {
     metaJSON: "'dateModified': '1907-05-05T12:02:41Z'",
@@ -18,10 +20,9 @@ export const MOCK_DATA = {
   },
 };
 
-metas([
-  ldJson,
-  twitter,
-]);
-scripts('amp-social-share');
 
-export const App = () => (<div>{MOCK_DATA.content.data}</div>);
+export const App = () => {
+  addMeta([twitter, ldJSON]);
+  addScript('amp-social-share');
+  return (<div>{MOCK_DATA.content.data}</div>)
+};

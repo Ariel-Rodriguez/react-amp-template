@@ -14,7 +14,7 @@ const enhanceValidator = (script) => {
             line:${error.code} col:${error.col} ${error.specUrl}`);
         });
         debug(markup);
-        throw new Error('AMP validation has failed.');
+        throw new Error(validationResult.errors);
       }
       debug('AMP validation status %s', validationResult.status);
       return validationResult;

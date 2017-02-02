@@ -5,5 +5,9 @@ import { renderToFile } from '../../lib';
 const debug = require('debug')('example');
 const output = path.resolve(__dirname, './example.html');
 
-renderToFile(output, <App bannerText="React-AMP-Template" />, App.config)
-.catch(debug);
+const rampt = new RAMPT({ ampValidations: true });
+
+rampt
+  .renderToFile(<App bannerText="React-AMP-Template" />)
+  .catch(debug);
+

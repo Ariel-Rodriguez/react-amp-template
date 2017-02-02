@@ -19,41 +19,40 @@
 react-amp-template is distributed via npm:
 - [yarn](https://yarnpkg.com/en/docs/install) add react-amp-template or `$npm install --save react-amp-template`
 
-## Server Side Rendering
-
-
-#### Basic sample
 
 ```javascript
-import http from 'http';
-import React from 'react';
-import App from './app';
-import { renderToStaticMarkup } from '../../lib';
-const debug = require('debug')('example:server');
-const error = require('debug')('example:server:error');
+var React = require('react');
+var RAMPT = require('react-amp-template').default;
 
-const startServer = (html) => {
-  http.createServer((request, response) => {
-    response.writeHeader(200, { 'Content-Type': 'text/html' });
-    response.write(html);
-    response.end();
-  })
-  .listen(8000)
-  .on('clientError', (err, socket) => {
-    socket.end('HTTP/1.1 400 Bad Request\r\n\r\n');
-    error(err);
+var rampt = new RAMPT({
+  template: {
+    head: {
+      title: 'react amp template',
+      canonical: 'http',
+    }
+  }
+});
+
+var element = React.createElement('div', null, 'Hello World');
+
+// add meta tag single mode.
+addMeta({
+  type: 'application/ld+json',
+  content: "{'@context': 'http://schema.org', '@type': 'NewsArticle'}"
+});
+
+// register any amp-script. just an example.
+addScript('amp-social-share');
+
+rampt
+  .renderStatic(element)
+  .then(console.log)
+  .catch(function(error){
+    console.log('Errors founds! Use npm run debug for debug trace.');
+    console.log('Document failed '+((error.validation) ? 'at AMP validations.' : 'at internal rendering.'));
+    console.log('Markup output: ', error.markup);
+    process.exit(1);
   });
-  debug('Listening on port 8000');
-};
-
-/**
-* react-amp-template returns a promise which will be fulfilled
-* with a string that holds the whole HTML document ready to serve.
-* The promise will reject for any internal error.
-*/
-renderToStaticMarkup(<App bannerText="React-AMP-Template" />, App.config)
-  .catch(error)
-  .then(startServer);
 ```
 <br />
 <div align="left">
@@ -77,8 +76,7 @@ renderToStaticMarkup(<App bannerText="React-AMP-Template" />, App.config)
 ## API
 :zzz:
 
-## Data flow
-:zzz:
+
 
 ## :penguin: Contributing
 
@@ -93,6 +91,9 @@ renderToStaticMarkup(<App bannerText="React-AMP-Template" />, App.config)
 #### run examples
 - Build examples and github demo `npm run dist`
 - `npm run demo` or `npm run examples`
+
+- Complete example using npm:
+  - `cd examples/simple && npm i && npm start`
 
 
 ## License

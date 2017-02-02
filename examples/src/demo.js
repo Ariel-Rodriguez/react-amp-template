@@ -4,37 +4,39 @@ import {
   StyleSheet,
   css,
 } from 'aphrodite/no-important'; // Is very important to import no-important!
-import {
-  renderToStaticMarkup,
-  scripts, // Fancy way to append amp-scripts into document's head
+import RAMPT, {
+  addScript, // Fancy way to append amp-scripts into document's head
+  addMeta,
 } from '../../lib'; // react-amp-template
 
 // --- MODULAR-CSS ---
 const style = StyleSheet.create({
   social: { padding: '10px' },
 });
-// --- CUSTOM-SCRIPTS ---
-// Notify to include amp-social-share.
-scripts('amp-social-share');
-
-// Minimum settings for the template.
-const AMP_CONFIG = {
-  head: { title: 'react-amp-sample', canonical: 'http://sample' },
-};
 
 // --- REACT + CSUTOM-TAGS ---
-const SampleApp = ({ value }) => (
-  <div>
-    <h1>Hello {value}</h1>
-    <p className={css(style.social)}>
-      <amp-social-share
-        type="email"
-        width="45"
-        height="33"
-      ></amp-social-share>
-    </p>
-  </div>
-);
+const SampleApp = ({ value }) => {
+  // --- CUSTOM-SCRIPTS ---
+  // Notify to include amp-social-share.
+  addScript('amp-social-share','2.0');
+  addMeta([
+    { type: 'meta', content: { 'content': 'something' } },
+    { type: 'link', content: { 'rel': 'http://link' } },
+  ]);
+
+  return (
+    <div>
+      <h1>Hello {value}</h1>
+      <p className={css(style.social)}>
+        <amp-social-share
+          type="email"
+          width="45"
+          height="33"
+        ></amp-social-share>
+      </p>
+    </div>
+  );
+};
 
 
 export const startServer = (html) => {
@@ -50,11 +52,24 @@ export const startServer = (html) => {
   console.log('Listening on port 8000');
 };
 
+
+const rampt = new RAMPT({
+  ampValidations: true, // (default) validate the template with AMP Google tool.
+  template: {
+    head: {
+      title: 'react-amp-sample',
+      canonical: 'http://sample',
+    },
+  }
+})
+
 /**
-* react-amp-template returns a promise which will be fulfilled
+* renderStatic returns a promise which will be fulfilled
 * with a string that holds the whole HTML document ready to serve.
 * The promise will reject for any internal error.
 * Once done rendering, the promise's result will be served on port 8000.
 */
-renderToStaticMarkup(<SampleApp value="World" />, AMP_CONFIG)
-.then(startServer).catch(console.error);
+rampt
+.renderStatic(<SampleApp value="World" />)
+.then(startServer)
+.catch(console.error);

@@ -5,7 +5,7 @@ var rampt = new RAMPT({
   template: {
     head: {
       title: 'react amp template',
-      canonical: 'http',
+      canonical: 'http://non-amp.html',
     }
   }
 });

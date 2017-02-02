@@ -9,6 +9,7 @@ import Template from '../components/Template';
 import DEFAULTS from './defaults';
 const debug = require('debug')('rampt:core');
 
+let DOMInjected = false;
 /**
  * A class that manages ReactDOMServer & ModularCSS to
  * transpile ReactElements into a single valid AMP HTML document.
@@ -31,9 +32,14 @@ class Core {
         ...options.DOMPropertyConfig,
       }
     };
-    debug('Creating instance. Settings: ', JSON.stringify(this.settings));
-    debug('Injecting AMP DOMProperties.');
-    DOMProperty.injectDOMPropertyConfig(this.settings.DOMPropertyConfig);
+    debug('RAMPT settings: ', JSON.stringify(this.settings));
+    if (!DOMInjected) {
+      debug('Injecting AMP DOMProperties.');
+      DOMProperty.injectDOMPropertyConfig(this.settings.DOMPropertyConfig);
+      DOMInjected = true;
+    } else {
+      debug('Custom DOMProperties were injected already');
+    }
 
     this.tags = new Tags(this.settings.tags);
     this.renderStatic = ::this.renderStatic;

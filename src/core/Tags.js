@@ -17,7 +17,7 @@ class Tags {
      * script more than once.
     **/
     COLLECTION_SCRIPT.clear();
-    COLLECTION_META.shift(COLLECTION_META.length);
+    COLLECTION_META.length = 0;
   }
 }
 

@@ -1,6 +1,6 @@
 {
   "name": "react-amp-template",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "AMP react server rendering.",
   "keywords": ["react", "amp", "server-rendering", "react-amp", "amp-react", "template"],
   "main": "lib/index.js",

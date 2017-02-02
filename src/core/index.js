@@ -19,7 +19,19 @@ const debug = require('debug')('rampt:core');
  */
 class Core {
   constructor(options) {
-    this.settings = Object.assign({}, DEFAULTS, options);
+    this.settings = {
+      ...DEFAULTS,
+      ...options,
+      template: {
+        ...DEFAULTS.template,
+        ...options.template,
+      },
+      DOMPropertyConfig: {
+        ...DEFAULTS.DOMPropertyConfig,
+        ...options.DOMPropertyConfig,
+      }
+    };
+    debug('Creating instance. Settings: ', JSON.stringify(this.settings));
     debug('Injecting AMP DOMProperties.');
     DOMProperty.injectDOMPropertyConfig(this.settings.DOMPropertyConfig);
 
@@ -53,7 +65,6 @@ class Core {
    */
   renderStatic(component) {
     const { template } = this.settings;
-    debug('Template settings:', template);
     return new Promise((fulfill, reject) => {
       try {
         const { html, css } = this.aphrodite(component);
@@ -65,20 +76,26 @@ class Core {
               html={template.html}
               head={{
                 ...template.head,
-                customStyles: css.content,
-                customScripts: getScripts(),
-                customMetas: getMetas(),
+                styles: css.content,
+                scripts: getScripts(),
+                metas: getMetas(),
               }}
               body={html}
             />
           );
-        if (template.ampValidations) {
+        if (this.settings.ampValidations) {
           debug('AMP validation is enabled.');
-          return this.validateMarkup(document).then(fulfill).catch(reject);
+          return this.validateMarkup(document)
+            .then(fulfill)
+            .catch((ampErrors)=> {
+              reject({ validation: ampErrors, markup: document });
+            });
         }
         return fulfill(document);
       } catch (error) {
-        return reject(error);
+        return reject({
+          markup: error
+        });
       }
     });
   }

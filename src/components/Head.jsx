@@ -4,9 +4,9 @@ const boilerplateStyles = 'body{-webkit-animation:-amp-start 8s steps(1,end) 0s 
 const boilerplateStylesNoScript = 'body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}';
 
 const Head = ({
-  customMetas,
-  customScripts,
-  customStyles,
+  metas,
+  scripts,
+  styles,
   canonical,
   title,
 }) => (
@@ -16,23 +16,20 @@ const Head = ({
     <title>{title}</title>
     <script async src="https://cdn.ampproject.org/v0.js"></script>
     <link rel="canonical" href={canonical} />
-    {customMetas}
-    {// eslint-disable-next-line jsx-quotes
-    }<style amp-boilerplate=''>{boilerplateStyles}</style>
-    <noscript>
-      {// eslint-disable-next-line jsx-quotes
-      }<style amp-boilerplate=''>{boilerplateStylesNoScript}</style>
-    </noscript>
-    {// eslint-disable-next-line jsx-quotes
-    customStyles && <style amp-custom=''>{customStyles}</style>}
-    {customScripts}
+    {[
+      metas,
+      scripts
+    ]}
+    <style amp-boilerplate="">{boilerplateStyles}</style>
+    <noscript><style amp-boilerplate="">{boilerplateStylesNoScript}</style></noscript>
+    {styles ? <style amp-custom="">{styles}</style> : null }
   </head>
 );
 
 Head.propTypes = {
-  customMetas: PropTypes.Array,
-  customScripts: PropTypes.Array,
-  customStyles: PropTypes.string,
+  metas: PropTypes.Array,
+  scripts: PropTypes.Array,
+  styles: PropTypes.string,
   canonical: PropTypes.string.isRequired,
   title: PropTypes.string,
 };

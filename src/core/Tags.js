@@ -1,4 +1,5 @@
 import React from 'react';
+import innerHTML from '../utils/innerHTML';
 import Script from '../components/Script';
 import DEFAULTS from './defaults';
 const debug = require('debug')('rampt:tags');
@@ -65,7 +66,6 @@ export const getScripts = () => {
       id += 1;
     }
   );
-  debug('Retrieving customScripts. Count: ', id);
   return elements;
 };
 
@@ -87,9 +87,12 @@ export const addMeta = (meta) => {
 
 export const getMetas = () => {
   const metas = COLLECTION_META.map((meta, key) => {
+    if (meta.type === 'application/ld+json') {
+      return <script type="application/ld+json" {...innerHTML(meta.content)} />
+    }
     return React.createElement(meta.type, { key, ...meta.content })
   });
-  debug('Retrieving meta tags. Count: ', metas.length);
+  return metas;
 }
 
 

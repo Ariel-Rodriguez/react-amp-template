@@ -1,6 +1,6 @@
 import React from 'react';
 import { addMeta, addScript } from '../../lib';
-import { ldJson, twitter } from './metas';
+import { ldJSON, twitter } from './metas';
 
 export const MOCK_DATA = {
   content: {
@@ -22,7 +22,7 @@ export const MOCK_DATA = {
 
 
 export const App = () => {
-  addMeta([twitter]);
+  addMeta([twitter, ldJSON]);
   addScript('amp-social-share');
-  return <div>{MOCK_DATA.content.data}</div>
+  return (<div>{MOCK_DATA.content.data}</div>)
 };

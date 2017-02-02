@@ -1,9 +1,15 @@
 import React from 'react';
 import App from './app';
-import { renderToStaticMarkup } from '../../lib';
+import RAMPT from '../../lib';
 const debug = require('debug')('example');
 
-export default renderToStaticMarkup(<App bannerText="React-AMP-Template" />, App.config)
-.then((htmlDocument) => {
-  debug('renderToStaticMarkup: ', htmlDocument);
-}).catch(debug);
+const rampt = new RAMPT({
+  ampValidations: true // default
+});
+
+rampt
+  .renderStatic(<App bannerText="React-AMP-Template" />)
+  .then((htmlDocument) => {
+    debug('renderToStaticMarkup: ', htmlDocument);
+  })
+  .catch(debug);

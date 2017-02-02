@@ -2,10 +2,14 @@
   "name": "react-amp-template",
   "version": "1.0.0",
   "description": "AMP react server rendering.",
-  "keywords": ["react", "amp", "server-rendering", "react-amp", "amp-react"],
+  "keywords": ["react", "amp", "server-rendering", "react-amp", "amp-react", "template"],
   "main": "lib/index.js",
   "bin": {
     "react-amp-template": "./bin/react-amp-template"
+  },
+  "repository" : {
+    "type" : "git",
+    "url" : "https://github.com/Ariel-Rodriguez/react-amp-template.git"
   },
   "scripts": {
     "build": "npm run build-lib",

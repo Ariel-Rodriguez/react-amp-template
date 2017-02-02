@@ -3,10 +3,9 @@ import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { DOMProperty } from 'react-dom/lib/ReactInjection';
 import { StyleSheetServer } from 'aphrodite/no-important';
-import customScripts from './customScripts';
-import customMetas from './customMetas';
+import Tags, { getMetas, getScripts } from './Tags';
 import ampValidator from '../utils/ampvalidator';
-import Template from '../template';
+import Template from '../components/Template';
 import DEFAULTS from './defaults';
 const debug = require('debug')('rampt:core');
 
@@ -23,7 +22,9 @@ class Core {
     this.settings = Object.assign({}, DEFAULTS, options);
     debug('Injecting AMP DOMProperties.');
     DOMProperty.injectDOMPropertyConfig(this.settings.DOMPropertyConfig);
-    this.render = ::this.render;
+
+    this.tags = new Tags(this.settings.tags);
+    this.renderStatic = ::this.renderStatic;
     this.renderToFile = ::this.renderToFile;
     this.getValidator = ::this.getValidator;
   }
@@ -50,30 +51,28 @@ class Core {
    * parameters for AMP template.
    * @returns {Promise[string]} - String that contains the static markup
    */
-  render(component, config) {
-    const template = { ...DEFAULTS.template, ...config };
+  renderStatic(component) {
+    const { template } = this.settings;
     debug('Template settings:', template);
     return new Promise((fulfill, reject) => {
       try {
         const { html, css } = this.aphrodite(component);
         debug('Executing reactDOMServer.');
-        debug('Metas:', customMetas.getElements());
-        debug('Scripts:', customScripts.getElements());
 
-        const document = this.settings.doctype +
+        const document = template.doctype +
           ReactDOMServer.renderToStaticMarkup(
             <Template
               html={template.html}
               head={{
                 ...template.head,
                 customStyles: css.content,
-                customScripts: customScripts.getElements(),
-                customMetas: customMetas.getElements(),
+                customScripts: getScripts(),
+                customMetas: getMetas(),
               }}
               body={html}
             />
           );
-        if (template.ampValidationEnabled) {
+        if (template.ampValidations) {
           debug('AMP validation is enabled.');
           return this.validateMarkup(document).then(fulfill).catch(reject);
         }
@@ -84,8 +83,16 @@ class Core {
     });
   }
 
+  /**
+  * Calls for render and writes the content into disc.
+  * @param {String} output path.
+  * @param {ReactElement} component - The component root to render into body.
+  * @param {Object} config - required and contains few optional
+  * parameters for AMP template.
+  * @returns {Promise}
+  */
   renderToFile(file, ...toRender) {
-    return this.render(...toRender)
+    return this.renderStatic(...toRender)
     .then((staticMarkup) => {
       debug('Rendering to file --> ', file);
       try {

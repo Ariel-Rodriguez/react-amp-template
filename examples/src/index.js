@@ -1,7 +1,7 @@
 import http from 'http';
 import React from 'react';
 import App from './app';
-import { renderToStaticMarkup } from '../../lib';
+import RAMPT from '../../lib';
 const debug = require('debug')('example:server');
 const error = require('debug')('example:server:error');
 
@@ -25,6 +25,8 @@ const startServer = (html) => {
 * The promise will reject for any internal error.
 * Once done rendering, proceed to create the server.
 */
-renderToStaticMarkup(
-  <App bannerText="React-AMP-Template" />, App.config
+const rampt = new RAMPT({ ampValidations: true });
+
+rampt.renderStatic(
+  <App bannerText="React-AMP-Template" />
 ).catch(error).then(startServer);

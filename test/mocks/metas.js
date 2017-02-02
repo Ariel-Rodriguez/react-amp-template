@@ -36,6 +36,10 @@ export const ldJson = () => (
   </script>
 );
 
-export const twitter = () => (
-  <meta name="twitter:creator" content="@react-amp-template"></meta>
-);
+export const twitter = {
+  type: 'meta',
+  content: {
+    content: '@react-amp-template',
+    name: 'twitter:creator',
+  },
+};

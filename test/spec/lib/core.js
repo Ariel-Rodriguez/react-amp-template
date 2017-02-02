@@ -2,7 +2,7 @@ import React from 'react';
 import { expect } from 'chai';
 import fs from 'fs';
 import sinon from 'sinon';
-import { core, renderToStaticMarkup } from '../../../lib';
+import RAMPT from '../../../lib';
 import { App, MOCK_DATA } from '../../mocks/core';
 
 const setupResults = {
@@ -10,12 +10,15 @@ const setupResults = {
   errors: 'none',
 };
 
+let rampt;
+
 describe('Core', sinon.test(() => {
   describe('Render Static Markup - defaults', () => {
     before('setup', (done) => {
-      sinon.spy(core, 'getValidator');
-      sinon.spy(core, 'validateMarkup');
-      renderToStaticMarkup(<App />, MOCK_DATA.config).then((html) => {
+      rampt = new RAMPT(MOCK_DATA.config)
+      sinon.spy(rampt, 'getValidator');
+      sinon.spy(rampt, 'validateMarkup');
+      rampt.renderStatic(<App />).then((html) => {
         setupResults.html = html;
         fs.writeFileSync('./test-debug.html', html);
         done();

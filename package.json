@@ -16,7 +16,8 @@
     "deploy": "npm run dist && git-directory-deploy --directory dist --branch release --verbose",
     "demo": "DEBUG=*,-babel node ./dist/examples/build/demo.js",
     "dist": "npm run clean && npm run build && npm run build-examples && npm run test && npm run copy-dist",
-    "examples": "DEBUG=*,-babel node ./dist/examples/build/index.js",
+    "examples": "npm run build-examples && DEBUG=*,-babel node ./examples/build/index.js",
+    "watch:examples": "nodemon -w ./examples/src/ --exec 'npm run examples'",
     "test": "npm run build && DEBUG=rampt* babel-node ./node_modules/.bin/isparta cover _mocha -- --compilers js:babel-core/register --require source-map-support/register ./test/spec --recursive",
     "test-dev": "npm run test -- --watch"
   },

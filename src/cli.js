@@ -1,6 +1,6 @@
-import Server from './server';
-import constants from './constants';
+import Server from './server'
+import constants from './constants'
 
 exports.run = () => {
-  new Server(constants.server).start();
-};
+  new Server(constants.server).start()
+}

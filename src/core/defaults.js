@@ -1,4 +1,4 @@
-import { DOMProperty } from 'react-dom/lib/ReactInjection';
+import { DOMProperty } from 'react-dom/lib/ReactInjection'
 
 export default {
   ampValidations: true,
@@ -20,4 +20,4 @@ export default {
     },
     isCustomAttribute: (attributeName) => attributeName.startsWith('amp'),
   },
-};
+}

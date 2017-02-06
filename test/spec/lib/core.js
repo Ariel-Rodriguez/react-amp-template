@@ -1,9 +1,10 @@
 import React from 'react'
 import { expect } from 'chai'
+import chaiAsPromised from 'chai-as-promised'
 import fs from 'fs'
 import sinon from 'sinon'
 import RAMPT from '../../../lib'
-import { App, MOCK_DATA } from '../../mocks/core'
+import App, { MOCK_DATA } from '../../mocks/App'
 
 let errors = 'none'
 let renderOutput
@@ -16,11 +17,17 @@ describe('Core', sinon.test(() => {
       rampt = new RAMPT(MOCK_DATA.config)
       sinon.spy(rampt, 'getValidator')
       sinon.spy(rampt, 'validateMarkup')
-      rampt.renderStatic(<App />).then((html) => {
-        renderOutput = html
-        fs.writeFileSync('./test-debug.html', html)
-        done()
-      })
+      rampt
+        .renderStatic(<App stylesEnabled={true} body={MOCK_DATA.content.body} />)
+        .then((html) => {
+          renderOutput = html
+          fs.writeFileSync('./test-debug.html', html)
+          done()
+        })
+        .catch((e) => {
+          errors = e
+          done()
+        })
     })
     after(() => {
       rampt.getValidator.restore()
@@ -35,19 +42,20 @@ describe('Core', sinon.test(() => {
     it('Should not throw errors.', () => {
       expect(errors).to.equal('none')
     })
-    it(`HTML rendered should contain '${MOCK_DATA.content.data}' string.`, () => {
-      expect(renderOutput).to.contain(MOCK_DATA.content.data)
+    it(`HTML rendered should contain mock-title string.`, () => {
+      expect(renderOutput).to.contain('mock-title')
     })
     it('HTML rendered should contain lang="en" string.', () => {
-      expect(renderOutput).to.contain(MOCK_DATA.content.data)
+      expect(renderOutput).to.contain('lang="en"')
     })
-  })
-  describe('Render Static Markup', () => {
     it('Should add meta twitter.', () => {
-      expect(renderOutput).to.contain(MOCK_DATA.expect.metaTwitter)
+      expect(renderOutput).to.contain('<meta name="twitter:creator" content="@react-amp-template" />')
     })
     it('Should add meta ldJSON.', () => {
-      expect(renderOutput).to.contain(MOCK_DATA.expect.metaJSON)
+      expect(renderOutput).to.contain('dateModified': '1907-05-05T12:02:41Z')
+    })
+    it('Should have CoolFont,sans-serif fonts.', () => {
+      expect(renderOutput).to.contain('font-family:"CoolFont",sans-serif;')
     })
   })
 }))

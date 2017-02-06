@@ -1,6 +1,5 @@
 import React from 'react'
 import { expect } from 'chai'
-import chaiAsPromised from 'chai-as-promised'
 import fs from 'fs'
 import sinon from 'sinon'
 import RAMPT from '../../../lib'

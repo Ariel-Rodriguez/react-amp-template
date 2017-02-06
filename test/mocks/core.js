@@ -16,7 +16,7 @@ export const MOCK_DATA = {
   },
   expect: {
     metaJSON: "'dateModified': '1907-05-05T12:02:41Z'",
-    metaTwitter: '<meta name="twitter:creator" content="@react-amp-template"/>',
+    metaTwitter: '<meta name="twitter:creator" content="@react-amp-template" />',
   },
 }
 

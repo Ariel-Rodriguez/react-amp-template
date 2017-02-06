@@ -3,6 +3,7 @@ import React from 'react'
 import ReactDOMServer from 'react-dom/server'
 import { DOMProperty } from 'react-dom/lib/ReactInjection'
 import { StyleSheetServer } from 'aphrodite/no-important'
+import { prettyPrint } from 'html'
 import Tags, { getMetas, getScripts } from './Tags'
 import ampValidator from '../utils/ampvalidator'
 import Template from '../components/Template'
@@ -89,6 +90,10 @@ class Core {
               body={html}
             />
           )
+
+        if (template.prettyPrint) {
+          document = prettyPrint(document)
+        }
 
         if (this.settings.ampValidations) {
           debug('AMP validation is enabled.')

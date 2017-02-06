@@ -3,6 +3,7 @@ import { DOMProperty } from 'react-dom/lib/ReactInjection'
 export default {
   ampValidations: true,
   template: {
+    prettyPrint: true,
     doctype: '<!DOCTYPE html>',
     tags: {
       'amp-script-version': '0.1',

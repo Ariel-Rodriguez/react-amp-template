@@ -20,28 +20,28 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">66.67% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>15/15</span>
+        <span class='fraction'>14/21</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">75% </span>
+        <span class="strong">50% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>3/4</span>
+        <span class='fraction'>6/12</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>1/1</span>
+        <span class='fraction'>2/2</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>14/14</span>
+        <span class='fraction'>11/11</span>
       </div>
     </div>
   </div>
-  <div class='status-line high'></div>
+  <div class='status-line medium'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -66,42 +66,7 @@
 21
 22
 23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-53
-54
-55
-56
-57
-58
-59</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+24</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -120,110 +85,40 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
 &nbsp;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.metas = exports.scripts = exports.renderToFile = exports.renderToStaticMarkup = exports.core = undefined;
+exports.addScript = exports.addMeta = undefined;
 &nbsp;
 var _core = require('./core');
 &nbsp;
 var _core2 = _interopRequireDefault(_core);
 &nbsp;
-var _customScripts = require('./core/customScripts');
+var _Tags = require('./core/Tags');
 &nbsp;
-var _customScripts2 = _interopRequireDefault(_customScripts);
+var Tags = _interopRequireWildcard(_Tags);
 &nbsp;
-var _customMetas = require('./core/customMetas');
-&nbsp;
-var _customMetas2 = _interopRequireDefault(_customMetas);
+function _interopRequireWildcard(obj) { <span class="missing-if-branch" title="else path not taken" >E</span>if (obj &amp;&amp; obj.__esModule) { return obj; } else { <span class="cstat-no" title="statement not covered" >var newObj = {}; <span class="cstat-no" title="statement not covered" >i</span>f (obj != null) { <span class="cstat-no" title="statement not covered" >for (var key in obj) { <span class="cstat-no" title="statement not covered" >if (Object.prototype.hasOwnProperty.call(obj, key)) <span class="cstat-no" title="statement not covered" >n</span></span>ewObj[key] = obj[key]; } </span>} <span class="cstat-no" title="statement not covered" >n</span>ewObj.default = obj; <span class="cstat-no" title="statement not covered" >r</span></span>eturn newObj; } }
 &nbsp;
 function _interopRequireDefault(obj) { r</span>eturn obj &amp;&amp; obj.__esModule ? obj : <span class="branch-1 cbranch-no" title="branch not covered" >{ default: obj }; }
 &nbsp;
-// CJS singleton instance.
-// TODO: find an elegant way pattern for it.
-var core = exports.core = new _core2.default();
+var addMeta = exports.addMeta = Tags.addMeta;
+var addScript = exports.addScript = Tags.addScript;
 &nbsp;
-/**
- * Creates a Promise and fulfills this with a string that contains a valid
- * AMP HTML document stemmed from server side rendering of given component.
- * The component is allowed to contain childrens with custom AMP elements.
- * @param {ReactElement} component - The component root to render into body.
- * @param {Object} config - required and contains few optional
- * parameters for AMP template.
- * @returns {Promise[string]} - String that contains the static markup
- */
-var renderToStaticMarkup = exports.renderToStaticMarkup = core.render;
-&nbsp;
-/**
-* Calls for render and writes the content into disc.
-* @param {String} output path.
-* @param {ReactElement} component - The component root to render into body.
-* @param {Object} config - required and contains few optional
-* parameters for AMP template.
-* @returns {Promise}
-*/
-var renderToFile = exports.renderToFile = core.renderToFile;
-&nbsp;
-/**
-* Handy interface to register an amp custom-script that will be appended into
-* document's head. It wont register more than once a same script.
-* @param {String|Array(String|[Array])} - Pass the amp script name, or an array
-* that first element tells the name and the second element tells its version.
-* optionally you can pass a list that holds the previous parameters.
-* Valid params: 'amp-script' | ['amp-script', '0.1'] |
-* [ 'amp-script-x', ['amp-script-y','0.1'], 'amp-script-z', ... ]
-* If the script exists already, only the newer will precede.
-*/
-var scripts = exports.scripts = _customScripts2.default;
-var metas = exports.metas = _customMetas2.default;
+exports.default = _core2.default;
 //# sourceMappingURL=index.js.map</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Nov 30 2016 15:09:32 GMT-0300 (ART)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Feb 06 2017 17:34:01 GMT-0300 (ART)
 </div>
 </div>
 <script src="../prettify.js"></script>

@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for lib/core/Tags.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">all files</a> / <a href="index.html">lib/core/</a> Tags.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">86.67% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>52/60</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">58.33% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>14/24</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">91.67% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>11/12</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">98.04% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>50/51</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
+&nbsp;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.getMetas = exports.addMeta = exports.getScripts = exports.addScript = undefined;
+&nbsp;
+v</span>ar _extends = Object.assign || <span class="fstat-no" title="function not covered" ><span class="branch-1 cbranch-no" title="branch not covered" >function (target) {</span> <span class="cstat-no" title="statement not covered" >for (var i = 1; i &lt; arguments.length; i++) { <span class="cstat-no" title="statement not covered" >var source = arguments[i]; <span class="cstat-no" title="statement not covered" >f</span>or (var key in source) { <span class="cstat-no" title="statement not covered" >if (Object.prototype.hasOwnProperty.call(source, key)) { <span class="cstat-no" title="statement not covered" >t</span>arget[key] = source[key]; } </span>} </span>} <span class="cstat-no" title="statement not covered" >r</span></span>eturn target; };
+&nbsp;
+var _react = require('react');
+&nbsp;
+var _react2 = _interopRequireDefault(_react);
+&nbsp;
+var _innerHTML = require('../utils/innerHTML');
+&nbsp;
+var _innerHTML2 = _interopRequireDefault(_innerHTML);
+&nbsp;
+var _Script = require('../components/Script');
+&nbsp;
+var _Script2 = _interopRequireDefault(_Script);
+&nbsp;
+var _defaults = require('./defaults');
+&nbsp;
+var _defaults2 = _interopRequireDefault(_defaults);
+&nbsp;
+function _interopRequireDefault(obj) { return obj &amp;&amp; obj.__esModule ? obj : { default: obj }; }
+&nbsp;
+function _classCallCheck(instance, Constructor) { <span class="missing-if-branch" title="if path not taken" >I</span>if (!(instance instanceof Constructor)) { <span class="cstat-no" title="statement not covered" >t</span>hrow new TypeError("Cannot call a class as a function"); } }
+&nbsp;
+var debug = require('debug')('rampt:tags');
+&nbsp;
+var COLLECTION_SCRIPT = new Map();
+var COLLECTION_META = [];
+var SETTINGS = _defaults2.default.template.tags;
+&nbsp;
+var Tags = function Tags(options) {
+  _classCallCheck(this, Tags);
+&nbsp;
+  debug('Clearing meta/scripts tags.');
+  /**
+   * scripts is a small store that holds the name and version of the
+   * customScripts. Should hold unique scripts, is not allowed the same
+   * script more than once.
+  **/
+  COLLECTION_SCRIPT.clear();
+  COLLECTION_META.length = 0;
+};
+&nbsp;
+/**
+* Handy interface to register an amp custom-script that will be appended into
+* document's head. It wont register more than once a same script.
+* @param {String|Array(String|[Array])} - Pass the amp script name, or an array
+* that first element tells the name and the second element tells its version.
+* optionally you can pass a list that holds the previous parameters.
+* Valid params: 'amp-script' | ['amp-script', '0.1'] |
+* [ 'amp-script-x', ['amp-script-y','0.1'], 'amp-script-z', ... ]
+* If the script exists already, only the newer will precede.
+*/
+&nbsp;
+&nbsp;
+var addScript = exports.addScript = function addScript(scripts) {
+  var arrScripts = s</span>cripts instanceof Array ? <span class="branch-0 cbranch-no" title="branch not covered" >scripts : [scripts];
+  arrScripts.forEach(function (script) {
+    var scriptWithOptions = script instanceof Array;
+    var name = s</span>criptWithOptions ? <span class="branch-0 cbranch-no" title="branch not covered" >script[0] : script;
+    var version = s</span>criptWithOptions ? <span class="branch-0 cbranch-no" title="branch not covered" >script[1] : SETTINGS['amp-script-version'];
+&nbsp;
+    <span class="missing-if-branch" title="else path not taken" >E</span>i</span>f (!COLLECTION_SCRIPT.has(name) || <span class="branch-1 cbranch-no" title="branch not covered" >COLLECTION_SCRIPT.get(name).version &lt; version) {
+      debug('Registering script ', name);
+      COLLECTION_SCRIPT.set(name, { version: version });
+    } else {
+<span class="cstat-no" title="statement not covered" >      d</span>ebug('custom-sript [%s] exists already, and it is not newer.', name, version);
+    }
+  });
+};
+&nbsp;
+/**
+* @returns {Array with ReactElemnt}
+**/
+var getScripts = exports.getScripts = function getScripts() {
+  var elements = [];
+  var id = 0;
+  COLLECTION_SCRIPT.forEach(function (value, name) {
+    elements.push(_react2.default.createElement(_Script2.default, { name: name, version: value.version, key: id }));
+    id += 1;
+  });
+  return elements;
+};
+&nbsp;
+/**
+*/
+var addMeta = exports.addMeta = function addMeta(meta) {
+  v</span>ar arrMeta = meta instanceof Array ? meta : <span class="branch-1 cbranch-no" title="branch not covered" >[meta];
+  arrMeta.forEach(function (meta) {
+    debug('Registering meta ', JSON.stringify(meta));
+    COLLECTION_META.push({
+      type: meta.type,
+      content: meta.content
+    });
+  });
+};
+&nbsp;
+var getMetas = exports.getMetas = function getMetas() {
+  var metas = COLLECTION_META.map(function (meta, key) {
+    if (meta.type === 'application/ld+json') {
+      return _react2.default.createElement('script', _extends({ type: 'application/ld+json' }, (0, _innerHTML2.default)(meta.content)));
+    }
+    return _react2.default.createElement(meta.type, _extends({ key: key }, meta.content));
+  });
+  return metas;
+};
+&nbsp;
+exports.default = Tags;
+//# sourceMappingURL=Tags.js.map</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Feb 06 2017 17:34:01 GMT-0300 (ART)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

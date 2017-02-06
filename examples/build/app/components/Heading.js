@@ -12,9 +12,6 @@ var _lib = require('../../../../lib');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// Importing Heading will register amp-social-share script
-(0, _lib.scripts)('amp-social-share');
-
 var _ref = _react2.default.createElement(
   'div',
   { className: 'heading' },
@@ -66,6 +63,9 @@ var _ref = _react2.default.createElement(
 );
 
 var Heading = function Heading() {
+  // amp-social-share script
+  (0, _lib.addScript)('amp-social-share');
+
   return _ref;
 };
 

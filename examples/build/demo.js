@@ -17,6 +17,8 @@ var _noImportant = require('aphrodite/no-important');
 
 var _lib = require('../../lib');
 
+var _lib2 = _interopRequireDefault(_lib);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // react-amp-template
@@ -25,17 +27,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var style = _noImportant.StyleSheet.create({
   social: { padding: '10px' }
 });
-// --- CUSTOM-SCRIPTS ---
-// Notify to include amp-social-share.
-// Is very important to import no-important!
-(0, _lib.scripts)('amp-social-share');
-
-// Minimum settings for the template.
-var AMP_CONFIG = {
-  head: { title: 'react-amp-sample', canonical: 'http://sample' }
-};
 
 // --- REACT + CSUTOM-TAGS ---
+// Is very important to import no-important!
 
 var _ref2 = _react2.default.createElement('amp-social-share', {
   type: 'email',
@@ -45,6 +39,12 @@ var _ref2 = _react2.default.createElement('amp-social-share', {
 
 var SampleApp = function SampleApp(_ref) {
   var value = _ref.value;
+
+  // --- CUSTOM-SCRIPTS ---
+  // Notify to include amp-social-share.
+  (0, _lib.addScript)('amp-social-share', '2.0');
+  (0, _lib.addMeta)([{ type: 'meta', content: { 'content': 'something' } }, { type: 'link', content: { 'rel': 'http://link' } }]);
+
   return _react2.default.createElement(
     'div',
     null,
@@ -73,11 +73,21 @@ var startServer = exports.startServer = function startServer(html) {
   console.log('Listening on port 8000');
 };
 
+var rampt = new _lib2.default({
+  ampValidations: true, // (default) validate the template with AMP Google tool.
+  template: {
+    head: {
+      title: 'react-amp-sample',
+      canonical: 'http://sample'
+    }
+  }
+});
+
 /**
-* react-amp-template returns a promise which will be fulfilled
+* renderStatic returns a promise which will be fulfilled
 * with a string that holds the whole HTML document ready to serve.
 * The promise will reject for any internal error.
 * Once done rendering, the promise's result will be served on port 8000.
 */
-(0, _lib.renderToStaticMarkup)(_react2.default.createElement(SampleApp, { value: 'World' }), AMP_CONFIG).then(startServer).catch(console.error);
+rampt.renderStatic(_react2.default.createElement(SampleApp, { value: 'World' })).then(startServer).catch(console.error);
 //# sourceMappingURL=demo.js.map

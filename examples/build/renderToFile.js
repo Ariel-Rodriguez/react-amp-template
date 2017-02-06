@@ -19,5 +19,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var debug = require('debug')('example');
 var output = _path2.default.resolve(__dirname, './example.html');
 
-(0, _lib.renderToFile)(output, _react2.default.createElement(_app2.default, { bannerText: 'React-AMP-Template' }), _app2.default.config).catch(debug);
+var rampt = new RAMPT({ ampValidations: true });
+
+rampt.renderToFile(_react2.default.createElement(_app2.default, { bannerText: 'React-AMP-Template' })).catch(debug);
 //# sourceMappingURL=renderToFile.js.map

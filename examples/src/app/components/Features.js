@@ -1,5 +1,5 @@
 import React from 'react';
-import { scripts } from '../../../../lib';
+import { addScript } from '../../../../lib';
 
 export default () => (
   <section className={css(section)}>

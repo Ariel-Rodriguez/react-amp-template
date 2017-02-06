@@ -26,15 +26,15 @@ var _Heading2 = _interopRequireDefault(_Heading);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// Flexibility to add custom-scripts
-(0, _lib.scripts)(['amp-jwplayer', ['amp-youtube', '0.1']]);
-// don't worries, only the most recent version will be preserved.
-(0, _lib.scripts)('amp-jwplayer');
-
 var _ref2 = _react2.default.createElement(_Heading2.default, null);
 
 var App = function App(_ref) {
   var bannerText = _ref.bannerText;
+
+  // Flexibility to add custom-scripts
+  (0, _lib.addScript)(['amp-jwplayer', ['amp-youtube', '0.1']]);
+  (0, _lib.addMeta)([{ type: 'meta', content: { 'content': 'pepe', 'name': 'people' } }]);
+
   return _react2.default.createElement(
     'div',
     { className: (0, _noImportant.css)(_styles2.default.blue, _styles2.default.hover) },
@@ -50,8 +50,6 @@ var App = function App(_ref) {
     _ref2
   );
 };
-
-App.config = _config2.default;
 
 exports.default = App;
 //# sourceMappingURL=index.js.map

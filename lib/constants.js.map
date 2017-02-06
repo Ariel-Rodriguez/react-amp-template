@@ -1,1 +1,1 @@
-{"version":3,"sources":["../src/constants.js"],"names":["server","port"],"mappings":";;;;;kBAAe;AACbA,UAAQ;AACNC,UAAM;AADA;AADK,C","file":"constants.js","sourcesContent":["export default {\n  server: {\n    port: 3000,\n  },\n};\n"]}
+{"version":3,"sources":["../src/constants.js"],"names":["server","port"],"mappings":";;;;;kBAAe;AACbA,UAAQ;AACNC,UAAM;AADA;AADK,C","file":"constants.js","sourcesContent":["export default {\n  server: {\n    port: 3000,\n  },\n}\n"]}

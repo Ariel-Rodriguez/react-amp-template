@@ -1,5 +1,5 @@
-import React from 'react';
-import innerHTML from '../../lib/utils/innerHTML';
+import React from 'react'
+import innerHTML from '../../lib/utils/innerHTML'
 
 const ldJSONContent = `{
   '@context': 'http://schema.org',
@@ -29,12 +29,12 @@ const ldJSONContent = `{
     'height': 2000,
     'width': 800
   }
-}`;
+}`
 
 export const ldJSON = {
   type: 'application/ld+json',
   content: ldJSONContent,
-};
+}
 
 export const twitter = {
   type: 'meta',
@@ -42,4 +42,4 @@ export const twitter = {
     name: 'twitter:creator',
     content: '@react-amp-template',
   },
-};
+}

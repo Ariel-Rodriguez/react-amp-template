@@ -1,15 +1,16 @@
-import fs from 'fs';
-import React from 'react';
-import ReactDOMServer from 'react-dom/server';
-import { DOMProperty } from 'react-dom/lib/ReactInjection';
-import { StyleSheetServer } from 'aphrodite/no-important';
-import Tags, { getMetas, getScripts } from './Tags';
-import ampValidator from '../utils/ampvalidator';
-import Template from '../components/Template';
-import DEFAULTS from './defaults';
-const debug = require('debug')('rampt:core');
+import fs from 'fs'
+import React from 'react'
+import ReactDOMServer from 'react-dom/server'
+import { DOMProperty } from 'react-dom/lib/ReactInjection'
+import { StyleSheetServer } from 'aphrodite/no-important'
+import { prettyPrint } from 'html'
+import Tags, { getMetas, getScripts } from './Tags'
+import ampValidator from '../utils/ampvalidator'
+import Template from '../components/Template'
+import DEFAULTS from './defaults'
+const debug = require('debug')('rampt:core')
 
-let DOMInjected = false;
+let DOMInjected = false
 /**
  * A class that manages ReactDOMServer & ModularCSS to
  * transpile ReactElements into a single valid AMP HTML document.
@@ -31,20 +32,20 @@ class Core {
         ...DEFAULTS.DOMPropertyConfig,
         ...options.DOMPropertyConfig,
       }
-    };
-    debug('RAMPT settings: ', JSON.stringify(this.settings));
+    }
+    debug('RAMPT settings: ', JSON.stringify(this.settings))
     if (!DOMInjected) {
-      debug('Injecting AMP DOMProperties.');
-      DOMProperty.injectDOMPropertyConfig(this.settings.DOMPropertyConfig);
-      DOMInjected = true;
+      debug('Injecting AMP DOMProperties.')
+      DOMProperty.injectDOMPropertyConfig(this.settings.DOMPropertyConfig)
+      DOMInjected = true
     } else {
-      debug('Custom DOMProperties were injected already');
+      debug('Custom DOMProperties were injected already')
     }
 
-    this.tags = new Tags(this.settings.tags);
-    this.renderStatic = ::this.renderStatic;
-    this.renderToFile = ::this.renderToFile;
-    this.getValidator = ::this.getValidator;
+    this.tags = new Tags(this.settings.tags)
+    this.renderStatic = ::this.renderStatic
+    this.renderToFile = ::this.renderToFile
+    this.getValidator = ::this.getValidator
   }
 
   /**
@@ -54,10 +55,10 @@ class Core {
    * @returns {Object} - { css, html }
    */
   aphrodite(component) {
-    debug('Running aphrodite.');
+    debug('Running aphrodite.')
     return StyleSheetServer.renderStatic(() =>
       ReactDOMServer.renderToStaticMarkup(component)
-    );
+    )
   }
 
   /**
@@ -70,13 +71,13 @@ class Core {
    * @returns {Promise[string]} - String that contains the static markup
    */
   renderStatic(component) {
-    const { template } = this.settings;
+    const { template } = this.settings
     return new Promise((fulfill, reject) => {
       try {
-        const { html, css } = this.aphrodite(component);
-        debug('Executing reactDOMServer.');
+        const { html, css } = this.aphrodite(component)
+        debug('Executing reactDOMServer.')
 
-        const document = template.doctype +
+        let document = template.doctype +
           ReactDOMServer.renderToStaticMarkup(
             <Template
               html={template.html}
@@ -88,22 +89,27 @@ class Core {
               }}
               body={html}
             />
-          );
+          )
+
+        if (template.prettyPrint) {
+          document = prettyPrint(document)
+        }
+
         if (this.settings.ampValidations) {
-          debug('AMP validation is enabled.');
+          debug('AMP validation is enabled.')
           return this.validateMarkup(document)
             .then(fulfill)
             .catch((ampErrors)=> {
-              reject({ validation: ampErrors, markup: document });
-            });
+              reject({ validation: ampErrors, markup: document })
+            })
         }
-        return fulfill(document);
+        return fulfill(document)
       } catch (error) {
         return reject({
           markup: error
-        });
+        })
       }
-    });
+    })
   }
 
   /**
@@ -117,31 +123,31 @@ class Core {
   renderToFile(file, ...toRender) {
     return this.renderStatic(...toRender)
     .then((staticMarkup) => {
-      debug('Rendering to file --> ', file);
+      debug('Rendering to file --> ', file)
       try {
-        fs.writeFileSync(file, staticMarkup);
-        return staticMarkup;
+        fs.writeFileSync(file, staticMarkup)
+        return staticMarkup
       } catch (err) {
-        throw new Error(err);
+        throw new Error(err)
       }
-    });
+    })
   }
 
   getValidator() {
-    debug('Waiting for validator.');
+    debug('Waiting for validator.')
     return ampValidator.getInstance()
       .then((instance) => (this.validator = instance))
-      .then(() => (debug('Validator has arrived :).')));
+      .then(() => (debug('Validator has arrived :).')))
   }
 
   validateMarkup(markup) {
-    debug('validating markup.');
+    debug('validating markup.')
     return this.getValidator()
       .then(() => {
-        this.validator.validateMarkup(markup);
-        return markup;
-      });
+        this.validator.validateMarkup(markup)
+        return markup
+      })
   }
 }
 
-export default Core;
+export default Core

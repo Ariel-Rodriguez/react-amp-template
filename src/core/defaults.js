@@ -1,8 +1,9 @@
-import { DOMProperty } from 'react-dom/lib/ReactInjection';
+import { DOMProperty } from 'react-dom/lib/ReactInjection'
 
 export default {
   ampValidations: true,
   template: {
+    prettyPrint: true,
     doctype: '<!DOCTYPE html>',
     tags: {
       'amp-script-version': '0.1',
@@ -20,4 +21,4 @@ export default {
     },
     isCustomAttribute: (attributeName) => attributeName.startsWith('amp'),
   },
-};
+}

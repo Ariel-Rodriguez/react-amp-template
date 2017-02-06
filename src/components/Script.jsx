@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React, { PropTypes } from 'react'
 
 /**
  * Convenience function to render amp scripts into the head of the template.
@@ -10,11 +10,11 @@ const Script = ({ name, version }) => (
     custom-element={name}
     src={`https://cdn.ampproject.org/v0/${name}-${version}.js`}
   ></script>
-);
+)
 
 Script.propTypes = {
   name: PropTypes.string.isRequired,
   version: PropTypes.string.isRequired,
-};
+}
 
-export default Script;
+export default Script

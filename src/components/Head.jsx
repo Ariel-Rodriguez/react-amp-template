@@ -22,7 +22,7 @@ const Head = ({
     ]}
     <style amp-boilerplate="">{boilerplateStyles}</style>
     <noscript><style amp-boilerplate="">{boilerplateStylesNoScript}</style></noscript>
-    {styles ? <style amp-custom="">{styles}</style> : null }
+    {styles ? <style amp-custom="" dangerouslySetInnerHTML={{__html:styles}}></style> : null }
   </head>
 );
 

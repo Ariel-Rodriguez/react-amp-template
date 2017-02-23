@@ -11,6 +11,8 @@
   <a href="https://travis-ci.org/Ariel-Rodriguez/react-amp-template">
     <img src="https://travis-ci.org/Ariel-Rodriguez/react-amp-template.svg?branch=master" alt="Build Status" />
   </a>
+  <!-- npm ver -->
+  <a href="https://badge.fury.io/js/react-amp-template"><img src="https://badge.fury.io/js/react-amp-template.svg" alt="npm version" height="18"></a>
 </div>
 
 

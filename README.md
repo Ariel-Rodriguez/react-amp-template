@@ -19,7 +19,7 @@
 ## Install
 
 react-amp-template is distributed via npm:
-- [yarn](https://yarnpkg.com/en/docs/install) add react-amp-template or `$npm install --save react-amp-template`
+- `yarn add react-amp-template`
 
 
 ```javascript
@@ -83,11 +83,11 @@ rampt
 ## :penguin: Contributing
 
 - `$git clone git@github.com:Ariel-Rodriguez/react-amp-template.git`
-- ```$yarn```
+- `yarn`
 - create an issue, create a branch with issue initials
 - hack and ensure tests pass. Add unit tests if needed.
-- ```npm run build```
-- ```npm run test```
+- `npm run build`
+- `npm run test`
 - add descriptive commit & push
 
 #### run examples

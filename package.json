@@ -19,18 +19,17 @@
     "url": "https://github.com/Ariel-Rodriguez/react-amp-template.git"
   },
   "scripts": {
-    "build": "npm run build-lib",
-    "build-examples": "DEBUG=*,-babel babel examples/src -d examples/build -s",
-    "build-lib": "DEBUG=*,-babel babel src -d lib -s",
-    "clean": "rimraf lib dist",
-    "copy-dist": "find bin coverage examples lib vendors LICENSE.MD package.json README.md | cpio -p -dumv ./dist",
+    "build": "npm run clean && babel src -d lib -s",
+    "build-examples": "npm run build && babel examples/src -d examples/build -s",
+    "clean": "rimraf lib examples/build",
     "deploy": "npm run dist && git-directory-deploy --directory dist --branch release --verbose",
-    "demo": "DEBUG=*,-babel node ./dist/examples/build/demo.js",
-    "dist": "npm run clean && npm run build && npm run build-examples && npm run test && npm run copy-dist",
+    "start": "npm run build-examples && DEBUG=*,-babel node ./examples/build/demo.js",
     "examples": "npm run build-examples && DEBUG=*,-babel node ./examples/build/index.js",
-    "watch:examples": "nodemon -w ./examples/src/ --exec 'npm run examples'",
+    "examples:watch": "nodemon -w ./examples/src/ --exec 'npm run examples'",
+    "prepublish": "npm run build",
     "test": "npm run build && DEBUG=rampt* babel-node ./node_modules/.bin/isparta cover _mocha -- --compilers js:babel-core/register --require source-map-support/register ./test/spec --recursive",
-    "test-dev": "npm run test -- --watch"
+    "test:watch": "npm run test -- --watch",
+    "version:patch" : "npm version patch"
   },
   "author": "Ariel Fernando Rodriguez",
   "license": "Apache-2.0",
@@ -124,12 +123,6 @@
   "dependencies": {
     "amphtml-validator": "^1.0.15",
     "aphrodite": "^1.1.0",
-    "debug": "^2.3.3",
-    "html": "^1.0.0",
-    "react": "15.4.1",
-    "react-dom": "15.4.1"
-  },
-  "devDependencies": {
     "babel-cli": "6.18.0",
     "babel-core": "^6.18.2",
     "babel-eslint": "^7.1.1",
@@ -140,6 +133,13 @@
     "babel-preset-react": "6.16.0",
     "babel-preset-react-hmre": "1.1.1",
     "babel-preset-stage-0": "6.16.0",
+    "debug": "^2.3.3",
+    "html": "^1.0.0",
+    "react": "15.4.1",
+    "react-dom": "15.4.1",
+    "rimraf": "^2.5.4"
+  },
+  "devDependencies": {
     "chai": "^3.5.0",
     "eslint": "^3.11.0",
     "eslint-config-airbnb": "^13.0.0",
@@ -151,7 +151,6 @@
     "istanbul": "^0.4.5",
     "mocha": "^3.1.2",
     "pre-commit": "^1.1.3",
-    "rimraf": "^2.5.4",
     "sinon": "^1.17.6",
     "source-map-support": "^0.4.6"
   }

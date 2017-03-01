@@ -3,7 +3,7 @@ import {
   css,
 } from 'aphrodite/no-important'
 import React from 'react'
-import { addMeta, addScript } from '../../lib'
+import { addMeta, addScript } from '../../src'
 import { ldJSON, twitter } from './metas'
 import innerHTML from '../../src/utils/innerHTML'
 

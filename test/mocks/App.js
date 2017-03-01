@@ -25,17 +25,17 @@ const coolFont = {
     fontFamily: "CoolFont",
     fontStyle: "normal",
     fontWeight: "normal",
-    src: "url('coolfont.woff2') format('woff2')"
+    src: "url('coolfont.woff2') format('woff2')",
 };
 
 const appStyles = StyleSheet.create({
     headingText: {
         fontFamily: coolFont,
-        fontSize: 20
+        fontSize: 20,
     },
     bodyText: {
         fontFamily: [coolFont, "sans-serif"],
-        fontSize: 12
+        fontSize: 12,
     }
 });
 

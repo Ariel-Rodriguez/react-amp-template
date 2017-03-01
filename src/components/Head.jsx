@@ -19,7 +19,7 @@ const Head = ({
     <link rel="canonical" href={canonical} />
     {[
       metas,
-      scripts
+      scripts,
     ]}
     <style amp-boilerplate="">{boilerplateStyles}</style>
     <noscript><style amp-boilerplate="">{boilerplateStylesNoScript}</style></noscript>

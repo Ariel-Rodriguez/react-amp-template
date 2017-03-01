@@ -31,7 +31,7 @@ class Core {
       DOMPropertyConfig: {
         ...DEFAULTS.DOMPropertyConfig,
         ...options.DOMPropertyConfig,
-      }
+      },
     }
     debug('RAMPT settings: ', JSON.stringify(this.settings))
     if (!DOMInjected) {
@@ -99,14 +99,14 @@ class Core {
           debug('AMP validation is enabled.')
           return this.validateMarkup(document)
             .then(fulfill)
-            .catch((ampErrors)=> {
+            .catch((ampErrors) => {
               reject({ validation: ampErrors, markup: document })
             })
         }
         return fulfill(document)
       } catch (error) {
         return reject({
-          markup: error
+          markup: error,
         })
       }
     })

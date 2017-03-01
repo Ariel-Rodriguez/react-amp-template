@@ -32,6 +32,7 @@
   },
   "author": "Ariel Fernando Rodriguez",
   "license": "Apache-2.0",
+  "pre-commit": "test",
   "babel": {
     "presets": [
       "es2015",

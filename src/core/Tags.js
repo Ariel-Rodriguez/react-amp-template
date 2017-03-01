@@ -9,7 +9,7 @@ const COLLECTION_META = []
 const SETTINGS = DEFAULTS.template.tags
 
 class Tags {
-  constructor(options) {
+  constructor() {
     debug('Clearing meta/scripts tags.')
     /**
      * scripts is a small store that holds the name and version of the
@@ -32,25 +32,23 @@ class Tags {
   * If the script exists already, only the newer will precede.
   */
 export const addScript = (scripts) => {
-    const arrScripts = (scripts instanceof Array) ? scripts : [scripts]
-    arrScripts.forEach(
-      (script) => {
-        const scriptWithOptions = (script instanceof Array)
-        const name = (scriptWithOptions) ? script[0] : script
-        const version = (scriptWithOptions) ? script[1] : SETTINGS['amp-script-version']
+  const arrScripts = (scripts instanceof Array) ? scripts : [scripts]
+  arrScripts.forEach((script) => {
+    const scriptWithOptions = (script instanceof Array)
+    const name = (scriptWithOptions) ? script[0] : script
+    const version = (scriptWithOptions) ? script[1] : SETTINGS['amp-script-version']
 
-        if (
-          (!COLLECTION_SCRIPT.has(name)) ||
-          (COLLECTION_SCRIPT.get(name).version < version)
-        ) {
-          debug('Registering script ', name)
-          COLLECTION_SCRIPT.set(name, { version })
-        } else {
-          debug('custom-sript [%s] exists already, and it is not newer.', name, version)
-        }
-      }
-    )
-  }
+    if (
+      (!COLLECTION_SCRIPT.has(name)) ||
+      (COLLECTION_SCRIPT.get(name).version < version)
+    ) {
+      debug('Registering script ', name)
+      COLLECTION_SCRIPT.set(name, { version })
+    } else {
+      debug('custom-sript [%s] exists already, and it is not newer.', name, version)
+    }
+  })
+}
 
   /**
   * @returns {Array with ReactElemnt}
@@ -72,17 +70,20 @@ export const getScripts = () => {
 
   /**
   */
-export const addMeta = (meta) => {
-  const arrMeta = (meta instanceof Array) ? meta : [meta]
-  arrMeta.forEach(
-    (meta) => {
-      debug('Registering meta ', JSON.stringify(meta))
-      COLLECTION_META.push({
-        type: meta.type,
-        content: meta.content
-      })
-    }
-  )
+export const addMeta = (data) => {
+  const push = (meta) => {
+    debug('Registering meta ', JSON.stringify(meta))
+    COLLECTION_META.push({
+      type: meta.type,
+      content: meta.content,
+    })
+  }
+
+  if (data instanceof Array) {
+    data.forEach(push)
+  } else {
+    push(data)
+  }
 }
 
 export const getMetas = () => {

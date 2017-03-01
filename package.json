@@ -22,13 +22,14 @@
     "build": "npm run clean && babel src -d lib -s",
     "build-examples": "npm run build && babel examples/src -d examples/build -s",
     "clean": "rimraf lib examples/build",
+    "lint": "eslint --ext .jsx --ext .js src/.",
     "start": "npm run build-examples && DEBUG=*,-babel node ./examples/build/demo.js",
     "examples": "npm run build-examples && DEBUG=*,-babel node ./examples/build/index.js",
     "examples:watch": "nodemon -w ./examples/src/ --exec 'npm run examples'",
     "prepublish": "npm run build",
-    "test": "npm run build && DEBUG=rampt* babel-node ./node_modules/.bin/isparta cover _mocha -- --compilers js:babel-core/register --require source-map-support/register ./test/spec --recursive",
+    "test": "npm run lint && npm run build && DEBUG=rampt* babel-node ./node_modules/.bin/isparta cover _mocha -- --compilers js:babel-core/register --require source-map-support/register ./test/spec --recursive",
     "test:watch": "npm run test -- --watch",
-    "version:patch" : "npm version patch"
+    "version:patch": "npm version patch"
   },
   "author": "Ariel Fernando Rodriguez",
   "license": "Apache-2.0",
@@ -116,7 +117,8 @@
       "react/jsx-no-target-blank": 0,
       "react/require-extension": 0,
       "react/self-closing-comp": 0,
-      "require-yield": 0
+      "require-yield": 0,
+      "semi": 0
     },
     "settings": {}
   },
@@ -141,7 +143,7 @@
   },
   "devDependencies": {
     "chai": "^3.5.0",
-    "eslint": "^3.11.0",
+    "eslint": "^3.16.1",
     "eslint-config-airbnb": "^13.0.0",
     "eslint-config-airbnb-base": "^10.0.1",
     "eslint-plugin-import": "^2.2.0",

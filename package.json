@@ -22,7 +22,6 @@
     "build": "npm run clean && babel src -d lib -s",
     "build-examples": "npm run build && babel examples/src -d examples/build -s",
     "clean": "rimraf lib examples/build",
-    "deploy": "npm run dist && git-directory-deploy --directory dist --branch release --verbose",
     "start": "npm run build-examples && DEBUG=*,-babel node ./examples/build/demo.js",
     "examples": "npm run build-examples && DEBUG=*,-babel node ./examples/build/index.js",
     "examples:watch": "nodemon -w ./examples/src/ --exec 'npm run examples'",

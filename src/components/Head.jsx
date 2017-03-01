@@ -28,8 +28,8 @@ const Head = ({
 )
 
 Head.propTypes = {
-  metas: PropTypes.Array,
-  scripts: PropTypes.Array,
+  metas: PropTypes.array,
+  scripts: PropTypes.array,
   styles: PropTypes.string,
   canonical: PropTypes.string.isRequired,
   title: PropTypes.string,

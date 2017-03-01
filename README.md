@@ -90,13 +90,10 @@ rampt
 - `npm run test`
 - add descriptive commit & push
 
-#### run examples
-- Build examples and github demo `npm run dist`
-- `npm run demo` or `npm run examples`
-
-- Complete example using npm:
-  - `cd examples/simple && npm i && npm start`
-
+#### Try bellow examples
+- `npm start`
+- `npm run examples`
+- `cd examples/simple && yarn && npm start`
 
 ## License
 

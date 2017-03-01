@@ -4,8 +4,8 @@ import ReactDOMServer from 'react-dom/server'
 import { DOMProperty } from 'react-dom/lib/ReactInjection'
 import { StyleSheetServer } from 'aphrodite/no-important'
 import { prettyPrint } from 'html'
+import { validateMarkup } from '../utils/ampvalidator'
 import Tags, { getMetas, getScripts } from './Tags'
-import ampValidator from '../utils/ampvalidator'
 import Template from '../components/Template'
 import DEFAULTS from './defaults'
 const debug = require('debug')('rampt:core')
@@ -45,7 +45,6 @@ class Core {
     this.tags = new Tags(this.settings.tags)
     this.renderStatic = ::this.renderStatic
     this.renderToFile = ::this.renderToFile
-    this.getValidator = ::this.getValidator
   }
 
   /**
@@ -97,7 +96,7 @@ class Core {
 
         if (this.settings.ampValidations) {
           debug('AMP validation is enabled.')
-          return this.validateMarkup(document)
+          return validateMarkup(document)
             .then(fulfill)
             .catch((ampErrors) => {
               reject({ validation: ampErrors, markup: document })
@@ -124,29 +123,9 @@ class Core {
     return this.renderStatic(...toRender)
     .then((staticMarkup) => {
       debug('Rendering to file --> ', file)
-      try {
-        fs.writeFileSync(file, staticMarkup)
-        return staticMarkup
-      } catch (err) {
-        throw new Error(err)
-      }
+      fs.writeFileSync(file, staticMarkup)
+      return staticMarkup
     })
-  }
-
-  getValidator() {
-    debug('Waiting for validator.')
-    return ampValidator.getInstance()
-      .then((instance) => (this.validator = instance))
-      .then(() => (debug('Validator has arrived :).')))
-  }
-
-  validateMarkup(markup) {
-    debug('validating markup.')
-    return this.getValidator()
-      .then(() => {
-        this.validator.validateMarkup(markup)
-        return markup
-      })
   }
 }
 

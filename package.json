@@ -27,13 +27,13 @@
     "examples": "npm run build-examples && DEBUG=*,-babel node ./examples/build/index.js",
     "examples:watch": "nodemon -w ./examples/src/ --exec 'npm run examples'",
     "prepublish": "npm run build",
-    "test": "npm run lint && npm run build && DEBUG=rampt* babel-node ./node_modules/.bin/isparta cover _mocha -- --compilers js:babel-core/register --require source-map-support/register ./test/spec --recursive",
+    "test": "DEBUG=rampt* babel-node ./node_modules/.bin/isparta cover _mocha -- --compilers js:babel-core/register --require source-map-support/register ./test/spec --recursive",
     "test:watch": "npm run test -- --watch",
     "version:patch": "npm version patch"
   },
   "author": "Ariel Fernando Rodriguez",
   "license": "Apache-2.0",
-  "pre-commit": "test",
+  "pre-commit": ["lint", "build", "test"],
   "babel": {
     "presets": [
       "es2015",
@@ -123,7 +123,7 @@
     "settings": {}
   },
   "dependencies": {
-    "amphtml-validator": "^1.0.15",
+    "amphtml-validator": "^1.0.19",
     "aphrodite": "^1.1.0",
     "babel-cli": "6.18.0",
     "babel-core": "^6.18.2",
@@ -137,6 +137,7 @@
     "babel-preset-stage-0": "6.16.0",
     "debug": "^2.3.3",
     "html": "^1.0.0",
+    "merge": "^1.2.0",
     "react": "15.4.1",
     "react-dom": "15.4.1",
     "rimraf": "^2.5.4"

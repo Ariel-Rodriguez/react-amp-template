@@ -1,25 +1,23 @@
 import { h } from 'preact'
-import preactToString from 'preact-render-to-string'
 import Head from './Head'
 import Provider from './Provider'
 import Store from './Store'
 import StyleManager from '../StyleManager'
 
 class Template {
-
   constructor({ canonical = '', title = '', styleManager }) {
     this.store = new Store()
     this.styleManager = new StyleManager(styleManager)
     this.head = new Head({
       getAdditionalHeadElements: this.store.getElements,
       canonical,
-      title
+      title,
     })
     this.context = {
       template: {
         register: this.register.bind(this),
-        set: this.set.bind(this)
-      }
+        set: this.set.bind(this),
+      },
     }
     this.parseElements = this.parseElements.bind(this)
     this.renderToString = this.renderToString.bind(this)
@@ -38,13 +36,13 @@ class Template {
 
     const {
       html,
-      css = ''
+      css = '',
     } = parse(<Provider {...this.context}>{elements}</Provider>)
 
     if (css.length) {
       this.store.registerTag('style', {
         'amp-custom': '',
-        dangerouslySetInnerHTML: {__html: css} })
+        dangerouslySetInnerHTML: { __html: css } })
     }
 
     return html

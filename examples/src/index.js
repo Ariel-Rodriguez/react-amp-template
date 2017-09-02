@@ -1,16 +1,19 @@
-import Template, { renderToString } from '../../lib'
-import StyledComponents from './StyledComponents'
+import fs from 'fs'
+import path from 'path'
+
 import Aphrodite from './Aphrodite'
 import NoStyles from './NoStyles'
+import StyledComponents from './StyledComponents'
 
-console.log(new Template({
-    styleManager: 'styled-components'
-  }).renderToString(StyledComponents.render()))
 
-console.log(new Template({
-    styleManager: 'aphrodite'
-  }).renderToString(Aphrodite.render()))
+fs.writeFileSync(
+  path.resolve('./examples/styled-components.html'),
+  StyledComponents.render())
 
-console.log(renderToString(NoStyles.render(), {
-  title: 'No styles example'
-}))
+fs.writeFileSync(
+  path.resolve('./examples/aphrodite.html'),
+  Aphrodite.render())
+
+fs.writeFileSync(
+  path.resolve('./examples/no-styles.html'),
+  NoStyles.render())

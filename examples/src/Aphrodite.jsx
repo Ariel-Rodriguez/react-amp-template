@@ -1,5 +1,6 @@
 import React from 'react'
 import { StyleSheet, css } from 'aphrodite/no-important';
+import Template from '../../lib'
 import Access from './shared/Access'
 
 const styles = StyleSheet.create({
@@ -35,6 +36,11 @@ const StyledBody = ({ children, ...props }, { template }) => {
 
 export default class Aphrodite {
   static render () {
-    return (<StyledBody><Access /></StyledBody>)
+    return new Template({
+      title: 'Styling AMP with Aphrodite',
+      styleManager: 'aphrodite'
+    }).renderToString(
+      <StyledBody><Access /></StyledBody>
+    )
   }
 }

@@ -1,5 +1,6 @@
 import React from 'react'
 import styled, { ThemeProvider } from 'styled-components'
+import Template from '../../lib'
 import Access from './shared/Access'
 
 // Define our button, but with the use of props.theme this time
@@ -52,7 +53,10 @@ const StyledBody = styled(Body)`
 
 export default class StyledComponents {
   static render() {
-    return (
+    return new Template({
+      title: 'Styling AMP with StyledComponents',
+      styleManager: 'styled-components'
+    }).renderToString(
       <StyledBody><Access /></StyledBody>
     )
   }

@@ -4,7 +4,7 @@ export default class NoStyle {
   static render(element) {
     return {
       html: preactToString(element),
-      css: ''
+      css: '',
     }
   }
 }

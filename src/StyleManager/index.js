@@ -3,9 +3,9 @@ import Aphrodite from './Aphrodite'
 import NoStyle from './NoStyle'
 
 const StyleStrategies = {
-  'aphrodite': Aphrodite,
+  aphrodite: Aphrodite,
   'styled-components': StyledComponets,
-  'no-styles': NoStyle
+  'no-styles': NoStyle,
 }
 
 export default class StyleManager {
@@ -15,11 +15,11 @@ export default class StyleManager {
       ? StyleStrategies[strategy] : strategy
   }
 
-  renderToString (element) {
+  renderToString(element) {
     return this.strategy.render(element)
   }
 
-  static defaultStyleParser () {
+  static defaultStyleParser() {
     return StyleStrategies['no-styles']
   }
 }

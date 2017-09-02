@@ -27,7 +27,7 @@ export default class Head {
         <style amp-boilerplate="">{AMP_STYLES.MAIN}</style>
         <noscript><style amp-boilerplate="">{AMP_STYLES.NO_SCRIPT}</style></noscript>
         {getAdditionalHeadElements()}
-      </head>
+      </head>,
     )
   }
 }

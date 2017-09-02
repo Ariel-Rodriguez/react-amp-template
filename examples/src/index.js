@@ -6,14 +6,13 @@ import NoStyles from './NoStyles'
 import StyledComponents from './StyledComponents'
 
 
-fs.writeFileSync(
-  path.resolve('./examples/styled-components.html'),
-  StyledComponents.render())
+const writeToFile = (name, content) => {
+  const out = path.resolve(`./examples/${name}.html`)
+  fs.writeFile(out, content, err =>
+    !err && console.log(`${name} --> ${out}`)
+  )
+}
 
-fs.writeFileSync(
-  path.resolve('./examples/aphrodite.html'),
-  Aphrodite.render())
-
-fs.writeFileSync(
-  path.resolve('./examples/no-styles.html'),
-  NoStyles.render())
+writeToFile('styled-components', StyledComponents.render())
+writeToFile('aphrodite', Aphrodite.render())
+writeToFile('no-styles', NoStyles.render())

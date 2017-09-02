@@ -1,17 +1,17 @@
 import React from 'react'
 
 const CONFIG_JSON = {
-  "authorization": "https://ampbyexample.com/components/amp-access/authorization?rid=READER_ID&url=CANONICAL_URL&ref=DOCUMENT_REFERRER&_=RANDOM",
-  "pingback": "https://ampbyexample.com/components/amp-access/authorization?rid=READER_ID&url=CANONICAL_URL&ref=DOCUMENT_REFERRER&_=RANDOM",
-  "login": {
-    "sign-in": "https://ampbyexample.com/components/amp-access/login?rid=READER_ID&url=CANONICAL_URL",
-    "sign-out": "https://ampbyexample.com/components/amp-access/logout"
+  authorization: 'https://ampbyexample.com/components/amp-access/authorization?rid=READER_ID&url=CANONICAL_URL&ref=DOCUMENT_REFERRER&_=RANDOM',
+  pingback: 'https://ampbyexample.com/components/amp-access/authorization?rid=READER_ID&url=CANONICAL_URL&ref=DOCUMENT_REFERRER&_=RANDOM',
+  login: {
+    'sign-in': 'https://ampbyexample.com/components/amp-access/login?rid=READER_ID&url=CANONICAL_URL',
+    'sign-out': 'https://ampbyexample.com/components/amp-access/logout',
   },
-  "authorizationFallbackResponse": {
-      "error": true,
-      "access": false,
-      "subscriber": false
-  }
+  authorizationFallbackResponse: {
+    error: true,
+    access: false,
+    subscriber: false,
+  },
 }
 
 export default ({ css }, { template }) => {
@@ -22,7 +22,7 @@ export default ({ css }, { template }) => {
 
   return (
     <div>
-      {/* This section is visible to all users. No special markup is needed in this case.*/}
+      {/* This section is visible to all users. No special markup is needed in this case. */}
       <section>
         <h3>AMP Access</h3>
         <p>
@@ -30,14 +30,14 @@ export default ({ css }, { template }) => {
         </p>
       </section>
 
-       {/* Use the `amp-access` attribute to control the visibility of each component. The expression
+      {/* Use the `amp-access` attribute to control the visibility of each component. The expression
        must evaluate to a boolean value. If it evaluates to `TRUE`, the section will be shown.  */}
       <section amp-access="access">
         <p>This section is visible to users if the authorization response contains: <code>"access": true</code>. This is usually the main content of the article.</p>
       </section>
 
       {/* This section is only shown if the value of the `access` attribute on the response for
-      the authorization requests evaluates to `FALSE`*/}
+      the authorization requests evaluates to `FALSE` */}
       <section amp-access="NOT access">
         <p>This section is only visible to users if the authorization response does not contain <code>access</code> or contains <code>"access": false</code>.</p>
       </section>
@@ -59,12 +59,12 @@ export default ({ css }, { template }) => {
 
       `amp-access-hide` will default the component to be hidden and enabled later
       if the `amp-access` expression is evaluated to `TRUE` */}
-      <section class="p1" amp-access="NOT subscriber" amp-access-hide role="button" tabindex="0">
-        <a class="ampstart-btn caps" on="tap:amp-access.login-sign-in">Login</a>
+      <section className="p1" amp-access="NOT subscriber" amp-access-hide role="button" tabIndex="0">
+        <a className="ampstart-btn caps" on="tap:amp-access.login-sign-in">Login</a>
       </section>
       {/* The logout link will only be shown for logged in subscribers. We use a trick here: the logout is a login action that directly redirects back to the original URL. This has the advantage that the page updates without being reloaded.  */}
-      <section class="p1" amp-access="subscriber" amp-access-hide role="button" tabindex="0">
-        <a class="ampstart-btn caps" on="tap:amp-access.login-sign-out">Logout</a>
+      <section className="p1" amp-access="subscriber" amp-access-hide role="button" tabIndex="0">
+        <a className="ampstart-btn caps" on="tap:amp-access.login-sign-out">Logout</a>
       </section>
     </div>
   )

@@ -1,24 +1,24 @@
 import React from 'react'
-import { StyleSheet, css } from 'aphrodite/no-important';
+import { StyleSheet, css } from 'aphrodite/no-important'
 import Template from '../../lib'
 import Access from './shared/Access'
 
 const styles = StyleSheet.create({
-    btn: {
-      'font-size': '1em',
-      margin: '1em',
-      padding: '0.25em 1em',
-      'border-radius': '3px'
-    },
-    red: {
-        color: 'palevioletred',
-        border: 'palevioletred'
-    },
-    main: {
-      color: 'mediumseagreen',
-      border: 'mediumseagreen'
-    },
-});
+  btn: {
+    'font-size': '1em',
+    margin: '1em',
+    padding: '0.25em 1em',
+    'border-radius': '3px',
+  },
+  red: {
+    color: 'palevioletred',
+    border: 'palevioletred',
+  },
+  main: {
+    color: 'mediumseagreen',
+    border: 'mediumseagreen',
+  },
+})
 
 
 const StyledBody = ({ children, ...props }, { template }) => {
@@ -35,12 +35,12 @@ const StyledBody = ({ children, ...props }, { template }) => {
 
 
 export default class Aphrodite {
-  static render () {
+  static render() {
     return new Template({
       title: 'Styling AMP with Aphrodite',
-      styleManager: 'aphrodite'
+      styleManager: 'aphrodite',
     }).renderToString(
-      <StyledBody><Access /></StyledBody>
+      <StyledBody><Access /></StyledBody>,
     )
   }
 }

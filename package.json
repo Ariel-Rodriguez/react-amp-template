@@ -3,158 +3,78 @@
   "version": "2.3.0",
   "description": "AMP react server rendering.",
   "keywords": [
+    "preact",
     "react",
     "amp",
     "server-rendering",
     "react-amp",
     "amp-react",
-    "template"
+    "template",
+    "aphrodite",
+    "styledcomponent"
   ],
   "main": "lib/index.js",
-  "bin": {
-    "react-amp-template": "./bin/react-amp-template"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/Ariel-Rodriguez/react-amp-template.git"
   },
   "scripts": {
-    "build": "npm run clean && babel src -d lib -s",
-    "build-examples": "npm run build && babel examples/src -d examples/build -s",
-    "clean": "rimraf lib examples/build",
-    "lint": "eslint --ext .jsx --ext .js src/.",
-    "start": "npm run build-examples && DEBUG=*,-babel node ./examples/build/demo.js",
-    "examples": "npm run build-examples && DEBUG=*,-babel node ./examples/build/index.js",
-    "examples:watch": "nodemon -w ./examples/src/ --exec 'npm run examples'",
-    "prepublish": "npm run build",
-    "test": "DEBUG=rampt* babel-node ./node_modules/.bin/isparta cover _mocha -- --compilers js:babel-core/register --require source-map-support/register ./test/spec --recursive",
-    "test:watch": "npm run test -- --watch",
-    "version:patch": "npm version patch"
+    "build": "cross-env-shell BABEL_DISABLE_CACHE=1 npm-run-all build:*",
+    "build:lib": "cross-env BABEL_ENV=preact babel src -d lib -s",
+    "build:examples": "rimraf examples/dist && cross-env-shell BABEL_ENV=react NODE_ENV=production webpack --config config/webpack.config.babel.js --progress --display-optimization-bailout",
+    "dev": "npm run build -- --watch",
+    "test": "npm run -s lint",
+    "lint": "eslint --fix --ext .jsx --ext .js src/."
   },
   "author": "Ariel Fernando Rodriguez",
   "license": "Apache-2.0",
-  "pre-commit": ["lint", "build", "test"],
   "babel": {
-    "presets": [
-      "es2015",
-      "react",
-      "stage-0"
-    ],
-    "env": {
-      "test": {
-        "plugins": [
-          "istanbul"
-        ]
-      }
-    }
+    "extends": "./config/.babelrc"
   },
   "eslintConfig": {
-    "parser": "babel-eslint",
-    "extends": "airbnb",
-    "env": {
-      "browser": false,
-      "node": true,
-      "mocha": true,
-      "es6": true
-    },
-    "plugins": [
-      "react",
-      "jsx-a11y"
-    ],
-    "parserOptions": {
-      "ecmaVersion": 6,
-      "sourceType": "module",
-      "ecmaFeatures": {
-        "jsx": true
-      }
-    },
-    "rules": {
-      "arrow-parens": [
-        "error",
-        "always"
-      ],
-      "arrow-body-style": [
-        2,
-        "as-needed"
-      ],
-      "comma-dangle": [
-        2,
-        "always-multiline"
-      ],
-      "import/imports-first": 0,
-      "import/newline-after-import": 0,
-      "import/no-dynamic-require": 0,
-      "import/no-extraneous-dependencies": 0,
-      "import/no-named-as-default": 0,
-      "import/no-unresolved": 2,
-      "import/prefer-default-export": 0,
-      "indent": [
-        2,
-        2,
-        {
-          "SwitchCase": 1
-        }
-      ],
-      "jsx-a11y/aria-props": 2,
-      "jsx-a11y/heading-has-content": 0,
-      "jsx-a11y/href-no-hash": 2,
-      "jsx-a11y/label-has-for": 2,
-      "jsx-a11y/mouse-events-have-key-events": 2,
-      "jsx-a11y/role-has-required-aria-props": 2,
-      "jsx-a11y/role-supports-aria-props": 2,
-      "max-len": 0,
-      "newline-per-chained-call": 0,
-      "no-console": 1,
-      "no-use-before-define": 0,
-      "prefer-template": 2,
-      "class-methods-use-this": 0,
-      "react/forbid-prop-types": 0,
-      "react/jsx-first-prop-new-line": [
-        2,
-        "multiline"
-      ],
-      "react/jsx-filename-extension": 0,
-      "react/jsx-no-target-blank": 0,
-      "react/require-extension": 0,
-      "react/self-closing-comp": 0,
-      "require-yield": 0,
-      "semi": 0
-    },
-    "settings": {}
+    "extends": "./config/.eslintrc.json"
   },
   "dependencies": {
-    "amphtml-validator": "^1.0.19",
-    "aphrodite": "^1.1.0",
-    "babel-cli": "6.18.0",
-    "babel-core": "^6.18.2",
-    "babel-eslint": "^7.1.1",
-    "babel-loader": "^6.2.8",
-    "babel-plugin-istanbul": "^3.0.0",
-    "babel-preset-es2015": "^6.18.0",
-    "babel-preset-latest": "6.16.0",
-    "babel-preset-react": "6.16.0",
-    "babel-preset-react-hmre": "1.1.1",
-    "babel-preset-stage-0": "6.16.0",
-    "debug": "^2.3.3",
-    "html": "^1.0.0",
-    "merge": "^1.2.0",
-    "react": "15.4.1",
-    "react-dom": "15.4.1",
-    "rimraf": "^2.5.4"
+    "aphrodite": "^1.2.3",
+    "babel-register": "^6.26.0",
+    "preact": "^8.2.5",
+    "preact-compat": "^3.17.0",
+    "preact-render-to-string": "^3.6.3",
+    "proptypes": "^1.1.0",
+    "react": "^15.6.1",
+    "styled-components": "^2.1.2"
   },
   "devDependencies": {
-    "chai": "^3.5.0",
-    "eslint": "^3.16.1",
-    "eslint-config-airbnb": "^13.0.0",
-    "eslint-config-airbnb-base": "^10.0.1",
-    "eslint-plugin-import": "^2.2.0",
-    "eslint-plugin-jsx-a11y": "^2.0.1",
-    "eslint-plugin-react": "^6.7.1",
-    "isparta": "^4.0.0",
-    "istanbul": "^0.4.5",
-    "mocha": "^3.1.2",
-    "pre-commit": "^1.1.3",
-    "sinon": "^1.17.6",
-    "source-map-support": "^0.4.6"
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^7.2.3",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-module-resolver": "^2.7.1",
+    "babel-plugin-styled-components": "^1.2.0",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-preact": "^1.1.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "babel-runtime": "^6.26.0",
+    "case-sensitive-paths-webpack-plugin": "^2.1.1",
+    "cross-env": "^5.0.5",
+    "eslint": "^4.5.0",
+    "eslint-config-airbnb": "^15.1.0",
+    "eslint-config-airbnb-base": "^12.0.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-react": "^7.3.0",
+    "json-loader": "^0.5.7",
+    "mkdirp": "^0.5.1",
+    "module-alias": "^2.0.1",
+    "npm-run-all": "^4.1.1",
+    "rimraf": "^2.6.1",
+    "source-map-loader": "^0.2.1",
+    "webpack": "^3.5.5",
+    "webpack-dev-server": "^2.7.1",
+    "webpack-node-externals": "^1.6.0"
   }
 }

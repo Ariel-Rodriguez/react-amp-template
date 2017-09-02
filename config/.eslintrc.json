@@ -1,0 +1,43 @@
+{
+  "extends": "airbnb",
+
+  "parser": "babel-eslint",
+
+  "plugins": [
+      "react",
+      "jsx-a11y",
+      "import"
+  ],
+
+  "env": {
+    "browser": false,
+    "node": true,
+    "es6": true
+  },
+
+  "rules": {
+    "semi": ["error", "never"],
+    "arrow-parens": ["error", "as-needed"],
+    "jsx-a11y/href-no-hash": "off",
+    "react/sort-comp": ["error", {
+        "order": [
+          "lifecycle",
+          "rendering",
+          "everything-else",
+          "static-methods"
+        ],
+        "groups": {
+          "rendering": [
+            "render",
+            "/^render.+$/"
+          ]
+        }
+      }]
+  },
+
+  "settings": {
+    "react": {
+      "pragma": "h"
+    }
+  }
+}

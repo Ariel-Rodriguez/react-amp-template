@@ -13,19 +13,19 @@ const Button = styled.button`
 	/* Color the border and text with theme.main */
 	color: ${props => props.theme.main};
 	border: 2px solid ${props => props.theme.main};
-`;
+`
 
 // We're passing a default theme for Buttons that aren't wrapped in the ThemeProvider
 Button.defaultProps = {
-	theme: {
-		main: 'palevioletred'
-	}
+  theme: {
+    main: 'palevioletred',
+  },
 }
 
 // Define what props.theme will look like
 const theme = {
-	main: 'mediumseagreen'
-};
+  main: 'mediumseagreen',
+}
 
 const Body = ({ children, ...props }, { template }) => {
   template.set('canonical', 'https://non-amp-address.com')
@@ -55,9 +55,9 @@ export default class StyledComponents {
   static render() {
     return new Template({
       title: 'Styling AMP with StyledComponents',
-      styleManager: 'styled-components'
+      styleManager: 'styled-components',
     }).renderToString(
-      <StyledBody><Access /></StyledBody>
+      <StyledBody><Access /></StyledBody>,
     )
   }
 }

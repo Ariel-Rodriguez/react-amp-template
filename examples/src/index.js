@@ -1,48 +1,16 @@
-import http from 'http';
-import React from 'react';
-import App from './app';
-import RAMPT from '../../lib';
-const debug = require('debug')('example:server');
-const error = require('debug')('example:server:error');
+import Template, { renderToString } from '../../lib'
+import StyledComponents from './StyledComponents'
+import Aphrodite from './Aphrodite'
+import NoStyles from './NoStyles'
 
+console.log(new Template({
+    styleManager: 'styled-components'
+  }).renderToString(StyledComponents.render()))
 
-const createTemplate = () => {
-  /**
-  * react-amp-template returns a promise which will be fulfilled
-  * with a string that holds the whole HTML document ready to serve.
-  * The promise will reject for any internal error.
-  * Once done rendering, proceed to create the server.
-  */
-  const rampt = new RAMPT({
-    ampValidations: true,
-    template: {
-      head: {
-        title: 'react amp template',
-        canonical: 'http://non-amp.html',
-      }
-    }
-  });
+console.log(new Template({
+    styleManager: 'aphrodite'
+  }).renderToString(Aphrodite.render()))
 
-  return rampt
-    .renderStatic(<App bannerText="React-AMP-Template" />)
-    .catch(error);
-}
-
-
-http.createServer((request, response) => {
-  createTemplate()
-  .then(function(html){
-    response.writeHeader(200, { 'Content-Type': 'text/html' });
-    response.write(html);
-    response.end();
-  });
-})
-
-.listen(8000)
-
-.on('clientError', (err, socket) => {
-  socket.end('HTTP/1.1 400 Bad Request\r\n\r\n');
-  error(err);
-});
-
-debug('Listening on port 8000');
+console.log(renderToString(NoStyles.render(), {
+  title: 'No styles example'
+}))

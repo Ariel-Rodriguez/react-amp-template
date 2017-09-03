@@ -2,3 +2,6 @@ src
 .editorconfig
 yarn-error.log
 tmp
+coverage
+test
+config

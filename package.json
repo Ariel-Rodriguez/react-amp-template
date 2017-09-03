@@ -24,6 +24,7 @@
     "build:examples": "rimraf examples/dist && cross-env-shell BABEL_ENV=react NODE_ENV=production webpack --config config/webpack.config.babel.js --progress --display-optimization-bailout",
     "dev": "npm run build -- --watch",
     "examples": "npm run build:examples && node examples/dist/index.js",
+    "prepublish": "npm run build:lib",
     "test": "npm run -s lint",
     "lint": "eslint --fix --ext .jsx --ext .js src/."
   },
@@ -37,7 +38,6 @@
   },
   "dependencies": {
     "aphrodite": "^1.2.3",
-    "babel-register": "^6.26.0",
     "preact": "^8.2.5",
     "preact-compat": "^3.17.0",
     "preact-render-to-string": "^3.6.3",

@@ -36,7 +36,6 @@ Write AMP pages using React syntaxt right the way and style with your preferred 
 
 
 ## Usage
--
 
 ### Install from NPM
 
@@ -61,7 +60,7 @@ const SocialShare = (props, { template }) => {
 const Body = (props, context) => {
   // Add required meta tags to head at any moment.
   context.template.register('meta', {'http-equiv': "origin-trial", 'data-feature': "Web Share"})
-  
+
   return(
     <body>
       <h1>Preact for AMP is welcome as well!</h1>
@@ -78,7 +77,6 @@ AMPTemplate.renderToString(<Body />)
 
 
 ## API
--
 
 ### Template
 
@@ -90,7 +88,7 @@ const template = new RAMPT({ title, canonical, styleManager })
 ### Options
 
  - *title* | Add meta title with [_title_]
- - *canonical*  | Add link canonical with href to [_canonical ]
+ - *canonical*  | Add link canonical with href to [_canonical_]
  - *styleManager* | {string | function}. Allowed `aphrodite` `styled-components` `undefined` `function` 
 
 ### Styling
@@ -104,13 +102,13 @@ import styled from 'style-components'
 const Body = props => <body {...props}/>
 
 const StyledBody = styled(Body)`
-background: papayawhip;
-height: 3em;
-width: 3em;
+  background: papayawhip;
+  height: 3em;
+  width: 3em;
 
-@media (max-width: 700px) {
-  background: palevioletred;
-}
+  @media (max-width: 700px) {
+    background: palevioletred;
+  }
 `
 
 renderToString(<StyledBody />)
@@ -160,7 +158,7 @@ const Element = (props, context) => {
  const Element = (props, {template}) => {
    template.register('amp-list')
    template.register('mustache')
-   
+
    return (
     <amp-list src="https://ampbyexample.com/json/cart.json"
       layout="fixed-height"
@@ -197,8 +195,8 @@ Take a look for [this webpack configuration for RAMPT examples](https://github.c
     ["module-resolver", {
       "root": ["."],
       "alias": {
-          "react": "preact-compat",
-          "react-dom": "preact-compat"
+        "react": "preact-compat",
+        "react-dom": "preact-compat"
       }
     }]
   ]
@@ -246,7 +244,7 @@ externals: [ nodeExternals({
 - `$git clone git@github.com:Ariel-Rodriguez/react-amp-template.git`
 - `yarn`
 - create an issue, create a branch with issue initials
-- `yarn build`
+- `yarn dev`
 
 ### Build examples
 

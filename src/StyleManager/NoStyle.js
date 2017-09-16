@@ -1,9 +1,9 @@
 import preactToString from 'preact-render-to-string'
 
 export default class NoStyle {
-  static render(element) {
+  static render(element, opts) {
     return {
-      html: preactToString(element),
+      html: preactToString(element, null, opts),
       css: '',
     }
   }

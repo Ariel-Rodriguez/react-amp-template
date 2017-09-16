@@ -1,21 +1,22 @@
 import React from 'react'
-import RAMPT from '../../lib'
+import render from '../../lib'
 
-const AMPTemplate = new RAMPT({
-  title: 'Creating AMP Page with React',
-  canonical: 'https://my-website.com',
-})
-
-const SocialShare = (props, { template }) => {
-  template.register('amp-social-share')
+const SocialShare = (props, { head }) => {
+  head.append('amp-social-share')
   return <amp-social-share {...props} />
 }
 
+const metaContent = {
+  'http-equiv': "origin-trial",
+  'data-expires': '2020-01-01',
+  'data-feature': "Web Share",
+  'content': "Ajcrk411RcpUCQ3ovgC8le4e7Te/1kARZsW5Hd/OCnW6vIHTs5Kcq1PaABs7SzcrtfvT0TIlFh9Vdb5xWi9LiQsAAABSeyJvcmlnaW4iOiJodHRwczovL2FtcGJ5ZXhhbXBsZS5jb206NDQzIiwiZmVhdHVyZSI6IldlYlNoYXJlIiwiZXhwaXJ5IjoxNDkxMzM3MDEwfQ=="
+}
 
-const Body = (props, context) => {
+const Body = (props, { head }) => {
   // Add required meta tags to head at any moment.
-  context.template.register('meta', {'http-equiv': "origin-trial", 'data-feature': "Web Share"})
-
+  head.append('meta', metaContent)
+  head.append('link', {rel: 'amphtml', 'href': "https://www.example.com/url/to/amp/document.html"})
   return(
     <body>
       <h1>Preact for AMP is welcome as well!</h1>
@@ -30,8 +31,8 @@ const Body = (props, context) => {
   )
 }
 
-export default class Aphrodite {
-  static render() {
-    return AMPTemplate.renderToString(<Body />)
-  }
-}
+export default () =>
+  render(<Body />, {
+    title: 'Rendering AMP with preact',
+    canonical: 'https://my-website.com',
+  })

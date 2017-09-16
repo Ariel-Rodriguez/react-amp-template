@@ -1,58 +1,50 @@
 import { h } from 'preact'
 import Head from './Head'
 import Provider from './Provider'
-import Store from './Store'
 import StyleManager from '../StyleManager'
 
+
 class Template {
-  constructor({ canonical = '', title = '', styleManager }) {
-    this.store = new Store()
-    this.styleManager = new StyleManager(styleManager)
-    this.head = new Head({
-      getAdditionalHeadElements: this.store.getElements,
-      canonical,
-      title,
-    })
-    this.context = {
-      template: {
-        register: this.register.bind(this),
-        set: this.set.bind(this),
+  constructor({ body, styleManager, ...props }) {
+    this.props = {
+      pretty: true,
+      styleManager,
+      ...props,
+    }
+    this.appendToHead = this.appendToHead.bind(this)
+    this.renderToString = this.renderToString.bind(this)
+    this.body = this.createBody(body)
+    this.head = new Head(props)
+  }
+
+  appendToHead(tag, props, children) {
+    this.head.append(tag, props, children)
+  }
+
+  createBody(children) {
+    const context = {
+      head: {
+        append: this.appendToHead,
       },
     }
-    this.parseElements = this.parseElements.bind(this)
-    this.renderToString = this.renderToString.bind(this)
+
+    return (
+      <Provider {...context}>
+        {children}
+      </Provider>
+    )
   }
 
-  set(target, value) {
-    this.head[target] = value
-  }
+  renderToString() {
+    const { pretty, styleManager } = this.props
 
-  register(tag, props, children) {
-    this.store.registerTag(tag, props, children)
-  }
+    const sm = new StyleManager(this.body, styleManager)
+    const { css, html } = sm.renderToString({ pretty })
 
-  parseElements(elements) {
-    const parse = this.styleManager.renderToString
+    this.appendToHead('css', null, css)
+    const head = this.head.renderToString({ pretty })
 
-    const {
-      html,
-      css = '',
-    } = parse(<Provider {...this.context}>{elements}</Provider>)
-
-    if (css.length) {
-      this.store.registerTag('style', {
-        'amp-custom': '',
-        dangerouslySetInnerHTML: { __html: css } })
-    }
-
-    return html
-  }
-
-  renderToString(body) {
-    const bodyHTML = this.parseElements(body)
-    const headHTML = this.head.renderToString()
-
-    return `<!DOCTYPE html><html ⚡>${headHTML + bodyHTML}</html>`
+    return `<!DOCTYPE html>\n<html ⚡>\n${head}\n${html}\n</html>`
   }
 }
 

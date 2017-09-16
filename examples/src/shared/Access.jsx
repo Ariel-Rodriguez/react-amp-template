@@ -14,11 +14,12 @@ const CONFIG_JSON = {
   },
 }
 
-export default ({ css }, { template }) => {
+export default ({ css }, { head }) => {
   // Flexibility to add custom-scripts
-  template.register('json', { id: 'amp-access' }, JSON.stringify(CONFIG_JSON))
-  template.register('amp-access')
-  template.register('amp-mustache')
+  head.append('json', { id: 'amp-access' }, JSON.stringify(CONFIG_JSON))
+  head.append('amp-access')
+  head.append('amp-analytics')
+  head.append('amp-mustache')
 
   return (
     <div>

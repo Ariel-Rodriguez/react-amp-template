@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyleSheet, css } from 'aphrodite/no-important'
-import Template from '../../lib'
+import render from '../../lib'
 import Access from './shared/Access'
 
 const styles = StyleSheet.create({
@@ -21,26 +21,20 @@ const styles = StyleSheet.create({
 })
 
 
-const StyledBody = ({ children, ...props }, { template }) => {
-  template.set('canonical', 'https://non-amp-address.com')
-
-  return (
-    <body {...props}>
-      <button className={css(styles.btn, styles.main)}>Normal</button>
-      <button className={css(styles.btn, styles.red)}>Themed</button>
-      {children}
-    </body>
-  )
-}
+const StyledBody = ({ children, ...props }, { head }) =>
+  <body {...props}>
+    <button className={css(styles.btn, styles.main)}>Normal</button>
+    <button className={css(styles.btn, styles.red)}>Themed</button>
+    {children}
+  </body>
 
 
-export default class Aphrodite {
-  static render() {
-    return new Template({
-      title: 'Styling AMP with Aphrodite',
-      styleManager: 'aphrodite',
-    }).renderToString(
-      <StyledBody><Access /></StyledBody>,
-    )
-  }
-}
+const Aphrodite = () =>
+  <StyledBody><Access /></StyledBody>
+
+export default () =>
+  render(<Aphrodite />, {
+    title: 'Styling AMP with Aphrodite',
+    canonical: 'https://canonical.com',
+    styleManager: 'aphrodite',
+  })

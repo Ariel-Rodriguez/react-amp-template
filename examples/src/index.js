@@ -1,9 +1,9 @@
 import fs from 'fs'
 import path from 'path'
 
-import Aphrodite from './Aphrodite'
-import NoStyles from './NoStyles'
-import StyledComponents from './StyledComponents'
+import aphrodite from './Aphrodite'
+import noStyles from './NoStyles'
+import styledComponents from './StyledComponents'
 
 
 const writeToFile = (name, content) => {
@@ -13,6 +13,6 @@ const writeToFile = (name, content) => {
   )
 }
 
-writeToFile('styled-components', StyledComponents.render())
-writeToFile('aphrodite', Aphrodite.render())
-writeToFile('no-styles', NoStyles.render())
+writeToFile('styled-components', styledComponents())
+writeToFile('aphrodite', aphrodite())
+writeToFile('no-styles', noStyles())

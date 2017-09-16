@@ -9,14 +9,15 @@ const StyleStrategies = {
 }
 
 export default class StyleManager {
-  constructor(strategy = 'no-styles') {
-    this.renderToString = this.renderToString.bind(this)
+  constructor(element, strategy = 'no-styles') {
+    this.element = element
     this.strategy = (typeof strategy === 'string')
       ? StyleStrategies[strategy] : strategy
+    this.renderToString = this.renderToString.bind(this)
   }
 
-  renderToString(element) {
-    return this.strategy.render(element)
+  renderToString(options) {
+    return this.strategy.render(this.element, options)
   }
 
   static defaultStyleParser() {

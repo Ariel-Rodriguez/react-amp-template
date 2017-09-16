@@ -20,16 +20,22 @@
   },
   "scripts": {
     "build": "cross-env-shell BABEL_DISABLE_CACHE=1 npm-run-all build:*",
-    "build:lib": "cross-env BABEL_ENV=preact babel src -d lib -s",
+    "build:lib": "rimraf lib && cross-env BABEL_ENV=preact babel src -d lib -s",
     "build:examples": "rimraf examples/dist && cross-env-shell BABEL_ENV=react NODE_ENV=production webpack --config config/webpack.config.babel.js --progress --display-optimization-bailout",
     "dev": "npm run build -- --watch",
     "examples": "npm run build:examples && node examples/dist/index.js",
     "prepublish": "npm run build:lib",
-    "test": "npm run -s lint",
+    "test": "npm run -s lint && BABEL_ENV=preact ava",
     "lint": "eslint --fix --ext .jsx --ext .js src/."
   },
   "author": "Ariel Fernando Rodriguez",
   "license": "Apache-2.0",
+  "ava": {
+    "require": [
+      "babel-register"
+    ],
+    "babel": "inherit"
+  },
   "babel": {
     "extends": "./config/.babelrc"
   },
@@ -46,6 +52,7 @@
     "styled-components": "^2.1.2"
   },
   "devDependencies": {
+    "ava": "^0.22.0",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-eslint": "^7.2.3",

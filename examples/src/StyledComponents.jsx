@@ -1,6 +1,6 @@
 import React from 'react'
 import styled, { ThemeProvider } from 'styled-components'
-import Template from '../../lib'
+import render from '../../lib'
 import Access from './shared/Access'
 
 // Define our button, but with the use of props.theme this time
@@ -27,37 +27,30 @@ const theme = {
   main: 'mediumseagreen',
 }
 
-const Body = ({ children, ...props }, { template }) => {
-  template.set('canonical', 'https://non-amp-address.com')
+const Body = ({ children, ...props }, { head }) =>
+  <body {...props}>
+    <Button>Normal</Button>
+    <ThemeProvider theme={theme}>
+      <Button>Themed</Button>
+    </ThemeProvider>
+    {children}
+  </body>
 
-  return (
-    <body {...props}>
-      <Button>Normal</Button>
-      <ThemeProvider theme={theme}>
-        <Button>Themed</Button>
-      </ThemeProvider>
-      {children}
-    </body>
-  )
-}
 
 const StyledBody = styled(Body)`
 	background: papayawhip;
-	height: 3em;
-	width: 3em;
 
 	@media (max-width: 700px) {
 		background: palevioletred;
 	}
 `
 
-export default class StyledComponents {
-  static render() {
-    return new Template({
-      title: 'Styling AMP with StyledComponents',
-      styleManager: 'styled-components',
-    }).renderToString(
-      <StyledBody><Access /></StyledBody>,
-    )
-  }
-}
+const StyledComponents = () =>
+  <StyledBody><Access /></StyledBody>
+
+export default () =>
+  render(<StyledComponents />, {
+    title: 'Styling AMP with StyledComponents',
+    canonical: 'https://canonical.com',
+    styleManager: 'styled-components',
+  })

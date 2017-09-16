@@ -2,7 +2,7 @@ import { h } from 'preact'
 import preactToString from 'preact-render-to-string'
 
 export default class StyledComponents {
-  static render(element) {
+  static render(element, opts) {
     // eslint-disable-next-line global-require
     const { ServerStyleSheet, StyleSheetManager } = require('styled-components')
 
@@ -10,7 +10,7 @@ export default class StyledComponents {
     const html = preactToString(
       <StyleSheetManager sheet={sheet.instance}>
         {element}
-      </StyleSheetManager>,
+      </StyleSheetManager>, null, opts,
     )
     const styles = sheet.getStyleElement()[0]
     const css = (styles)

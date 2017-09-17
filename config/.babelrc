@@ -3,8 +3,7 @@
     ["env", {
       "targets": {
         "node": "current"
-      },
-      "debug": true
+      }
     }],
     "stage-0"
   ],
@@ -26,6 +25,10 @@
     },
     "preact": {
       "presets": [ "preact" ]
-    }
+    },
+    "test": {
+      "presets": [ "preact" ],
+      "plugins": ["istanbul"]
+     }
   }
 }

@@ -25,7 +25,8 @@
     "dev": "npm run build -- --watch",
     "examples": "npm run build:examples && node examples/dist/index.js",
     "prepublish": "npm run build:lib",
-    "test": "npm run -s lint && BABEL_ENV=preact ava",
+    "test": "npm run -s lint && BABEL_ENV=test nyc ava",
+    "test:watch": "BABEL_ENV=preact ava --watch",
     "lint": "eslint --fix --ext .jsx --ext .js src/."
   },
   "author": "Ariel Fernando Rodriguez",
@@ -33,8 +34,7 @@
   "ava": {
     "require": [
       "babel-register"
-    ],
-    "babel": "inherit"
+    ]
   },
   "babel": {
     "extends": "./config/.babelrc"
@@ -57,12 +57,12 @@
     "babel-core": "^6.26.0",
     "babel-eslint": "^7.2.3",
     "babel-loader": "^7.1.2",
+    "babel-plugin-istanbul": "^4.1.5",
     "babel-plugin-module-resolver": "^2.7.1",
     "babel-plugin-styled-components": "^1.2.0",
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "babel-plugin-transform-react-jsx": "^6.24.1",
     "babel-preset-env": "^1.6.0",
-    "babel-preset-es2015": "^6.24.1",
     "babel-preset-preact": "^1.1.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
@@ -79,6 +79,7 @@
     "mkdirp": "^0.5.1",
     "module-alias": "^2.0.1",
     "npm-run-all": "^4.1.1",
+    "nyc": "^11.2.1",
     "rimraf": "^2.6.1",
     "source-map-loader": "^0.2.1",
     "webpack": "^3.5.5",

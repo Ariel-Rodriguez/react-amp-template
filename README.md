@@ -1,5 +1,5 @@
 <div align="center">
-  <h1><strong>RAMPT 3-rc.0</strong></h1>
+  <h1><strong>RAMPT 3</strong></h1>
   <div align="center">Server side rendering using Preact + ModularCSS/JSCSS + AMP-custom-elements.</div>
 </div>
 
@@ -45,34 +45,75 @@ Write AMP pages using React syntaxt right the way and style with your preferred 
 
 ```javascript
 import { h } from 'preact'
-import RAMPT from 'react-amp-template'
+import render from 'react-amp-template'
 
-const AMPTemplate = new RAMPT({
-  title: 'Creating AMP Page with React',
-  canonical: 'https://my-website.com',
-})
+const metaContent = {
+  'http-equiv': "origin-trial",
+  'data-expires': '2020-01-01',
+  'data-feature': "Web Share",
+  'content': "Ajcrk411RcpUCQ3ovgC8le4e7Te/1kARZsW5Hd/OCnW6vIHTs5Kcq1PaABs7SzcrtfvT0TIlFh9Vdb5xWi9LiQsAAABSeyJvcmlnaW4iOiJodHRwczovL2FtcGJ5ZXhhbXBsZS5jb206NDQzIiwiZmVhdHVyZSI6IldlYlNoYXJlIiwiZXhwaXJ5IjoxNDkxMzM3MDEwfQ=="
+}
 
-const SocialShare = (props, { template }) => {
-  template.register('amp-social-share')
+const SocialShare = (props, { head }) => {
+  head.append('amp-social-share')
   return <amp-social-share {...props} />
 }
 
-const Body = (props, context) => {
+const Body = (props, { head }) => {
   // Add required meta tags to head at any moment.
-  context.template.register('meta', {'http-equiv': "origin-trial", 'data-feature': "Web Share"})
-
+  head.append('meta', metaContent)
+  head.append('link', {rel: 'amphtml', 'href': "https://www.example.com/url/to/amp/document.html"})
   return(
     <body>
       <h1>Preact for AMP is welcome as well!</h1>
       <SocialShare width="40" height="40" type="email"/>
+      <SocialShare width="40" height="40" type="facebook"
+        data-param-app_id="254325784911610" />
+      <SocialShare width="40" height="40" type="gplus"/>
+      <SocialShare width="40" height="40" type="linkedin"/>
+      <SocialShare width="40" height="40" type="whatsapp"/>
+      <SocialShare width="40" height="40" type="twitter"/>
     </body>
   )
 }
 
-// Full HTML in plain text AMP ready.
-AMPTemplate.renderToString(<Body />)
 
+render(<Body />, {
+  title: 'Rendering AMP with preact',
+  canonical: 'https://my-website.com',
+})
 ```
+
+## Styled components
+
+```javascript
+import React from 'react'
+import render from 'react-amp-template'
+
+const Body = ({ children, ...props }, { head }) =>
+  <body {...props}>
+    <Button>Normal</Button>
+    <ThemeProvider theme={theme}>
+      <Button>Themed</Button>
+    </ThemeProvider>
+    {children}
+  </body>
+
+
+const StyledBody = styled(Body)`
+	background: papayawhip;
+	@media (max-width: 700px) {
+		background: palevioletred;
+	}
+`
+
+render(<StyledBody />, {
+  title: 'Styling AMP with StyledComponents',
+  canonical: 'https://canonical.com',
+  styleManager: 'styled-components',
+})
+```
+
 [See more here](https://github.com/Ariel-Rodriguez/react-amp-template/tree/master/examples)
 
 
@@ -81,8 +122,8 @@ AMPTemplate.renderToString(<Body />)
 ### Template
 
 ```javascript
-import RAMPT from 'react-amp-template'
-const template = new RAMPT({ title, canonical, styleManager })
+import { Template } from 'react-amp-template'
+const template = new Template({ title, canonical, styleManager })
 ```
 
 ### Options
@@ -91,35 +132,12 @@ const template = new RAMPT({ title, canonical, styleManager })
  - *canonical*  | Add link canonical with href to [_canonical_]
  - *styleManager* | {string | function}. Allowed `aphrodite` `styled-components` `undefined` `function` 
 
-### Styling
-
-- Add styling using Style Components
-
-```javascript
-import React from 'react'
-import styled from 'style-components'
-
-const Body = props => <body {...props}/>
-
-const StyledBody = styled(Body)`
-  background: papayawhip;
-  height: 3em;
-  width: 3em;
-
-  @media (max-width: 700px) {
-    background: palevioletred;
-  }
-`
-
-renderToString(<StyledBody />)
-```
-
 
 ### Context
 
-Every children element receives the high order context.
+Every children element receives the high order `context`.
 It allows components to add custom content to Head.
-Ensure to add the amp-custom script required. RAMPT prevents duplicated scripts by self.
+
 
 #### AMP component
 
@@ -128,36 +146,44 @@ RAMPT prevents duplicated scripts automatically.
 
 ```javascript
 const Element = (props, context) => {
- context.template.register('amp-sidebar')
- context.template.register('amp-sidebar') // <- it won't be added
+ context.head.append('amp-sidebar')
+ context.head.append('amp-sidebar') // <- it won't be added
  return ...
 }
 ```
+
+`<script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>`
 
 By default every amp-script address to version 0.1. However it can be customized.
 
 ```javascript
 const Element = (props, context) => {
- context.template.register('amp-sidebar', { version: '0.2' })
+ context.head.append('amp-sticky-ad', { version: '1.0' })
  return ...
 }
 ```
 
+`<script async custom-element="amp-sticky-ad" src="https://cdn.ampproject.org/v0/amp-sticky-ad-0.1.js"></script>`
+
+
 #### LD+JSON
 
 ```javascript
- const Element = (props, context) => {
-   context.template.register('json', null, JSON.stringify({ foo: 'bar' }))
-   return ...
- }
+const Element = (props, context) => {
+  context.head.append('ldjson', { id: 'myjson', content: {foo: 'bar' }})
+  return ...
+}
 ```
 
-#### Mustache (in development)
+`<script type="application/json" id="myjson">{foo:bar}</script>`
+
+
+#### Mustache
 
 ```javascript
- const Element = (props, {template}) => {
-   template.register('amp-list')
-   template.register('mustache')
+ const Element = (props, { head }) => {
+   head.append('amp-list')
+   head.append('amp-mustache')
 
    return (
     <amp-list src="https://ampbyexample.com/json/cart.json"
@@ -243,7 +269,6 @@ externals: [ nodeExternals({
 
 - `$git clone git@github.com:Ariel-Rodriguez/react-amp-template.git`
 - `yarn`
-- create an issue, create a branch with issue initials
 - `yarn dev`
 
 ### Build examples

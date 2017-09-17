@@ -8,3 +8,4 @@ dist
 examples/build
 examples/simple/node_modules
 test-debug.html
+.nyc_output

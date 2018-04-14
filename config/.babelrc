@@ -1,33 +1,17 @@
 {
   "presets": [
+    "react",
     ["env", {
       "targets": {
         "node": "current"
       }
-    }],
-    "stage-0"
+    }]
   ],
   "plugins": [
-    ["babel-plugin-styled-components", { "ssr": true }]
+    "transform-object-rest-spread"
   ],
   "env": {
-    "react": {
-      "presets": [ "react" ],
-      "plugins": [
-        ["module-resolver", {
-          "root": ["."],
-          "alias": {
-              "react": "preact-compat",
-              "react-dom": "preact-compat"
-          }
-        }]
-      ]
-    },
-    "preact": {
-      "presets": [ "preact" ]
-    },
     "test": {
-      "presets": [ "preact" ],
       "plugins": ["istanbul"]
      }
   }

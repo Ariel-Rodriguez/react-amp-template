@@ -33,11 +33,5 @@
           ]
         }
       }]
-  },
-
-  "settings": {
-    "react": {
-      "pragma": "h"
-    }
   }
 }

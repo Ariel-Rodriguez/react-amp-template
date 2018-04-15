@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import { AMP } from 'react-amp-template'
 
 const {
-  Tag, Link, Meta, Script,
+  Title, Tag, Link, Meta, Script,
 } = AMP
 
 const metaContent = {
@@ -14,7 +14,7 @@ const metaContent = {
 
 const Head = ({ title, json }) => (
   <Fragment>
-    <Tag _name="title">{title}</Tag>
+    <Title>{title}</Title>
     <Link rel="canonical" href="http://localhost" />
     <Meta charSet="utf-8" />
     <Meta {...metaContent} />

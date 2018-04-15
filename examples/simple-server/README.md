@@ -1,8 +1,9 @@
 ## DEMO
 
-This is a full boilerplate application. Demostrates how to create a simple application for Preact server rendering using RAMPT.
+This is a full boilerplate application.
+Demostrates how to implement RAMPT using Babel + React 16 + StyledComponents v3.
 
-### Install
+### Install
 - `npm install`
 - `npm start`
 

@@ -30,7 +30,7 @@ const Date = styled.p`
 const PostCard = () => (
   <Container>
     <amp-img
-      src="/img/landscape_green_1280x853.jpg"
+      src="/assets/bg.png"
       layout="responsive"
       width="1280"
       height="853"

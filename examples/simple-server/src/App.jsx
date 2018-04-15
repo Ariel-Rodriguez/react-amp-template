@@ -2,6 +2,7 @@ import React, { Fragment } from 'react'
 import { renderToString } from 'react-amp-template'
 import Head from './Components/Head'
 import Body from './Components/Body'
+import './globalStyles'
 
 const App = ({ title, date, json }) => (
   <Fragment>

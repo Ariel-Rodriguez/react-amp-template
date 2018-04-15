@@ -76,7 +76,8 @@ export default props => renderToString(<App title="AMP demo" />)
 ```
 
 
-## Demo [here](https://github.com/Ariel-Rodriguez/react-amp-template/tree/master/examples)
+## Demo
+[See complete example here](https://github.com/Ariel-Rodriguez/react-amp-template/tree/master/examples/simple-server)
 
 
 ## API

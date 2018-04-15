@@ -3,3 +3,7 @@ node_js:
   - 6
 cache:
   yarn: false
+install:
+  - npm install -g codecov
+script:
+  - report-coverage

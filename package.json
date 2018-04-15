@@ -26,7 +26,8 @@
     "prepublishOnly": "NODE_ENV=production && npm run build:lib && echo build using $NODE_ENV env",
     "test": "npm run -s lint && BABEL_ENV=test nyc ava",
     "test:watch": "npm test --  --watch",
-    "lint": "eslint --fix --ext .jsx --ext .js src/."
+    "lint": "eslint --fix --ext .jsx --ext .js src/.",
+    "report-coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov -t $CODECOV_TOKEN"
   },
   "author": "Ariel Fernando Rodriguez",
   "license": "Apache-2.0",

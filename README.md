@@ -6,6 +6,8 @@
 <br />
 
 <div align="center">
+  <!-- maintainability -->
+  <a href="https://codeclimate.com/github/Ariel-Rodriguez/react-amp-template/maintainability"><img src="https://api.codeclimate.com/v1/badges/ff07a1f7148b05304caf/maintainability" /></a>
   <!-- Build Status -->
   <a href="https://travis-ci.org/Ariel-Rodriguez/react-amp-template">
     <img src="https://travis-ci.org/Ariel-Rodriguez/react-amp-template.svg?branch=master" alt="Build Status" />

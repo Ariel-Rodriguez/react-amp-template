@@ -12,6 +12,8 @@
   </a>
   <!-- npm ver -->
   <a href="https://badge.fury.io/js/react-amp-template"><img src="https://badge.fury.io/js/react-amp-template.svg" alt="npm version" height="18"></a>
+  <!-- cover -->
+  <a href="https://codecov.io/gh/Ariel-Rodriguez/react-amp-template"><img src="https://codecov.io/gh/Ariel-Rodriguez/react-amp-template/branch/master/graph/badge.svg" /></a>
 </div>
 
 

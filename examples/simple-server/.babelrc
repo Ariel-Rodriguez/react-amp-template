@@ -1,6 +1,7 @@
 {
   "sourceMaps": true,
   "presets": [
+    "react",
     ["env", {
       "targets": {
         "node": "current"

@@ -6,7 +6,8 @@ const Container = styled.div`
   margin: 1em;
 `
 
-const SocialShare = () => (
+
+export default () => (
   <Container>
     <SocialShare width="40" height="40" type="email" />
     <SocialShare
@@ -21,6 +22,3 @@ const SocialShare = () => (
     <SocialShare width="40" height="40" type="twitter" />
   </Container>
 )
-}
-
-export default SocialShare

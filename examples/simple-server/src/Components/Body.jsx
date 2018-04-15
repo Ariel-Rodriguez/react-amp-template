@@ -17,18 +17,18 @@ const Body = props => (
     >
       <button
         id="live-list-update-button"
-        update
+        update=""
         on="tap:amp-live-list-insert-blog.update"
         className="ampstart-btn caps"
       >
         You have updates
       </button>
-      <div items>
+      <div items="">
         <div id="post1" data-sort-time="20180415002145">
           <PostCard />
         </div>
       </div>
-      <div pagination>
+      <div pagination="">
         <nav aria-label="amp live list pagination">
           <ul className="pagination">
             <li>1</li>

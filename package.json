@@ -1,6 +1,6 @@
 {
   "name": "react-amp-template",
-  "version": "4.0.0-alpha.4",
+  "version": "4.0.0-alpha.5",
   "description": "AMP react server rendering.",
   "keywords": [
     "preact",
@@ -23,7 +23,7 @@
     "build:lib": "rimraf lib && babel src -d lib -s",
     "dev": "nodemon --watch ./src  --ext js,jsx --exec 'npm run prepare && npm run build && npm run test'",
     "prepare": "npm test",
-    "prepublish": "NODE_ENV=production && npm run build:lib && echo build using $NODE_ENV env",
+    "prepublishOnly": "NODE_ENV=production && npm run build:lib && echo build using $NODE_ENV env",
     "test": "npm run -s lint && BABEL_ENV=test nyc ava",
     "test:watch": "npm test --  --watch",
     "lint": "eslint --fix --ext .jsx --ext .js src/."

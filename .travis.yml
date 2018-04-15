@@ -1,5 +1,11 @@
 language: node_js
 node_js:
-  - 6
+  - "stable"
 cache:
-  yarn: true
+  yarn: false
+script:
+  - npm install
+  - npm test
+after_script:
+  - npm install -g codecov
+  - npm run report-coverage

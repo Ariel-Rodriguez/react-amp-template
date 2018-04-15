@@ -1,6 +1,6 @@
 <div align="center">
-  <h1><strong>RAMPT 3</strong></h1>
-  <div align="center">Server side rendering using Preact + ModularCSS/JSCSS + AMP-custom-elements.</div>
+  <h1><strong>RAMPT v4</strong></h1>
+  <div align="center"><p>AMP components aliases and shims for React SSR 16+ & styled-components v3</p></div>
 </div>
 
 <br />
@@ -30,6 +30,7 @@ Write AMP pages using React syntaxt right the way and style with your preferred 
 ## Contents
 
 - [Usage](#usage)
+- [Demo](#demo)
 - [API](#api)
 - [Configuration](#configuration)
 - [Contribute](#contributing)
@@ -37,178 +38,109 @@ Write AMP pages using React syntaxt right the way and style with your preferred 
 
 ## Usage
 
-### Install from NPM
+### Install
 
-- `yarn add react-amp-template`
+- `npm i react-amp-template`
 
 ### Static Render
 
 ```javascript
-import { h } from 'preact'
-import render from 'react-amp-template'
+import React, { Fragment } from 'react'
+import styled from 'styled-components'
+import { renderToString, AMP } from 'react-amp-template'
 
-const metaContent = {
-  'http-equiv': "origin-trial",
-  'data-expires': '2020-01-01',
-  'data-feature': "Web Share",
-  'content': "Ajcrk411RcpUCQ3ovgC8le4e7Te/1kARZsW5Hd/OCnW6vIHTs5Kcq1PaABs7SzcrtfvT0TIlFh9Vdb5xWi9LiQsAAABSeyJvcmlnaW4iOiJodHRwczovL2FtcGJ5ZXhhbXBsZS5jb206NDQzIiwiZmVhdHVyZSI6IldlYlNoYXJlIiwiZXhwaXJ5IjoxNDkxMzM3MDEwfQ=="
-}
+const { Title, Link, Carousel } = AMP
 
-const SocialShare = (props, { head }) => {
-  head.append('amp-social-share')
-  return <amp-social-share {...props} />
-}
-
-const Body = (props, { head }) => {
-  // Add required meta tags to head at any moment.
-  head.append('meta', metaContent)
-  head.append('link', {rel: 'amphtml', 'href': "https://www.example.com/url/to/amp/document.html"})
-  return(
-    <body>
-      <h1>Preact for AMP is welcome as well!</h1>
-      <SocialShare width="40" height="40" type="email"/>
-      <SocialShare width="40" height="40" type="facebook"
-        data-param-app_id="254325784911610" />
-      <SocialShare width="40" height="40" type="gplus"/>
-      <SocialShare width="40" height="40" type="linkedin"/>
-      <SocialShare width="40" height="40" type="whatsapp"/>
-      <SocialShare width="40" height="40" type="twitter"/>
-    </body>
-  )
-}
-
-
-render(<Body />, {
-  title: 'Rendering AMP with preact',
-  canonical: 'https://my-website.com',
-})
-```
-
-## Styled components
-
-```javascript
-import React from 'react'
-import render from 'react-amp-template'
-
-const Body = ({ children, ...props }, { head }) =>
-  <body {...props}>
-    <Button>Normal</Button>
-    <ThemeProvider theme={theme}>
-      <Button>Themed</Button>
-    </ThemeProvider>
-    {children}
-  </body>
-
-
-const StyledBody = styled(Body)`
-	background: papayawhip;
-	@media (max-width: 700px) {
-		background: palevioletred;
-	}
+const Body = styled.body`
+  margin: 0 1rem;
 `
 
-render(<StyledBody />, {
-  title: 'Styling AMP with StyledComponents',
-  canonical: 'https://canonical.com',
-  styleManager: 'styled-components',
-})
+const App = ({ title }) => (
+  <Fragment>
+    <Title>{title}</Title>
+    <Link rel="canonical" href="http://localhost" />
+    <Body>
+      <h1>Hello World</h1>
+      <Carousel lightbox width="400" height="300" layout="responsive" type="slides">
+        <amp-img src="/img/image1.jpg" width="400" height="300" layout="responsive"></amp-img>
+        <amp-img src="/img/image2.jpg" width="400" height="300" layout="responsive"></amp-img>
+        <amp-img src="/img/image3.jpg" width="400" height="300" layout="responsive"></amp-img>
+      </Carousel>
+    </Body>
+  </Fragment>
+)
+
+export default props => renderToString(<App title="AMP demo" />)
 ```
 
-[See more here](https://github.com/Ariel-Rodriguez/react-amp-template/tree/master/examples)
+
+## Demo [here](https://github.com/Ariel-Rodriguez/react-amp-template/tree/master/examples)
 
 
 ## API
 
-### Template
+### renderToString
 
 ```javascript
-import { Template } from 'react-amp-template'
-const template = new Template({ title, canonical, styleManager })
+/**
+ * Transform React component into HTML AMP format.
+ *
+ * @returns {String} html
+ * @param {Class|Object} body React component to render
+ * @param {Object} options Settings
+ * @property {string} options.cdnURI absolute URL to AMP CDN
+ * @property {string} options.boilerplate HTML string which contains AMP boilerplate styles
+ * @property {object} options.extensions Key map of references to specify an extension version
+ * @property {object} options.extensions.default default version for all amp-extensions e.g '0.1'
+ * @property {object} options.extensions.extension [extension-name]
+ ** specify custom version for derived extension e.g: 'amp-sticky-ad': '1.0'
+import { renderToString } from 'react-amp-template'
 ```
 
-### Options
-
- - *title* | Add meta title with [_title_]
- - *canonical*  | Add link canonical with href to [_canonical_]
- - *styleManager* | {string | function}. Allowed `aphrodite` `styled-components` `undefined` `function` 
-
-
-### Context
-
-Every children element receives the high order `context`.
-It allows components to add custom content to Head.
-
-
-#### AMP component
-
-Ensure to add the amp-custom script required.
-RAMPT prevents duplicated scripts automatically.
+#### AMP components
 
 ```javascript
-const Element = (props, context) => {
- context.head.append('amp-sidebar')
- context.head.append('amp-sidebar') // <- it won't be added
- return ...
-}
+import { AMP } from 'react-amp-template'
+
+const AdUnit = () => <AMP.AdUnit />
 ```
+- RAMPT provides shorthands for amp-custom-elements. A \[ get \] operation on { AMP } module returns Node element and automatically registers the `<script />` tag required by AMP.
 
-`<script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>`
-
-By default every amp-script address to version 0.1. However it can be customized.
+- The following components could be used in case of need to ad elements into `<head>` element
 
 ```javascript
-const Element = (props, context) => {
- context.head.append('amp-sticky-ad', { version: '1.0' })
- return ...
-}
+  <Link /> <Meta /> <Title /> <Script /> <Tag _name="custom-tag" />
 ```
 
-`<script async custom-element="amp-sticky-ad" src="https://cdn.ampproject.org/v0/amp-sticky-ad-0.1.js"></script>`
+- By default every amp-script address to version 0.1. However it can be customized.
 
+```javascript
+renderToString(<App />, {
+  extensions: {
+   default: 0.2,
+   'amp-sticky-unit': 1.0,
+  }
+})
+```
 
 #### LD+JSON
 
 ```javascript
-const Element = (props, context) => {
-  context.head.append('ldjson', { id: 'myjson', content: {foo: 'bar' }})
-  return ...
-}
+<AMP.Script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{ __html: JSON.stringify(json) }}
+/>
 ```
 
-`<script type="application/json" id="myjson">{foo:bar}</script>`
-
-
-#### Mustache
-
-```javascript
- const Element = (props, { head }) => {
-   head.append('amp-list')
-   head.append('amp-mustache')
-
-   return (
-    <amp-list src="https://ampbyexample.com/json/cart.json"
-      layout="fixed-height"
-      height="56">
-      <template type="amp-mustache"
-        dangerousllySetInnerHTML={{ __html: "Hi {{fullname}}!" }}>
-      </template>
-    </amp-list>
-   )
- }
-```
 
 ## Configuration
 
-RAMPT renders to string thanks to [preact-render-to-string](https://github.com/developit/preact-render-to-string)
-
-A system bundler is recommended in order to make it work with React and Styled components.
-Take a look for [this webpack configuration for RAMPT examples](https://github.com/Ariel-Rodriguez/react-amp-template/blob/master/config/webpack.config.babel.js)
-
-### Babel & Webpack
+### Babel
+- Setup the environment as recomends React and Styled-Components server rendering.
 
 #### React | Styled Components
 
-`yarn add --dev babel-plugin-styled-components babel-preset-react babel-plugin-module-resolver`
+`npm i -D babel-plugin-styled-components babel-preset-react`
 
 ```json
 {
@@ -218,62 +150,22 @@ Take a look for [this webpack configuration for RAMPT examples](https://github.c
   ],
   "plugins": [
     ["babel-plugin-styled-components", { "ssr": true }]
-    ["module-resolver", {
-      "root": ["."],
-      "alias": {
-        "react": "preact-compat",
-        "react-dom": "preact-compat"
-      }
-    }]
   ]
 }
 ```
 
-- Add Webpack alias
-
-```javascript
-resolve: {
-  extensions: ['.jsx', '.js'],
-  modules: [
-    path.resolve(__dirname, "src"),
-    path.resolve(__dirname, 'node_modules')
-  ],
-  alias: {
-    'react': 'preact-compat',
-    'react-dom': 'preact-compat',
-  }
-}
-  ...
-```
-
-- Include styled-component in the bundle in order to bypass React alias into Preact
-
-```javascript
-externals: [ nodeExternals({
-  whitelist: ['styled-components']
-})]
-```
-
-## Preact
-
-```json
-{
-  "presets": [
-    "stage-0",
-    "preact"
-  ]
-}
-```
 
 ## Contributing
 
-- `$git clone git@github.com:Ariel-Rodriguez/react-amp-template.git`
-- `yarn`
-- `yarn dev`
+- Fork the repository
+- `npm install`
+- `npm run dev`
+- Create pull request
 
 ### Build examples
 
-- `yarn examples`
+- `cd examples/simple-server`
+- `npm install && npm start`
 
 ## License
 

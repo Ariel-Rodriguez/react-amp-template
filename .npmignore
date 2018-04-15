@@ -1,3 +1,6 @@
+.travis.yml
+examples
+.nyc_output
 src
 .editorconfig
 yarn-error.log

@@ -1,6 +1,6 @@
 {
   "name": "react-amp-template",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "description": "AMP react server rendering.",
   "keywords": [
     "preact",
@@ -19,22 +19,23 @@
     "url": "https://github.com/Ariel-Rodriguez/react-amp-template.git"
   },
   "scripts": {
-    "build": "cross-env-shell BABEL_DISABLE_CACHE=1 npm-run-all build:*",
-    "build:lib": "rimraf lib && cross-env BABEL_ENV=preact babel src -d lib -s",
-    "build:examples": "rimraf examples/dist && cross-env-shell BABEL_ENV=react NODE_ENV=production webpack --config config/webpack.config.babel.js --progress --display-optimization-bailout",
-    "dev": "npm run build -- --watch",
-    "examples": "npm run build:examples && node examples/dist/index.js",
-    "prepublish": "npm run build:lib",
+    "build": "npm-run-all build:*",
+    "build:lib": "rimraf lib && babel src -d lib -s",
+    "dev": "nodemon --watch ./src  --ext js,jsx --exec 'npm run prepare && npm run build && npm run test'",
+    "prepare": "npm test",
+    "prepublishOnly": "NODE_ENV=production && npm run build:lib && echo build using $NODE_ENV env",
     "test": "npm run -s lint && BABEL_ENV=test nyc ava",
-    "test:watch": "BABEL_ENV=preact ava --watch",
-    "lint": "eslint --fix --ext .jsx --ext .js src/."
+    "test:watch": "npm test --  --watch",
+    "lint": "eslint --fix --ext .jsx --ext .js src/.",
+    "report-coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov -t $CODECOV_TOKEN"
   },
   "author": "Ariel Fernando Rodriguez",
   "license": "Apache-2.0",
   "ava": {
     "require": [
       "babel-register"
-    ]
+    ],
+    "babel": "inherit"
   },
   "babel": {
     "extends": "./config/.babelrc"
@@ -43,47 +44,33 @@
     "extends": "./config/.eslintrc.json"
   },
   "dependencies": {
-    "aphrodite": "^1.2.3",
-    "preact": "^8.2.5",
-    "preact-compat": "^3.17.0",
-    "preact-render-to-string": "^3.6.3",
-    "proptypes": "^1.1.0",
-    "react": "^15.6.1",
-    "styled-components": "^2.1.2"
+    "pretty": "^2.0.0",
+    "prop-types": "^15.6.1",
+    "react": "^16.3.1",
+    "react-dom": "^16.3.1",
+    "styled-components": "^3.2.5"
   },
   "devDependencies": {
-    "ava": "^0.22.0",
+    "ava": "^0.25.0",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
-    "babel-eslint": "^7.2.3",
-    "babel-loader": "^7.1.2",
-    "babel-plugin-istanbul": "^4.1.5",
-    "babel-plugin-module-resolver": "^2.7.1",
-    "babel-plugin-styled-components": "^1.2.0",
-    "babel-plugin-transform-decorators-legacy": "^1.3.4",
-    "babel-plugin-transform-react-jsx": "^6.24.1",
-    "babel-preset-env": "^1.6.0",
-    "babel-preset-preact": "^1.1.0",
+    "babel-eslint": "^8.2.3",
+    "babel-plugin-istanbul": "^4.1.6",
+    "babel-plugin-styled-components": "^1.5.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
-    "babel-preset-stage-0": "^6.24.1",
     "babel-runtime": "^6.26.0",
-    "case-sensitive-paths-webpack-plugin": "^2.1.1",
-    "cross-env": "^5.0.5",
-    "eslint": "^4.5.0",
-    "eslint-config-airbnb": "^15.1.0",
-    "eslint-config-airbnb-base": "^12.0.0",
-    "eslint-plugin-import": "^2.7.0",
-    "eslint-plugin-jsx-a11y": "^6.0.2",
-    "eslint-plugin-react": "^7.3.0",
-    "json-loader": "^0.5.7",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.7.0",
     "mkdirp": "^0.5.1",
-    "module-alias": "^2.0.1",
-    "npm-run-all": "^4.1.1",
-    "nyc": "^11.2.1",
-    "rimraf": "^2.6.1",
-    "source-map-loader": "^0.2.1",
-    "webpack": "^3.5.5",
-    "webpack-dev-server": "^2.7.1",
-    "webpack-node-externals": "^1.6.0"
+    "npm-run-all": "^4.1.2",
+    "nyc": "^11.6.0",
+    "react-test-renderer": "^16.3.1",
+    "rimraf": "^2.6.2"
   }
 }

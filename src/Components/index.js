@@ -28,7 +28,7 @@ export default new Proxy(PublicComponents, {
     }
 
     // defaults to amp-element
-    return (...props) => (
+    return props => (
       React.createElement(Script, {
         _name: `amp${toKebabCase(property)}`,
         ...props,

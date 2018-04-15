@@ -14,10 +14,10 @@ const Script = ({
       if (name) {
         const attrs = { async: true, 'custom-element': name, src: store.getScriptSRC(name) }
         store.registerUniqueElement('script', attrs, name)
-        return React.createElement(name, props[0], children)
+        return React.createElement(name, props, children)
       }
       store.registerElement('script', props)
-      return typeof children === 'function' ? children(props[0]) : null
+      return children
     }}
   </Consumer>
 )

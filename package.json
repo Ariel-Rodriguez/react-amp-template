@@ -1,6 +1,6 @@
 {
   "name": "react-amp-template",
-  "version": "4.0.0-alpha.1",
+  "version": "4.0.0-alpha.3",
   "description": "AMP react server rendering.",
   "keywords": [
     "preact",
@@ -20,13 +20,12 @@
   },
   "scripts": {
     "build": "npm-run-all build:*",
-    "build:lib": "babel src -d lib -s",
-    "clean": "rimraf lib",
+    "build:lib": "rimraf lib && babel src -d lib -s",
     "dev": "nodemon --watch ./src  --ext js,jsx --exec 'npm run prepare && npm run build && npm run test'",
-    "prepare": "npm run clean",
+    "prepare": "npm test",
     "prepublish": "NODE_ENV=production && npm run build:lib && echo build using $NODE_ENV env",
     "test": "npm run -s lint && BABEL_ENV=test nyc ava",
-    "test:watch": "npm run test --  --watch",
+    "test:watch": "npm test --  --watch",
     "lint": "eslint --fix --ext .jsx --ext .js src/."
   },
   "author": "Ariel Fernando Rodriguez",
@@ -35,9 +34,7 @@
     "require": [
       "babel-register"
     ],
-    "files": [
-      "test/**/*.{js,jsx}"
-    ]
+    "babel": "inherit"
   },
   "babel": {
     "extends": "./config/.babelrc"

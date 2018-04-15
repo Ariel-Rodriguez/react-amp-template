@@ -10,11 +10,7 @@ const Tag = ({
 }) => (
   <Consumer>
     {({ store }) => {
-      if (typeof children === 'function') {
-        store.registerElement(name, props)
-        return children(props[0])
-      }
-      store.registerElement(name, { children, ...props })
+      store.registerElement(name, props)
       return null
     }}
   </Consumer>

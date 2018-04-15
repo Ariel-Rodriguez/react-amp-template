@@ -20,7 +20,7 @@ const state = {
 
 const hashRegister = []
 
-export const createElement = (tag, attrs, key) =>
+const createElement = (tag, attrs, key) =>
   React.createElement(tag, { ...attrs, key })
 
 /**
@@ -28,7 +28,7 @@ export const createElement = (tag, attrs, key) =>
  * @returns {String} CDN URI of script extension
  * @param {String} extensionName script extension e.g "amp-fit-text"
  */
-export const getScriptSRC = extensionName =>
+const getScriptSRC = extensionName =>
   `${state.cdnURI}/${extensionName}-${state.extensions[extensionName] || state.extensions.default}.js`
 
 /**
@@ -36,7 +36,7 @@ export const getScriptSRC = extensionName =>
  * @param {String} tag html tag e.g "script"
  * @param {Object} attrs html element attributes
  */
-export const registerElement = (tag, attrs) => {
+const registerElement = (tag, attrs) => {
   state.elements.push(createElement(tag, attrs, `${tag}-${state.elements.length}`))
 }
 
@@ -48,14 +48,14 @@ export const registerElement = (tag, attrs) => {
  * @param {Object} attrs html element attributes
  * @param {String} name custom-element name e.g "amp-fit-text"
  */
-export const registerUniqueElement = (tag, attrs, name) => {
+const registerUniqueElement = (tag, attrs, name) => {
   if (hashRegister.indexOf(name) === -1) {
     hashRegister.push(name)
     state.elements.push(createElement(tag, attrs, name))
   }
 }
 
-export const setOptions = ({
+const setOptions = ({
   boilerplate, extensions, runtimeURI, cdnURI,
 }) => {
   state.cdnURI = cdnURI || state.cdnURI
@@ -73,5 +73,13 @@ const { Provider, Consumer } = React.createContext({
   },
 })
 
-export { Provider, Consumer }
+export {
+  Consumer,
+  createElement,
+  registerElement,
+  registerUniqueElement,
+  getScriptSRC,
+  Provider,
+  setOptions,
+}
 export default state

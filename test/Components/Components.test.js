@@ -52,3 +52,9 @@ test('Link component', async t => {
   const testRenderer = TestRenderer.create(React.createElement(Components.Link, { content: 'test' }, Child))
   t.is(testRenderer.toJSON(), null, 'Link tag should return null.')
 })
+
+test('Title component', async t => {
+  const Child = 'A title'
+  const testRenderer = TestRenderer.create(React.createElement(Components.Title, null, Child))
+  t.is(testRenderer.toJSON(), null, 'Title tag should return null.')
+})

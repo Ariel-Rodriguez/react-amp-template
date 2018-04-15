@@ -3,6 +3,7 @@ import Link from './Link'
 import Meta from './Meta'
 import Script from './Script'
 import Tag from './Tag'
+import Title from './Title'
 
 /**
  * Transforms to toKebabCase for each upper case coincidence.
@@ -14,7 +15,7 @@ const toKebabCase = str =>
 
 // Primitives RAMPT components to be exposed.
 const PublicComponents = {
-  Link, Meta, Script, Tag,
+  Link, Meta, Script, Tag, Title,
 }
 
 /**

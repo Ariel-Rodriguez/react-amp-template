@@ -1,0 +1,48 @@
+{
+  "@context": "http://schema.org",
+  "@type": "LiveBlogPosting",
+  "url": "https://ampbyexample.com/samples_templates/live_blog/",
+  "articleBody": "This is the initial text in the blog post",
+  "datePublished": "2016-09-08T23:04:28.24337",
+  "about": {
+    "@type": "Event",
+    "description": "This is my great live blog sample",
+    "startDate": "2016-07-23T13:00:00-07:00",
+    "endDate": "2016-07-23T15:00:00-07:00",
+    "name": "An AMP Live Blog",
+    "url": "https://ampbyexample.com/samples_templates/live_blog/",
+    "location": {
+      "@type": "EventVenue",
+      "name": "The Venue Name",
+      "address" : {
+        "@type": "PostalAddress",
+        "streetAddress": "701 Mission St",
+        "addressLocality": "San Francisco",
+        "addressRegion": "CA",
+        "postalCode": "94103",
+        "addressCountry": "US"
+      }
+    }
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Google",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://ampbyexample.com/img/favicon.png",
+      "width": "512",
+      "height": "512"
+    }
+  },
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://ampbyexample.com/img/abe_preview.png",
+    "height": "1532",
+    "width": "2046"
+  },
+  "coverageStartTime": "2016-07-23T11:30:00-07:00",
+  "coverageEndTime": "2016-07-23T16:00:00-07:00",
+  "headline": "An AMP Live Blog",
+  "description": "A Live Blog implementation with AMP",
+  "liveBlogUpdate": []
+}

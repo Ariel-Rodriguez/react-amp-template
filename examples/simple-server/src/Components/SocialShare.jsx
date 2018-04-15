@@ -1,24 +1,29 @@
+import React from 'react'
+import styled from 'styled-components'
 import { AMP } from 'react-amp-template'
 
-const SocialShare = AMP.SocialShare
 
 const Container = styled.div`
-  margin: 1em;
+  line-height:36px;
+  display: flex;
+  padding-bottom: 16px;
+  padding-top: 16px;
 `
 
-
-export default () => (
+const SocialShare = () => (
   <Container>
-    <SocialShare width="40" height="40" type="email" />
-    <SocialShare
+    <AMP.SocialShare width="40" height="40" type="email" />
+    <AMP.SocialShare
       width="40"
       height="40"
       type="facebook"
-      data-param-app_id="254325784911610"
+      data-param-app_id=""
     />
-    <SocialShare width="40" height="40" type="gplus" />
-    <SocialShare width="40" height="40" type="linkedin" />
-    <SocialShare width="40" height="40" type="whatsapp" />
-    <SocialShare width="40" height="40" type="twitter" />
+    <AMP.SocialShare width="40" height="40" type="gplus" />
+    <AMP.SocialShare width="40" height="40" type="linkedin" />
+    <AMP.SocialShare width="40" height="40" type="whatsapp" />
+    <AMP.SocialShare width="40" height="40" type="twitter" />
   </Container>
 )
+
+export default SocialShare

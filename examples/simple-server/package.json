@@ -5,7 +5,7 @@
   "dependencies": {
     "live-server": "^1.2.0",
     "react": "^16.3.1",
-    "react-amp-template": "^4.0.0-alpha.0",
+    "react-amp-template": "^4.0.0-alpha.3",
     "styled-components": "^3.2.5"
   },
   "devDependencies": {
@@ -22,7 +22,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "babel src -d dist -s && cd server && node render.js",
     "dev": "npm run serve & nodemon --watch ./src  --ext js,jsx --exec 'npm run build'",
-    "serve": "node ./server/index.js"
+    "serve": "cd server && node ./index.js"
   },
   "author": "Ariel Rodriguez",
   "license": "ISC"

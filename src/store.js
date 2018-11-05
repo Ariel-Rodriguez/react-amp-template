@@ -62,6 +62,7 @@ const setOptions = ({
   state.boilerplate = boilerplate || state.boilerplate
   state.runtimeURI = runtimeURI || state.runtimeURI
   state.extensions = { ...state.extensions, ...extensions }
+  state.elements.length = 0
 }
 
 const { Provider, Consumer } = React.createContext({

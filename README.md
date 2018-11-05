@@ -19,7 +19,7 @@
 </div>
 
 
-Write AMP pages using React syntaxt right the way and style with your preferred style manager
+Write AMP pages using React syntax right the way and style with your preferred style manager
 
 <dl>
   <dt>:zap: AMP elements</dt>

@@ -1,13 +1,19 @@
 {
   "sourceMaps": true,
   "presets": [
-    "react",
-    ["env", {
-      "targets": {
-        "node": "current"
+    "@babel/preset-react",
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "node": "current"
+        }
       }
-    }]],
+    ]
+  ],
   "plugins": [
-    ["babel-plugin-styled-components", { "ssr": true }]
+    [
+      "babel-plugin-styled-components"
+    ]
   ]
 }

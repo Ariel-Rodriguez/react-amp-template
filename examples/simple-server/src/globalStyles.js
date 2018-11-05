@@ -1,8 +1,10 @@
-import { injectGlobal } from 'styled-components'
+import { createGlobalStyle } from 'styled-components'
 
-injectGlobal`
+const GlobalStyle = createGlobalStyle`
   p {
-    font-size: 1.2rem;
+    font-size: ${({ fontSize }) => (fontSize || 1)}rem;
     font-family: monospace;
   }
 `
+
+export default GlobalStyle

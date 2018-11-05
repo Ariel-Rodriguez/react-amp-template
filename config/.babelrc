@@ -1,18 +1,23 @@
 {
   "presets": [
-    "react",
-    ["env", {
-      "targets": {
-        "node": "current"
+    "@babel/preset-react",
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "node": "current"
+        }
       }
-    }]
+    ]
   ],
   "plugins": [
-    "transform-object-rest-spread"
+    "babel-plugin-styled-components"
   ],
   "env": {
     "test": {
-      "plugins": ["istanbul"]
-     }
+      "plugins": [
+        "istanbul"
+      ]
+    }
   }
 }

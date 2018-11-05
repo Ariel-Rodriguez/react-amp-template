@@ -1,5 +1,5 @@
 import React from 'react'
-import { renderToStaticMarkup } from 'react-dom/server'
+import { renderToString as reactRenderToString } from 'react-dom/server'
 import { ServerStyleSheet } from 'styled-components'
 import pretty from 'pretty'
 
@@ -22,11 +22,11 @@ import Head from './Components/Head'
 export const renderToString = (body, options = {}) => {
   setOptions(options)
   const sheet = new ServerStyleSheet()
-  const bodyStyless = pretty(renderToStaticMarkup(sheet.collectStyles(body)))
+  const bodyStyless = pretty(reactRenderToString(sheet.collectStyles(body)))
   const styles = sheet.getStyleElement()[0]
   // eslint-disable-next-line no-underscore-dangle
   const css = styles ? styles.props.dangerouslySetInnerHTML.__html : ''
-  const head = pretty(renderToStaticMarkup(<Head css={css} />))
+  const head = pretty(reactRenderToString(<Head css={css} />))
     .replace('<style amp-boilerplate=""></style>', store.boilerplate)
 
   return `<!DOCTYPE html>\n<html ⚡>\n${head}\n${bodyStyless}\n</html>`

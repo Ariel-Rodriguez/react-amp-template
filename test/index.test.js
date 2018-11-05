@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { Fragment } from 'react'
+import styled, { createGlobalStyle } from 'styled-components'
 import test from 'ava'
 import { renderToString, AMP } from '../src'
-import styled from 'styled-components'
 
 test('it renders simple node element', async t => {
   const body = React.createElement('body', {})
@@ -23,10 +23,26 @@ test('it renders all AMP node element', t => {
   t.snapshot(render1)
 })
 
-
 test('RAMPT render with styles', async t => {
   const styledBody = styled.body`background: red;`
   const body = React.createElement(styledBody, {})
   const output = renderToString(body)
-  t.regex(output, /<body class=/, 'Renders HTML template with body element and class styles.')
+  console.log(output)
+  t.regex(output, /background: red/, 'Renders HTML template with body element and class styles.')
+})
+
+test('RAMPT supports styled components v4 global styles', async t => {
+  const GlobalStyle = createGlobalStyle`
+    p {
+      font-size: ${({ fontSize }) => (fontSize || 1)}rem;
+      font-family: monospace;
+    }
+  `
+  const styledBody = styled.body`background: red;`
+  const Body = React.createElement(styledBody, { key: 1 })
+  const GlobalStyles = React.createElement(GlobalStyle, { key: 2, fontSize: 1.4 })
+  const App = React.createElement(Fragment, {}, [Body, GlobalStyles])
+  const output = renderToString(App)
+  t.regex(output, /font-size: 1.4rem/, 'Renders HTML template with body element and class styles.')
+  t.snapshot(output)
 })

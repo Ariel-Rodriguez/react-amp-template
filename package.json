@@ -1,6 +1,6 @@
 {
   "name": "react-amp-template",
-  "version": "4.0.1",
+  "version": "4.0.2",
   "description": "AMP react server rendering.",
   "keywords": [
     "preact",

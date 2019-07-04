@@ -23,7 +23,7 @@ Write AMP pages using React syntaxt right the way and style with your preferred 
 
 <dl>
   <dt>:zap: AMP elements</dt>
-  <dd>Ready to render any <a href="https://ampbyexample.com/#components">AMP component</a></dd>
+  <dd>Ready to render any <a href="https://amp.dev/documentation/components/">AMP component</a></dd>
   <dt>:nail_care: Modular CSS</dt>
   <dd>Style with the power of <a href="https://github.com/styled-components/styled-components">Styled Components</a> or <a href="https://github.com/Khan/aphrodite">Aphrodite</a> or Your Own custom StyleManager!</dd>
 </dl>

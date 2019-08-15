@@ -10,7 +10,7 @@ const Head = ({ css }) => (
         <script async src="https://cdn.ampproject.org/v0.js" />
         {state.elements}
         <style amp-boilerplate="" />
-        <style amp-custom="">{css}</style>
+        <style amp-custom="" dangerouslySetInnerHTML={{ __html: css }} />
       </head>
     )
   }

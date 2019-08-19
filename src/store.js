@@ -18,7 +18,7 @@ const state = {
   elements: [],
 }
 
-const hashRegister = []
+let hashRegister = []
 
 const createElement = (tag, attrs, key) =>
   React.createElement(tag, { ...attrs, key })
@@ -63,6 +63,7 @@ const setOptions = ({
   state.runtimeURI = runtimeURI || state.runtimeURI
   state.extensions = { ...state.extensions, ...extensions }
   state.elements.length = 0
+  hashRegister = []
 }
 
 const { Provider, Consumer } = React.createContext({

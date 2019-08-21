@@ -25,8 +25,32 @@ test('it renders all AMP node element', t => {
 
 
 test('RAMPT render with styles', async t => {
-  const styledBody = styled.body`background: red;`
+  const styles = "background: url('https://www.somedomain.com');"
+  const styledBody = styled.body`${styles}`
   const body = React.createElement(styledBody, {})
   const output = renderToString(body)
-  t.regex(output, /<body class=/, 'Renders HTML template with body element and class styles.')
+
+  const unScapedStyles = styles.replace(/\(/g, '\\(').replace(/\)/g, '\\)')
+
+  t.regex(output, new RegExp(unScapedStyles), 'Renders HTML template with body element and styles.')
 })
+
+test('RAMPT renderToString multiple calls', async t => {
+  const stylesFirstRender = 'background: red;'
+  const stylesLastRender = 'background: blue;'
+
+  const styledBody = styled.body`${stylesFirstRender}`
+  const body = React.createElement(styledBody, {})
+
+  const styledBody2 = styled.body`${stylesLastRender}`
+  const body2 = React.createElement(styledBody2, {})
+  
+  // First render with background: red
+  renderToString(body)
+  // 2nd render with background: blue
+  const output2 = renderToString(body2)
+
+  t.regex(output2, new RegExp(stylesLastRender), 'It should render unique styles from each render.')
+  t.notRegex(output2, new RegExp(stylesFirstRender), 'It should not mix class styles from each render.')
+})
+

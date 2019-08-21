@@ -9,9 +9,9 @@ test('it renders simple node element', async t => {
   t.regex(output, /<body><\/body>/, 'Renders HTML template with body element.')
 })
 
-const renderAllAMPComponents = () => {
-  const Title = React.createElement(AMP.Title, {}, 'title')
-  const Link = React.createElement(AMP.Link, { src: 'https://link' }, 'link')
+const renderAllAMPComponents = key => {
+  const Title = React.createElement(AMP.Title, { key: `title-${key}`}, 'title')
+  const Link = React.createElement(AMP.Link, { src: 'https://link', key: `link-${key}` }, 'link')
   const body = React.createElement('body', {}, [Title, Link])
   return renderToString(body)
 }

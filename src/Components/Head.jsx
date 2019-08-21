@@ -2,6 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Consumer } from '../store'
 
+const buildStyleProps = plainCSS => ({
+  dangerouslySetInnerHTML: { __html: plainCSS },
+})
+
 const Head = ({ css }) => (
   <Consumer>
     {({ store: { state } }) => (
@@ -10,7 +14,8 @@ const Head = ({ css }) => (
         <script async src="https://cdn.ampproject.org/v0.js" />
         {state.elements}
         <style amp-boilerplate="" />
-        <style amp-custom="" dangerouslySetInnerHTML={{ __html: css }} />
+        {/** eslint-disable-next-line react/no-danger */}
+        <style amp-custom="" {...buildStyleProps(css)} />
       </head>
     )
   }
